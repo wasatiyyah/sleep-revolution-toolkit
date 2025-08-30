@@ -2222,6 +2222,7 @@ const STRIPE_PUBLIC_KEY = 'pk_test_8Lfb60gbAK374AtGcoL8COpC'; // Stripe publisha
 const PRODUCT_PRICE = 2700; // $27.00 in cents
 const STRIPE_PRICE_ID = 'price_1S1pzWBW0J6epKS6wNsiBukQ'; // Sleep Toolkit price ID
 const STRIPE_PRODUCT_ID = 'prod_SxlWBmU5Qxwuh6'; // Sleep Toolkit product ID
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_8x23cuapJdM8gMN2mB73G00'; // Payment Link URL
 
 // Initialize Stripe
 let stripe = null;
@@ -2360,15 +2361,11 @@ function setupModal() {
     });
 }
 
-// Open Checkout Modal
+// Open Checkout Modal - Now redirects directly to Stripe Payment Link
 function openCheckoutModal() {
-    const modal = document.getElementById('checkout-modal');
-    modal.style.display = 'block';
-    
-    // Initialize Stripe Elements if not already done
-    if (!elements) {
-        setupStripeElements();
-    }
+    console.log('Redirecting to Stripe Payment Link:', STRIPE_PAYMENT_LINK);
+    // Directly redirect to the payment link instead of showing modal
+    window.location.href = STRIPE_PAYMENT_LINK;
 }
 
 // Initialize Stripe
