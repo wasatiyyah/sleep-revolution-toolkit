@@ -2376,6 +2376,10 @@ function initializeStripe() {
     // Note: Replace with your actual Stripe public key
     if (typeof Stripe !== 'undefined' && STRIPE_PUBLIC_KEY.startsWith('pk_')) {
         stripe = Stripe(STRIPE_PUBLIC_KEY);
+        window.stripe = stripe; // Also assign to window for debugging
+        console.log('Stripe initialized successfully with key:', STRIPE_PUBLIC_KEY);
+    } else {
+        console.error('Stripe initialization failed. Stripe loaded:', typeof Stripe !== 'undefined', 'Valid key:', STRIPE_PUBLIC_KEY.startsWith('pk_'));
     }
 }
 
@@ -2418,6 +2422,13 @@ function setupStripeElements() {
         btnSpinner.style.display = 'flex';
         
         try {
+            console.log('Attempting Stripe checkout with:', {
+                stripe: !!stripe,
+                priceId: STRIPE_PRICE_ID,
+                successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}&x-vercel-protection-bypass=bc001427eda196c70638cfa086ba31e5`,
+                cancelUrl: window.location.href
+            });
+            
             // Redirect to Stripe Checkout
             const { error } = await stripe.redirectToCheckout({
                 lineItems: [{
@@ -2430,9 +2441,11 @@ function setupStripeElements() {
             });
             
             if (error) {
-                console.error('Error:', error);
+                console.error('Stripe checkout error:', error);
                 const displayError = document.getElementById('card-errors');
                 displayError.textContent = error.message;
+            } else {
+                console.log('Stripe checkout initiated successfully');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -2478,6 +2491,11 @@ function setupDemoCheckout() {
             }
             
             if (stripe && STRIPE_PRICE_ID) {
+                console.log('Demo checkout: Attempting Stripe redirect with:', {
+                    stripe: !!stripe,
+                    priceId: STRIPE_PRICE_ID
+                });
+                
                 // Redirect to Stripe Checkout
                 const { error } = await stripe.redirectToCheckout({
                     lineItems: [{
@@ -2490,8 +2508,10 @@ function setupDemoCheckout() {
                 });
                 
                 if (error) {
-                    console.error('Error:', error);
+                    console.error('Demo checkout Stripe error:', error);
                     showDemoSuccess();
+                } else {
+                    console.log('Demo checkout: Stripe redirect initiated');
                 }
             } else {
                 // Fallback to demo success
