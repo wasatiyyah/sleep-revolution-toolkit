@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Revolution Toolkit - Bonus Materials</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --royal-blue: #1e40af;
+            --gold: #f59e0b;
+            --emerald: #10b981;
+            --purple: #8b5cf6;
+            --coral: #f97316;
+            --rose: #e11d48;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --text-dark: #111827;
+            --text-light: #6b7280;
+            --gradient-royal: linear-gradient(135deg, #1e40af, #1d4ed8);
+            --gradient-gold: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-emerald: linear-gradient(135deg, #10b981, #059669);
+            --gradient-purple: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            --gradient-coral: linear-gradient(135deg, #f97316, #ea580c);
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Cover Design */
+        .cover {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: white;
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cover-highlight {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .bonus-preview {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .bonus-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .bonus-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .bonus-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        /* Page Styles */
+        .page {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-heavy);
+            page-break-inside: avoid;
+        }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            background: var(--gradient-royal);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 50px 0 25px 0;
+            color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: var(--gradient-royal);
+            border-radius: 3px;
+        }
+        
+        .subsection-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 30px 0 20px 0;
+            color: var(--purple);
+        }
+        
+        /* Bonus Boxes */
+        .bonus-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 3px solid var(--gold);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bonus-box::before {
+            content: '🎁';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+        
+        .bonus-box h3 {
+            color: #92400e;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .bonus-box h3::before {
+            content: '✨';
+            font-size: 1.5em;
+        }
+        
+        /* Checklist Styles */
+        .premium-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .premium-checklist li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 12px;
+            border-left: 4px solid var(--royal-blue);
+            box-shadow: var(--shadow-light);
+        }
+        
+        .premium-checklist li::before {
+            content: '✓';
+            background: var(--gradient-royal);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        /* Rating System */
+        .rating-system {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            border: 2px solid var(--purple);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .rating-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .rating-item:last-child {
+            border-bottom: none;
+        }
+        
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .star {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        /* Audit Grid */
+        .audit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .audit-category {
+            background: white;
+            border: 2px solid var(--emerald);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .audit-category h4 {
+            color: var(--emerald);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .audit-category h4::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-emerald);
+            border-radius: 50%;
+        }
+        
+        .audit-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .rating-input {
+            width: 40px;
+            height: 30px;
+            border: 1px solid var(--emerald);
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Protocol Steps */
+        .protocol-steps {
+            counter-reset: protocol-counter;
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+        
+        .protocol-steps li {
+            counter-increment: protocol-counter;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            border-left: 5px solid var(--royal-blue);
+        }
+        
+        .protocol-steps li::before {
+            content: counter(protocol-counter);
+            background: var(--gradient-royal);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 10px;
+            color: var(--royal-blue);
+        }
+        
+        /* Tables */
+        .premium-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .premium-table th {
+            background: var(--gradient-royal);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .premium-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .premium-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .premium-table tr:hover {
+            background: #f1f5f9;
+        }
+        
+        /* Tier System */
+        .tier-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .tier {
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .tier-1 {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border: 2px solid var(--emerald);
+        }
+        
+        .tier-2 {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid var(--gold);
+        }
+        
+        .tier-3 {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 2px solid var(--coral);
+        }
+        
+        .tier-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .tier-1 .tier-title { color: #065f46; }
+        .tier-2 .tier-title { color: #92400e; }
+        .tier-3 .tier-title { color: #991b1b; }
+        
+        .tier-description {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        /* Warning/Success Boxes */
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 2px solid #ef4444;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        
+        .warning-box::before {
+            content: '⚠️ ';
+            font-size: 1.2em;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border: 2px solid var(--emerald);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        
+        .success-box::before {
+            content: '✅ ';
+            font-size: 1.2em;
+        }
+        
+        /* Quick Reference Cards */
+        .quick-ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .quick-ref-card {
+            background: white;
+            border: 2px solid var(--purple);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+        
+        .quick-ref-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .quick-ref-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .quick-ref-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--purple);
+        }
+        
+        .quick-ref-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .page { padding: 30px 25px; }
+            .cover-title { font-size: 2.5rem; }
+            .page-title { font-size: 2.2rem; }
+            .audit-grid { grid-template-columns: 1fr; }
+            .bonus-grid { grid-template-columns: 1fr; }
+            .tier-system { grid-template-columns: 1fr; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background: white; padding: 0; }
+            .page { page-break-inside: avoid; margin-bottom: 40px; box-shadow: none; border: 1px solid #e5e7eb; }
+            .cover { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER PAGE -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="cover-badge">🎁 Premium Bonus Collection</div>
+            
+            <h1 class="cover-title">
+                SLEEP REVOLUTION<br>
+                <span class="cover-highlight">BONUS MATERIALS</span>
+            </h1>
+            
+            <p class="cover-subtitle">
+                Extra Resources to Accelerate Your Sleep Transformation<br>
+                <strong>7 Advanced Guides for Sleep Mastery</strong>
+            </p>
+            
+            <div class="bonus-grid">
+                <div class="bonus-preview">
+                    <span class="bonus-icon">🏠</span>
+                    <div class="bonus-title">Perfect Sleep Environment</div>
+                    <div class="bonus-description">80-point bedroom optimization audit</div>
+                </div>
+                
+                <div class="bonus-preview">
+                    <span class="bonus-icon">💊</span>
+                    <div class="bonus-title">Supplement Guide</div>
+                    <div class="bonus-description">3-tier safety system for natural sleep aids</div>
+                </div>
+                
+                <div class="bonus-preview">
+                    <span class="bonus-icon">✈️</span>
+                    <div class="bonus-title">Travel Sleep Kit</div>
+                    <div class="bonus-description">Master sleep anywhere in the world</div>
+                </div>
+                
+                <div class="bonus-preview">
+                    <span class="bonus-icon">🚀</span>
+                    <div class="bonus-title">Productivity Optimization</div>
+                    <div class="bonus-description">Sleep strategies for high performers</div>
+                </div>
+                
+                <div class="bonus-preview">
+                    <span class="bonus-icon">🔬</span>
+                    <div class="bonus-title">Sleep Disorders Guide</div>
+                    <div class="bonus-description">Identify when to seek professional help</div>
+                </div>
+                
+                <div class="bonus-preview">
+                    <span class="bonus-icon">👨‍👩‍👧‍👦</span>
+                    <div class="bonus-title">Family Sleep Harmony</div>
+                    <div class="bonus-description">Solutions for couples and children</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BONUS 1: Perfect Sleep Environment -->
+    <div class="page">
+        <h1 class="page-title">Perfect Sleep Environment Checklist</h1>
+        <p class="page-subtitle">Transform your bedroom into a sleep sanctuary</p>
+        
+        <div class="bonus-box">
+            <h3>Bedroom Optimization Audit</h3>
+            <p>Rate each area 1-10, then follow improvement guidelines to create the ultimate sleep environment.</p>
+        </div>
+        
+        <div class="audit-grid">
+            <div class="audit-category">
+                <h4>🌡️ Temperature Control</h4>
+                <div class="audit-item">
+                    <span>Bedroom temperature: 65-68°F</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Cool feet solution available</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Bedding breathability</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div style="margin-top: 15px; font-size: 0.8rem; color: var(--emerald); font-weight: 600;">
+                    If below 7/10: Install programmable thermostat, cooling mattress pad
+                </div>
+            </div>
+            
+            <div class="audit-category">
+                <h4>💡 Lighting Optimization</h4>
+                <div class="audit-item">
+                    <span>Blackout capability</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Evening light management</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Morning light exposure setup</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div style="margin-top: 15px; font-size: 0.8rem; color: var(--emerald); font-weight: 600;">
+                    Gold standard: Cannot see hand in front of face
+                </div>
+            </div>
+            
+            <div class="audit-category">
+                <h4>🔊 Sound Optimization</h4>
+                <div class="audit-item">
+                    <span>Noise control (<40dB)</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Sound masking available</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Electronic interference minimal</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div style="margin-top: 15px; font-size: 0.8rem; color: var(--emerald); font-weight: 600;">
+                    Use phone app to measure decibel levels
+                </div>
+            </div>
+            
+            <div class="audit-category">
+                <h4>🛏️ Comfort & Support</h4>
+                <div class="audit-item">
+                    <span>Mattress support/comfort</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Pillow optimization</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div class="audit-item">
+                    <span>Air quality/circulation</span>
+                    <input type="number" class="rating-input" min="1" max="10" placeholder="__">
+                </div>
+                <div style="margin-top: 15px; font-size: 0.8rem; color: var(--emerald); font-weight: 600;">
+                    Replace mattress if over 8 years old or sagging
+                </div>
+            </div>
+        </div>
+        
+        <div class="rating-system">
+            <h3 style="text-align: center; margin-bottom: 20px; color: var(--purple);">🏆 Total Bedroom Score: ___/80</h3>
+            
+            <div class="rating-item">
+                <span><strong>70-80: Elite Sleep Environment</strong></span>
+                <div class="rating-stars">
+                    <span class="star">★★★★★</span>
+                </div>
+            </div>
+            <div class="rating-item">
+                <span><strong>60-69: Good, minor improvements needed</strong></span>
+                <div class="rating-stars">
+                    <span class="star">★★★★</span><span style="color: #ccc;">★</span>
+                </div>
+            </div>
+            <div class="rating-item">
+                <span><strong>50-59: Moderate issues, prioritize top problems</strong></span>
+                <div class="rating-stars">
+                    <span class="star">★★★</span><span style="color: #ccc;">★★</span>
+                </div>
+            </div>
+            <div class="rating-item">
+                <span><strong>Below 50: Major overhaul needed</strong></span>
+                <div class="rating-stars">
+                    <span class="star">★★</span><span style="color: #ccc;">★★★</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BONUS 2: Supplement Guide -->
+    <div class="page">
+        <h1 class="page-title">Supplement Optimization Guide</h1>
+        <p class="page-subtitle">Natural sleep aids with science-backed safety protocols</p>
+        
+        <div class="warning-box">
+            <strong>BEFORE STARTING ANY SUPPLEMENT:</strong> Consult with healthcare provider, especially if taking medications. Start with lowest effective dose. Introduce one supplement at a time.
+        </div>
+        
+        <div class="tier-system">
+            <div class="tier tier-1">
+                <div class="tier-title">TIER 1: FOUNDATIONAL</div>
+                <div class="tier-description">Safest, Most Effective</div>
+                
+                <h4 style="margin: 20px 0 10px 0;">Magnesium Glycinate</h4>
+                <p><strong>Dosage:</strong> 400mg, 1-2 hours before bed</p>
+                <p><strong>Benefits:</strong> Muscle relaxation, GABA activation</p>
+                <p><strong>Who benefits:</strong> Physical tension, muscle cramps</p>
+                
+                <h4 style="margin: 20px 0 10px 0;">Melatonin (Start Low!)</h4>
+                <p><strong>Dosage:</strong> 0.5mg, 30-60 minutes before bed</p>
+                <p><strong>Benefits:</strong> Circadian rhythm support</p>
+                <p><strong>Who benefits:</strong> Night owls, jet lag, shift work</p>
+            </div>
+            
+            <div class="tier tier-2">
+                <div class="tier-title">TIER 2: SUPPORTIVE</div>
+                <div class="tier-description">Good Safety Profile</div>
+                
+                <h4 style="margin: 20px 0 10px 0;">L-Theanine</h4>
+                <p><strong>Dosage:</strong> 200mg, 1 hour before bed</p>
+                <p><strong>Benefits:</strong> Alpha brain waves, reduces anxiety</p>
+                
+                <h4 style="margin: 20px 0 10px 0;">Glycine</h4>
+                <p><strong>Dosage:</strong> 3g powder, 30 minutes before bed</p>
+                <p><strong>Benefits:</strong> Lowers core temperature</p>
+                
+                <h4 style="margin: 20px 0 10px 0;">GABA</h4>
+                <p><strong>Dosage:</strong> 500-750mg, 1 hour before bed</p>
+                <p><strong>Benefits:</strong> Primary calming neurotransmitter</p>
+            </div>
+            
+            <div class="tier tier-3">
+                <div class="tier-title">TIER 3: ADVANCED</div>
+                <div class="tier-description">Consult Healthcare Provider</div>
+                
+                <h4 style="margin: 20px 0 10px 0;">Valerian Root</h4>
+                <p><strong>Dosage:</strong> 300-600mg extract</p>
+                <p><strong>Caution:</strong> Can cause vivid dreams</p>
+                
+                <h4 style="margin: 20px 0 10px 0;">Ashwagandha</h4>
+                <p><strong>Dosage:</strong> 300-500mg with dinner</p>
+                <p><strong>Benefits:</strong> Cortisol reduction, stress adaptation</p>
+                
+                <h4 style="margin: 20px 0 10px 0;">Passionflower</h4>
+                <p><strong>Dosage:</strong> 250-500mg</p>
+                <p><strong>Benefits:</strong> Anxiety reduction</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">📋 Supplement Stacking Protocols</h2>
+        
+        <table class="premium-table">
+            <thead>
+                <tr>
+                    <th>Protocol</th>
+                    <th>Supplements</th>
+                    <th>Timing</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Beginner Stack</strong></td>
+                    <td>Magnesium Glycinate 400mg</td>
+                    <td>1-2 hours before bed</td>
+                    <td>First-time users, muscle tension</td>
+                </tr>
+                <tr>
+                    <td><strong>Anxiety-Focused</strong></td>
+                    <td>L-Theanine 200mg + Magnesium 400mg + Melatonin 0.5mg</td>
+                    <td>Staggered: 1hr, 1hr, 30min before bed</td>
+                    <td>Racing thoughts, anxiety</td>
+                </tr>
+                <tr>
+                    <td><strong>Physical Tension</strong></td>
+                    <td>Magnesium 400mg + Glycine 3g</td>
+                    <td>2hrs, 30min before bed</td>
+                    <td>Physical stress, hot sleepers</td>
+                </tr>
+                <tr>
+                    <td><strong>Stress & Cortisol</strong></td>
+                    <td>Ashwagandha 300mg + Magnesium 400mg + Melatonin 1mg</td>
+                    <td>Dinner, 1hr, 30min before bed</td>
+                    <td>High stress, elevated cortisol</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="success-box">
+            <strong>QUALITY MARKERS TO LOOK FOR:</strong> Third-party tested for purity • No artificial fillers • Reputable brands (Thorne, Life Extension, NOW Foods) • Proper forms (Magnesium Glycinate not Oxide)
+        </div>
+    </div>
+
+    <!-- BONUS 3: Travel Sleep Kit -->
+    <div class="page">
+        <h1 class="page-title">Travel Sleep Mastery Kit</h1>
+        <p class="page-subtitle">Master sleep anywhere in the world</p>
+        
+        <div class="bonus-box">
+            <h3>Pre-Travel Preparation (3 Days Before)</h3>
+            <p>Strategic circadian rhythm adjustment for minimal jet lag impact.</p>
+        </div>
+        
+        <h2 class="section-title">✈️ Time Zone Adjustment Protocols</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+            <div style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); padding: 25px; border-radius: 16px; border: 2px solid var(--royal-blue);">
+                <h3 style="color: #1e40af; margin-bottom: 15px;">🌅 EASTWARD TRAVEL</h3>
+                <h4>Advancing Time (Harder)</h4>
+                <ul class="premium-checklist" style="margin-top: 15px;">
+                    <li>Bedtime 1 hour earlier each night (3 days)</li>
+                    <li>30 minutes extra morning light</li>
+                    <li>Dim lights 1 hour earlier each evening</li>
+                    <li>Melatonin 0.5-1mg at local destination bedtime</li>
+                </ul>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #fed7aa, #fdba74); padding: 25px; border-radius: 16px; border: 2px solid var(--coral);">
+                <h3 style="color: #ea580c; margin-bottom: 15px;">🌇 WESTWARD TRAVEL</h3>
+                <h4>Delaying Time (Easier)</h4>
+                <ul class="premium-checklist" style="margin-top: 15px;">
+                    <li>Bedtime 1 hour later each night (3 days)</li>
+                    <li>Light therapy lamp if waking later</li>
+                    <li>Stay active later to delay sleep</li>
+                    <li>Bright evening light to delay circadian rhythm</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="section-title">🎒 Travel Sleep Kit Essentials</h2>
+        
+        <div class="quick-ref-grid">
+            <div class="quick-ref-card">
+                <span class="quick-ref-icon">😎</span>
+                <div class="quick-ref-title">Eye Mask</div>
+                <div class="quick-ref-description">Contoured design, doesn't press on eyes, blocks 100% light</div>
+            </div>
+            
+            <div class="quick-ref-card">
+                <span class="quick-ref-icon">🔇</span>
+                <div class="quick-ref-title">Earplugs</div>
+                <div class="quick-ref-description">Foam (high noise reduction) + silicone (comfort) options</div>
+            </div>
+            
+            <div class="quick-ref-card">
+                <span class="quick-ref-icon">🛏️</span>
+                <div class="quick-ref-title">Travel Pillow</div>
+                <div class="quick-ref-description">Memory foam, supports neck in upright position</div>
+            </div>
+            
+            <div class="quick-ref-card">
+                <span class="quick-ref-icon">🧦</span>
+                <div class="quick-ref-title">Compression Socks</div>
+                <div class="quick-ref-description">Knee-high, medical grade for long flights</div>
+            </div>
+            
+            <div class="quick-ref-card">
+                <span class="quick-ref-icon">🍵</span>
+                <div class="quick-ref-title">Sleep Tea</div>
+                <div class="quick-ref-description">Chamomile or passionflower, individual packets</div>
+            </div>
+            
+            <div class="quick-ref-card">
+                <span class="quick-ref-icon">💊</span>
+                <div class="quick-ref-title">Melatonin</div>
+                <div class="quick-ref-description">0.5mg doses, adjust timing to destination</div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">🏨 Hotel Room Optimization</h2>
+        
+        <ol class="protocol-steps">
+            <li>
+                <div class="step-content">
+                    <h4>TEMPERATURE (Immediate Priority)</h4>
+                    <p>Set to 65-68°F immediately upon arrival. Most hotels default to 72°F+ which disrupts sleep.</p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="step-content">
+                    <h4>BLACKOUT SETUP</h4>
+                    <p>Move furniture to block light gaps, use eye mask as backup. Test room darkness before bedtime.</p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="step-content">
+                    <h4>SOUND MANAGEMENT</h4>
+                    <p>Test walls for noise, identify potential disruptions. Position white noise source strategically.</p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="step-content">
+                    <h4>BED ASSESSMENT</h4>
+                    <p>Check mattress firmness immediately. Request room change if bed is unacceptable - don't wait.</p>
+                </div>
+            </li>
+        </ol>
+        
+        <div class="success-box">
+            <strong>PRO TIP:</strong> Take photos of your home sleep setup and recreate elements in hotels. Consistency is key to maintaining sleep quality while traveling.
+        </div>
+    </div>
+
+    <!-- BONUS 4: Productivity Optimization -->
+    <div class="page">
+        <h1 class="page-title">Sleep & Productivity Optimization</h1>
+        <p class="page-subtitle">High-performer sleep strategies for peak performance</p>
+        
+        <div class="bonus-box">
+            <h3>Sleep as Performance Enhancer</h3>
+            <p><strong>Cognitive Benefits of Optimized Sleep:</strong> 67% improvement in memory retention • 43% better decision-making • 300% increase in creative problem-solving • 89% improvement in sustained attention</p>
+        </div>
+        
+        <h2 class="section-title">⚡ The High-Performer's Sleep Strategy</h2>
+        
+        <div class="rating-system">
+            <h3 style="text-align: center; margin-bottom: 20px;">🎯 THE 7-HOUR RULE</h3>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <strong>Quality over Quantity:</strong> 7 hours of optimized sleep > 9 hours of poor sleep<br>
+                <strong>Consistency Impact:</strong> Same bedtime/wake time has 3x more impact than extra sleep
+            </div>
+            
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>10:30 PM</strong></td>
+                        <td>Begin wind-down routine</td>
+                        <td>Non-negotiable transition time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>11:00 PM</strong></td>
+                        <td>Lights out, sleep techniques</td>
+                        <td>Target 6.5 hours high-quality sleep</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5:30 AM</strong></td>
+                        <td>Consistent wake time</td>
+                        <td>Maintain circadian rhythm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6:00 AM</strong></td>
+                        <td>Bright light + exercise</td>
+                        <td>Reinforce wake cycle, boost alertness</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h2 class="section-title">🔄 Ultradian Rhythm Optimization</h2>
+        
+        <p>Work in 90-minute blocks aligned with natural energy cycles for maximum productivity:</p>
+        
+        <div class="audit-grid">
+            <div class="audit-category">
+                <h4>🌅 6:00-7:30 AM: Peak Alertness</h4>
+                <p><strong>Best for:</strong> Creative work, strategic thinking, complex problem-solving</p>
+                <p><strong>Enhance with:</strong> Morning light, light exercise, protein breakfast</p>
+            </div>
+            
+            <div class="audit-category">
+                <h4>☀️ 9:00-10:30 AM: Secondary Peak</h4>
+                <p><strong>Best for:</strong> Important meetings, presentations, difficult conversations</p>
+                <p><strong>Enhance with:</strong> Minimal caffeine if needed, complex tasks</p>
+            </div>
+            
+            <div class="audit-category">
+                <h4>😴 2:00-3:30 PM: Natural Dip</h4>
+                <p><strong>Best for:</strong> Routine tasks, email, planning</p>
+                <p><strong>Manage with:</strong> Brief walk, avoid heavy meals, 10-minute meditation</p>
+            </div>
+            
+            <div class="audit-category">
+                <h4>🌆 7:00-8:30 PM: Evening Peak</h4>
+                <p><strong>Best for:</strong> Learning, reading, planning next day</p>
+                <p><strong>Caution:</strong> Avoid stimulating activities within 2 hours of bedtime</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">☕ Strategic Caffeine Protocol</h2>
+        
+        <ol class="protocol-steps">
+            <li>
+                <div class="step-content">
+                    <h4>TIMING OPTIMIZATION</h4>
+                    <p><strong>Last cup:</strong> 8-10 hours before bedtime (if sleeping at 11 PM, no caffeine after 1-3 PM)<br>
+                    <strong>Daily maximum:</strong> 400mg (4 cups coffee), spread throughout morning</p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="step-content">
+                    <h4>QUALITY MATTERS</h4>
+                    <p>Higher quality coffee may cause less sleep disruption. Consider alternatives: green tea (L-theanine benefits), yerba mate</p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="step-content">
+                    <h4>WITHDRAWAL BENEFITS</h4>
+                    <p>Reduce 25% weekly for better deep sleep, reduced anxiety, easier wake-ups. Many high performers eliminate afternoon caffeine entirely.</p>
+                </div>
+            </li>
+        </ol>
+        
+        <div class="warning-box">
+            <strong>HIGH-PERFORMER TRAP:</strong> Don't sacrifice sleep for more work hours. Research shows sleep-deprived performance drops 40% while perceived performance only drops 10% - you don't realize how impaired you are.
+        </div>
+    </div>
+
+    <!-- BONUS 5: Quick Win Checklist -->
+    <div class="page">
+        <h1 class="page-title">Quick Win Checklist</h1>
+        <p class="page-subtitle">Immediate actions for instant sleep improvements</p>
+        
+        <div class="tier-system">
+            <div class="tier tier-1">
+                <div class="tier-title">🌙 TONIGHT (0 Cost)</div>
+                <div class="tier-description">Implement immediately</div>
+                
+                <ul class="premium-checklist">
+                    <li>Set consistent bedtime - same time every night</li>
+                    <li>Cool bedroom to 65-68°F</li>
+                    <li>Create darkness - turn clocks away, cover LEDs</li>
+                    <li>Phone out of bedroom</li>
+                    <li>Practice 4-7-8 breathing (3 cycles)</li>
+                    <li>Progressive muscle relaxation</li>
+                </ul>
+            </div>
+            
+            <div class="tier tier-2">
+                <div class="tier-title">📅 THIS WEEK (Low Cost)</div>
+                <div class="tier-description">Build foundation</div>
+                
+                <ul class="premium-checklist">
+                    <li>Purchase blackout curtains or eye mask ($15-50)</li>
+                    <li>Buy magnesium glycinate supplement ($10-20)</li>
+                    <li>Download white noise app (free-$5)</li>
+                    <li>Create bedtime routine checklist</li>
+                    <li>Start sleep diary tracking</li>
+                    <li>Remove caffeine after 2 PM</li>
+                    <li>Add morning sunlight exposure</li>
+                </ul>
+            </div>
+            
+            <div class="tier tier-3">
+                <div class="tier-title">📈 THIS MONTH (Medium Investment)</div>
+                <div class="tier-description">Optimize environment</div>
+                
+                <ul class="premium-checklist">
+                    <li>Upgrade pillows for proper sleep position ($30-100)</li>
+                    <li>Add air purifier if air quality poor ($50-200)</li>
+                    <li>Install programmable thermostat ($100-300)</li>
+                    <li>Light therapy lamp for circadian rhythm ($30-150)</li>
+                    <li>Quality mattress evaluation (replacement $300-3000)</li>
+                    <li>Professional sleep consultation if needed ($200-500)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="section-title">🎯 Success Framework</h2>
+        
+        <div class="bonus-box">
+            <h3>The 1% Improvement Principle</h3>
+            <p><strong>Small daily improvements compound exponentially:</strong><br>
+            • 1% better sleep each night = 37x better sleep in one year<br>
+            • Focus on consistency over perfection<br>
+            • Celebrate small wins to build momentum<br>
+            • Don't abandon system after one bad night</p>
+        </div>
+        
+        <h2 class="section-title">📋 Your Sleep Revolution Commitment</h2>
+        
+        <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); border: 2px solid var(--purple); padding: 40px; border-radius: 20px; margin: 30px 0;">
+            <h3 style="color: var(--purple); text-align: center; margin-bottom: 25px;">I COMMIT TO:</h3>
+            
+            <ul class="premium-checklist">
+                <li>Prioritizing my sleep as much as any other health goal</li>
+                <li>Using these tools consistently for at least 30 days</li>
+                <li>Tracking my progress and celebrating improvements</li>
+                <li>Seeking professional help if issues persist beyond 2 months</li>
+                <li>Sharing successful techniques with others who need help</li>
+            </ul>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <div style="display: inline-block; margin-right: 80px;">
+                    <div style="border-bottom: 2px solid var(--purple); width: 200px; margin-bottom: 10px; height: 20px;"></div>
+                    <div style="color: var(--purple); font-weight: 600;">Signature</div>
+                </div>
+                <div style="display: inline-block;">
+                    <div style="border-bottom: 2px solid var(--purple); width: 120px; margin-bottom: 10px; height: 20px;"></div>
+                    <div style="color: var(--purple); font-weight: 600;">Date</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: var(--gradient-emerald); color: white; padding: 40px; border-radius: 20px; text-align: center; margin: 40px 0;">
+            <span style="font-size: 4rem; margin-bottom: 20px; display: block;">🌙</span>
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">The Path to Perfect Sleep</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9;">
+                The path to perfect sleep is not a destination, but a daily practice.<br>
+                With these tools, you have everything needed to transform your nights and revolutionize your days.
+            </p>
+            <p style="font-size: 1.4rem; font-weight: 700; margin-top: 30px;">
+                Your best sleep starts tonight. ✨
+            </p>
+        </div>
+    </div>
+</body>
+</html>

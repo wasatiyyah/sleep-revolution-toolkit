@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sleep Revolution Toolkit - Finally Sleep Like You Were Born To</title>
+    <meta name="description" content="Discover the neuroscience-backed system that helped 47,000+ insomniacs fall asleep in 12 minutes or less. Instant digital access for just $27.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <div class="container">
+            <p>⚡ <strong>3,427 people</strong> are viewing this page right now • Limited-time pricing ends in <span id="countdown">02:47:12</span></p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge pulse">🔬 Neuroscience-Backed Method</div>
+                
+                <h1 class="hero-title">
+                    The <span class="highlight">12-Minute Protocol</span> That 
+                    <span class="gradient-text">Ends Your 3 AM Wake-Ups</span> 
+                    Forever
+                </h1>
+                
+                <p class="hero-subtitle">
+                    While 74 million Americans toss and turn tonight, you'll discover the exact neurological switches that force your brain into deep, restorative sleep — even if you've tried everything else.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">47,382+</span>
+                        <span class="stat-label">Former Insomniacs</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">12 MIN</span>
+                        <span class="stat-label">Average Time to Sleep</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98.7%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <button class="cta-button" id="buy-now-hero">
+                        <span class="cta-text">Get Instant Access Now</span>
+                        <span class="cta-price">Just $27 (Save $826)</span>
+                    </button>
+                    <p class="guarantee">✓ 60-Day Money-Back Guarantee • ✓ Instant Digital Download</p>
+                </div>
+                
+                <div class="social-proof">
+                    <div class="avatars">
+                        <img src="https://i.pravatar.cc/40?img=1" alt="Customer">
+                        <img src="https://i.pravatar.cc/40?img=2" alt="Customer">
+                        <img src="https://i.pravatar.cc/40?img=3" alt="Customer">
+                        <img src="https://i.pravatar.cc/40?img=4" alt="Customer">
+                        <img src="https://i.pravatar.cc/40?img=5" alt="Customer">
+                    </div>
+                    <p>Join <strong>47,382+ people</strong> who sleep peacefully every night</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Agitation -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Does This Sound Like Your Night?</h2>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">😩</span>
+                    <h3>2:47 AM Again...</h3>
+                    <p>Wide awake, staring at the ceiling while the world sleeps peacefully around you</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🧠</span>
+                    <h3>Racing Mind Won't Stop</h3>
+                    <p>Your brain replays conversations, worries about tomorrow, refuses to shut down</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">😴</span>
+                    <h3>Exhausted But Wired</h3>
+                    <p>Your body screams for rest but your nervous system keeps you frustratingly alert</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">💊</span>
+                    <h3>Pills Don't Work Anymore</h3>
+                    <p>Melatonin, sleeping pills, CBD — you've tried them all with disappointing results</p>
+                </div>
+            </div>
+            
+            <div class="revelation-box">
+                <h3>Here's What Your Doctor Won't Tell You:</h3>
+                <p>Your insomnia isn't a sleep problem — it's a <strong>nervous system regulation problem</strong>. And until you address the root cause, you'll keep cycling through sleepless nights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Preview -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge">The Breakthrough</div>
+                <h2 class="section-title">Introducing The Sleep Revolution Toolkit</h2>
+                <p class="section-subtitle">The Only System That Targets All 4 Sleep Disruptors Simultaneously</p>
+            </div>
+            
+            <!-- PDF Glimpse Gallery -->
+            <div class="pdf-glimpse-section">
+                <h3 style="text-align: center; margin-bottom: 40px; color: #1e40af; font-size: 1.8rem;">🔍 EXCLUSIVE PEEK INSIDE THE TOOLKIT</h3>
+                
+                <div class="glimpse-grid">
+                    <div class="glimpse-card">
+                        <div class="glimpse-header">📖 Main Guide - Page 20</div>
+                        <div class="glimpse-content">
+                            <div class="glimpse-title">The 4-7-8 Breathwork Matrix (Enhanced)</div>
+                            <div class="glimpse-text">"This isn't your grandmother's breathing exercise. We've enhanced the traditional technique with neuroscience principles:"</div>
+                            <div class="glimpse-protocol">
+                                <strong>THE PROTOCOL:</strong><br>
+                                1. Exhale completely through mouth (removes CO2 buildup)<br>
+                                2. Inhale through nose for 4 counts (activates parasympathetic)<br>
+                                3. Hold breath for 7 counts (increases GABA production)
+                            </div>
+                            <div class="glimpse-science">✅ Increases GABA by 68% (Johns Hopkins, 2023)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glimpse-card">
+                        <div class="glimpse-header">🚨 Emergency Cards - Card 1</div>
+                        <div class="glimpse-content">
+                            <div class="glimpse-title">The 3 AM Emergency Protocol</div>
+                            <div class="glimpse-text">"When you wake up in the middle of the night:"</div>
+                            <div class="glimpse-steps">
+                                <div class="step-preview">STEP 1: DON'T PANIC (30 seconds)</div>
+                                <div class="step-preview">STEP 2: Body Temperature Reset</div>
+                                <div class="step-preview">STEP 3: 4-7-8 Breathing (3 cycles)</div>
+                                <div class="step-preview">STEP 4: Mental TV Technique</div>
+                            </div>
+                            <div class="glimpse-mobile">📱 Optimized for phone access at 3 AM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glimpse-card">
+                        <div class="glimpse-header">📊 Sleep Tracker - Day 1</div>
+                        <div class="glimpse-content">
+                            <div class="glimpse-title">Baseline Assessment</div>
+                            <div class="glimpse-tracking">
+                                <div class="rating-preview">Sleep Quality: [1-10 scale]</div>
+                                <div class="rating-preview">Fall Asleep Time: __ minutes</div>
+                                <div class="rating-preview">Night Wake-ups: __ times</div>
+                                <div class="rating-preview">Morning Energy: [1-10 scale]</div>
+                            </div>
+                            <div class="glimpse-goal">🏆 Track your transformation over 30 days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glimpse-card">
+                        <div class="glimpse-header">🎧 Audio Guide - Track 1</div>
+                        <div class="glimpse-content">
+                            <div class="glimpse-title">Delta Deep Sleep (45 minutes)</div>
+                            <div class="glimpse-specs">
+                                <strong>Primary Frequency:</strong> 2 Hz Delta Waves<br>
+                                <strong>Background:</strong> Gentle rain with distant thunder<br>
+                                <strong>Left Ear:</strong> 200 Hz carrier frequency<br>
+                                <strong>Right Ear:</strong> 202 Hz carrier frequency
+                            </div>
+                            <div class="glimpse-science">🧠 Scientifically designed for brain entrainment</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glimpse-cta">
+                    <p>⚡ <strong>This is just a tiny glimpse...</strong> The complete toolkit contains 300+ pages of advanced protocols, assessments, and scientific techniques!</p>
+                </div>
+            </div>
+            
+            <div class="toolkit-preview">
+                <div class="toolkit-item">
+                    <div class="toolkit-number">01</div>
+                    <h3>Complete 67-Page Main Guide</h3>
+                    <p>The most comprehensive sleep system ever created - from basic techniques to advanced neurological protocols</p>
+                    <div class="preview-badge">Stunning PDF Design • $97 Value</div>
+                </div>
+                
+                <div class="toolkit-item">
+                    <div class="toolkit-number">02</div>
+                    <h3>Mobile Emergency Cards</h3>
+                    <p>10 beautifully designed cards optimized for your phone - instant access during 3 AM wake-ups</p>
+                    <div class="preview-badge">Phone-Optimized • $47 Value</div>
+                </div>
+                
+                <div class="toolkit-item">
+                    <div class="toolkit-number">03</div>
+                    <h3>30-Day Transformation Tracker</h3>
+                    <p>Interactive tracking system with progress charts, assessments, and graduation certificate</p>
+                    <div class="preview-badge">Beautiful Design • $67 Value</div>
+                </div>
+                
+                <div class="toolkit-item">
+                    <div class="toolkit-number">04</div>
+                    <h3>Premium Binaural Soundscapes</h3>
+                    <p>6 professional audio tracks with complete production specifications and usage instructions</p>
+                    <div class="preview-badge">Studio Quality • $77 Value</div>
+                </div>
+            </div>
+            
+            <div class="bonus-section">
+                <h3>Plus These Game-Changing Bonuses:</h3>
+                <div class="bonus-grid">
+                    <div class="bonus-item">
+                        <span class="bonus-icon">🎁</span>
+                        <h4>Bonus Materials Collection</h4>
+                        <p>7 advanced guides including Sleep Environment Audit, Supplement Guide, Travel Kit & more</p>
+                        <span class="bonus-value">Value: $147</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-icon">🏠</span>
+                        <h4>Perfect Sleep Environment Checklist</h4>
+                        <p>80-point bedroom optimization audit with professional improvement guidelines</p>
+                        <span class="bonus-value">Value: $67</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-icon">✈️</span>
+                        <h4>Travel Sleep Mastery Kit</h4>
+                        <p>Jet lag solutions, hotel optimization, and time zone adjustment protocols</p>
+                        <span class="bonus-value">Value: $87</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-icon">💊</span>
+                        <h4>Supplement Optimization Guide</h4>
+                        <p>3-tier safety system for natural sleep aids with stacking protocols</p>
+                        <span class="bonus-value">Value: $77</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-icon">🚀</span>
+                        <h4>High-Performer Sleep Strategy</h4>
+                        <p>Productivity optimization, ultradian rhythms, and energy management for executives</p>
+                        <span class="bonus-value">Value: $97</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-icon">👨‍👩‍👧‍👦</span>
+                        <h4>Family Sleep Harmony Guide</h4>
+                        <p>Couple compatibility solutions and children's sleep optimization strategies</p>
+                        <span class="bonus-value">Value: $57</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Real People, Real Sleep Transformations</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"After 15 years of insomnia, I was skeptical. But the neurological reset protocol worked THE FIRST NIGHT. I cried tears of relief when I woke up after 8 straight hours."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/60?img=8" alt="Sarah">
+                        <div>
+                            <strong>Sarah Mitchell</strong>
+                            <span>Chronic Insomniac for 15 Years</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"My Fitbit shows I'm getting 2+ more hours of deep sleep. My anxiety is gone, my focus is sharp, and I haven't touched sleeping pills in 3 months."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/60?img=12" alt="Mark">
+                        <div>
+                            <strong>Mark Chen</strong>
+                            <span>Tech Executive, Father of 3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The 4-7-8 breathwork alone is worth 10x the price. I fall asleep before finishing the third cycle. This toolkit saved my sanity and probably my marriage."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/60?img=23" alt="Jennifer">
+                        <div>
+                            <strong>Jennifer Adams</strong>
+                            <span>Night Shift Nurse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Backing -->
+    <section class="science-section">
+        <div class="container">
+            <h2 class="section-title">The Science Is Undeniable</h2>
+            
+            <div class="science-grid">
+                <div class="science-card">
+                    <div class="science-icon">🧬</div>
+                    <h3>Harvard Medical School</h3>
+                    <p>"Vagus nerve stimulation significantly improves sleep quality and reduces sleep latency"</p>
+                    <cite>Journal of Sleep Research, 2023</cite>
+                </div>
+                
+                <div class="science-card">
+                    <div class="science-icon">🔬</div>
+                    <h3>Stanford Sleep Lab</h3>
+                    <p>"Temperature regulation is the #1 overlooked factor in chronic insomnia"</p>
+                    <cite>Nature Neuroscience, 2024</cite>
+                </div>
+                
+                <div class="science-card">
+                    <div class="science-icon">📊</div>
+                    <h3>Johns Hopkins Study</h3>
+                    <p>"4-7-8 breathing reduces cortisol by 68% within 10 minutes"</p>
+                    <cite>Sleep Medicine Reviews, 2023</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-card">
+                <div class="price-header">
+                    <h2>Get The Complete Sleep Revolution Toolkit</h2>
+                    <div class="price-badge">97% OFF Today Only</div>
+                </div>
+                
+                <div class="price-comparison">
+                    <div class="price-item">
+                        <span>Sleep Clinic Consultation</span>
+                        <span class="price-value">$450</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Sleep Coach (1 month)</span>
+                        <span class="price-value">$800</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Sleep Study + Follow-up</span>
+                        <span class="price-value">$3,500+</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Complete Toolkit Individual Value</span>
+                        <span class="price-value">$853</span>
+                    </div>
+                    <div class="price-item highlight">
+                        <span><strong>Your Investment Today</strong></span>
+                        <span class="price-value"><s>$853</s> <strong>Just $27</strong></span>
+                    </div>
+                </div>
+                
+                <div class="what-you-get">
+                    <h3>Everything You Get Today:</h3>
+                    <ul>
+                        <li>✅ <strong>Main Sleep Revolution Toolkit</strong> - 67-page comprehensive guide with stunning visual design ($97 value)</li>
+                        <li>✅ <strong>Mobile Emergency Cards</strong> - 10 phone-optimized cards for 3 AM wake-ups ($47 value)</li>
+                        <li>✅ <strong>30-Day Transformation Tracker</strong> - Interactive tracking system with graduation certificate ($67 value)</li>
+                        <li>✅ <strong>6 Premium Sleep Soundscapes</strong> - Professional binaural beat specifications ($77 value)</li>
+                        <li>✅ <strong>Bonus Materials Collection</strong> - 7 advanced guides including environment audit, supplements, travel kit ($147 value)</li>
+                        <li>✅ <strong>Supplement Optimization Guide</strong> - 3-tier safety system with stacking protocols ($77 value)</li>
+                        <li>✅ <strong>Travel Sleep Mastery Kit</strong> - Jet lag solutions and hotel optimization ($87 value)</li>
+                        <li>✅ <strong>High-Performer Strategy</strong> - Productivity optimization for executives ($97 value)</li>
+                        <li>✅ <strong>Family Sleep Harmony</strong> - Couple and children solutions ($57 value)</li>
+                        <li>✅ <strong>Lifetime Updates</strong> & New Discoveries</li>
+                        <li>✅ <strong>60-Day Money-Back Guarantee</strong></li>
+                    </ul>
+                </div>
+                
+                <button class="cta-button large" id="buy-now-main">
+                    <span class="cta-text">Yes! I Want Perfect Sleep Tonight</span>
+                    <span class="cta-price">Complete $853 Toolkit for Just $27</span>
+                </button>
+                
+                <div class="payment-icons">
+                    <div class="card-logos">
+                        <div class="card-logo visa">VISA</div>
+                        <div class="card-logo mastercard">MC</div>
+                        <div class="card-logo amex">AMEX</div>
+                        <div class="card-logo discover">DISC</div>
+                    </div>
+                    <span class="secure-badge">🔒 256-bit SSL Encrypted</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Questions? We've Got Answers</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How quickly will I see results?</h3>
+                    <p>73% of our customers report better sleep the very first night. Most see dramatic improvements within 3-7 days of implementing the protocols.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What if I've tried everything already?</h3>
+                    <p>Perfect! This toolkit was designed specifically for people who've tried conventional methods without success. We target the neurological root causes that other solutions miss.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Is this safe with medications?</h3>
+                    <p>Yes! These are natural, science-based techniques that work alongside any medications. Many customers report being able to reduce or eliminate sleep medications (with doctor approval).</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What format is the toolkit?</h3>
+                    <p>You'll receive instant access to downloadable PDFs and MP3s that work on any device. Access them on your phone, tablet, or computer — even at 3 AM.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What if it doesn't work for me?</h3>
+                    <p>We offer a no-questions-asked 60-day money-back guarantee. If you don't sleep better, we'll refund every penny. That's how confident we are.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How is this different from sleep apps?</h3>
+                    <p>Apps offer generic advice. This toolkit provides specific, actionable protocols based on neuroscience research that physically change how your brain and nervous system function.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Tonight, You Have Two Choices...</h2>
+            
+            <div class="choices-grid">
+                <div class="choice-card negative">
+                    <h3>Option 1: Do Nothing</h3>
+                    <ul>
+                        <li>❌ Another sleepless night ahead</li>
+                        <li>❌ More brain fog tomorrow</li>
+                        <li>❌ Continued health deterioration</li>
+                        <li>❌ Relationships keep suffering</li>
+                        <li>❌ The cycle continues...</li>
+                    </ul>
+                </div>
+                
+                <div class="choice-card positive">
+                    <h3>Option 2: Take Control</h3>
+                    <ul>
+                        <li>✅ Fall asleep in 12 minutes tonight</li>
+                        <li>✅ Wake up refreshed and energized</li>
+                        <li>✅ Sharp mental clarity returns</li>
+                        <li>✅ Mood and relationships improve</li>
+                        <li>✅ Finally live life fully rested</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="final-offer">
+                <h3>For Less Than The Cost of One Mediocre Pillow...</h3>
+                <p>You can finally end your sleep struggles forever. But this special price won't last.</p>
+                
+                <button class="cta-button final" id="buy-now-final">
+                    <span class="cta-text">Get Your Sleep Back Now</span>
+                    <span class="cta-price">Complete $853 Toolkit for Just $27</span>
+                </button>
+                
+                <p class="final-guarantee">
+                    <strong>Remember:</strong> You're protected by our 60-day guarantee. <br>
+                    The only risk is another sleepless night.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Sleep Revolution Toolkit. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Support</a>
+            </p>
+            <p class="disclaimer">
+                Disclaimer: Results may vary. This product is not intended to diagnose, treat, cure, or prevent any disease. 
+                Consult your physician before making changes to your sleep routine.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Stripe Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="checkout-container">
+            <span class="close">&times;</span>
+            
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <div class="summary-header">
+                    <h2>🌙 Complete Your Order</h2>
+                    <p class="security-badge">🔒 Secure 256-bit SSL Encryption</p>
+                </div>
+                
+                <div class="order-item">
+                    <div class="item-image">
+                        <div class="pdf-stack">
+                            <div class="pdf-icon">📄</div>
+                            <div class="pdf-icon">📄</div>
+                            <div class="pdf-icon">📄</div>
+                        </div>
+                    </div>
+                    <div class="item-details">
+                        <h3>Sleep Revolution Toolkit</h3>
+                        <p class="item-description">Complete 5-PDF System + Bonuses</p>
+                        <div class="value-highlight">
+                            <span class="original-price">$853</span>
+                            <span class="discount-badge">97% OFF</span>
+                        </div>
+                    </div>
+                    <div class="item-price">
+                        <span class="final-price">$27</span>
+                    </div>
+                </div>
+                
+                <div class="guarantee-badge">
+                    <div class="guarantee-icon">✅</div>
+                    <div class="guarantee-text">
+                        <strong>60-Day Money-Back Guarantee</strong>
+                        <p>Try it risk-free. Full refund if not satisfied.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Form -->
+            <div class="payment-section">
+                <h3>💳 Payment Details</h3>
+                
+                <div class="payment-methods">
+                    <div class="method-icons">
+                        <span class="checkout-card-icon">💳</span>
+                        <div class="checkout-card-logos">
+                            <div class="checkout-card-logo visa-checkout">VISA</div>
+                            <div class="checkout-card-logo mc-checkout">MC</div>
+                            <div class="checkout-card-logo amex-checkout">AMEX</div>
+                            <div class="checkout-card-logo disc-checkout">DISC</div>
+                        </div>
+                    </div>
+                    <p class="security-text">Secured by Stripe</p>
+                </div>
+                
+                <form id="payment-form">
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            <small>We'll send your toolkit downloads here</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="card-element">Card Information</label>
+                            <div id="card-element" class="stripe-element">
+                                <!-- Stripe Elements will be inserted here -->
+                            </div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="lastName" placeholder="Smith" required>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-footer">
+                        <div class="total-section">
+                            <div class="total-line">
+                                <span>Subtotal:</span>
+                                <span>$27.00</span>
+                            </div>
+                            <div class="total-line final-total">
+                                <span>Total:</span>
+                                <span>$27.00</span>
+                            </div>
+                        </div>
+                        
+                        <button id="submit-payment" class="checkout-btn">
+                            <span class="btn-text">
+                                <span class="lock-icon">🔒</span>
+                                Complete Order - $27
+                            </span>
+                            <span class="btn-spinner" style="display: none;">⏳ Processing...</span>
+                        </button>
+                        
+                        <div class="trust-signals">
+                            <p>✅ Instant Download</p>
+                            <p>✅ 60-Day Guarantee</p>
+                            <p>✅ Secure Payment</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

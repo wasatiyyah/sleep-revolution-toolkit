@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Soundscapes Collection - Professional Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --audio-purple: #7c3aed;
+            --sound-blue: #1e40af;
+            --frequency-gold: #f59e0b;
+            --wave-teal: #14b8a6;
+            --neural-pink: #ec4899;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --text-dark: #111827;
+            --text-light: #6b7280;
+            --gradient-audio: linear-gradient(135deg, #7c3aed, #a855f7);
+            --gradient-sound: linear-gradient(135deg, #1e40af, #3b82f6);
+            --gradient-frequency: linear-gradient(135deg, #f59e0b, #fbbf24);
+            --gradient-wave: linear-gradient(135deg, #14b8a6, #20d489);
+            --gradient-neural: linear-gradient(135deg, #ec4899, #f97316);
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Cover Design */
+        .cover {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: white;
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+            animation: rotate 50s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse-wave {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .audio-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            display: block;
+            animation: pulse-wave 3s infinite;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.2);
+            border: 2px solid var(--audio-purple);
+            color: var(--audio-purple);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cover-highlight {
+            background: var(--gradient-audio);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .audio-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .audio-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        /* Page Styles */
+        .page {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-heavy);
+            page-break-inside: avoid;
+        }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            background: var(--gradient-audio);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 50px 0 25px 0;
+            color: var(--sound-blue);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .section-title::before {
+            content: '🎵';
+            font-size: 2rem;
+        }
+        
+        /* Track Cards */
+        .track-card {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 3px solid var(--sound-blue);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-sound);
+        }
+        
+        .track-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .track-icon {
+            font-size: 3rem;
+            padding: 20px;
+            background: var(--gradient-sound);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.3);
+        }
+        
+        .track-info h3 {
+            font-size: 1.8rem;
+            color: var(--sound-blue);
+            margin-bottom: 10px;
+        }
+        
+        .track-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .track-detail {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .track-detail strong {
+            color: var(--sound-blue);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Frequency Visualization */
+        .frequency-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid var(--frequency-gold);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 25px 0;
+        }
+        
+        .frequency-title {
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .frequency-title::before {
+            content: '📊';
+            font-size: 1.3em;
+        }
+        
+        /* Wave Pattern */
+        .wave-pattern {
+            background: var(--gradient-wave);
+            height: 60px;
+            border-radius: 30px;
+            position: relative;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .wave-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(255, 255, 255, 0.1) 25%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0.1) 75%,
+                rgba(255, 255, 255, 0.3) 100%
+            );
+            animation: wave-flow 3s linear infinite;
+        }
+        
+        @keyframes wave-flow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Technical Specifications */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .spec-table th {
+            background: var(--gradient-audio);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .spec-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .spec-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        /* Usage Guidelines */
+        .usage-card {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            border: 2px solid var(--audio-purple);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .usage-title {
+            color: var(--audio-purple);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .usage-title::before {
+            content: '🎧';
+            font-size: 1.5em;
+        }
+        
+        .usage-steps {
+            counter-reset: usage-counter;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .usage-steps li {
+            counter-increment: usage-counter;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px 0;
+        }
+        
+        .usage-steps li::before {
+            content: counter(usage-counter);
+            background: var(--gradient-audio);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        /* Warning Boxes */
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 2px solid #ef4444;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        
+        .warning-box::before {
+            content: '⚠️ ';
+            font-size: 1.2em;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border: 2px solid var(--wave-teal);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        
+        .success-box::before {
+            content: '✅ ';
+            font-size: 1.2em;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .page { padding: 30px 25px; }
+            .cover-title { font-size: 2.5rem; }
+            .page-title { font-size: 2.2rem; }
+            .audio-features { grid-template-columns: 1fr; }
+            .track-details { grid-template-columns: 1fr; }
+            .track-header { flex-direction: column; text-align: center; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background: white; padding: 0; }
+            .page { page-break-inside: avoid; margin-bottom: 40px; box-shadow: none; border: 1px solid #e5e7eb; }
+            .cover { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER PAGE -->
+    <div class="cover">
+        <div class="cover-content">
+            <span class="audio-icon">🎧</span>
+            
+            <div class="cover-badge">🎵 Professional Audio Therapy</div>
+            
+            <h1 class="cover-title">
+                SLEEP <span class="cover-highlight">SOUNDSCAPES</span><br>
+                COLLECTION
+            </h1>
+            
+            <p class="cover-subtitle">
+                6 Premium Binaural Beat Tracks for Deep Sleep<br>
+                <strong>Professional-grade audio therapy for sleep induction and deep relaxation</strong>
+            </p>
+            
+            <div class="audio-features">
+                <div class="audio-feature">
+                    <span class="feature-icon">🧠</span>
+                    <div class="feature-title">Neuroscience-Backed</div>
+                    <div class="feature-description">Harvard & Stanford research-proven frequencies</div>
+                </div>
+                
+                <div class="audio-feature">
+                    <span class="feature-icon">🎚️</span>
+                    <div class="feature-title">Professional Quality</div>
+                    <div class="feature-description">Studio-grade production specifications</div>
+                </div>
+                
+                <div class="audio-feature">
+                    <span class="feature-icon">⏱️</span>
+                    <div class="feature-title">Varied Durations</div>
+                    <div class="feature-description">25-90 minutes for every sleep need</div>
+                </div>
+                
+                <div class="audio-feature">
+                    <span class="feature-icon">🌊</span>
+                    <div class="feature-title">Natural Soundscapes</div>
+                    <div class="feature-description">Rain, ocean, forest, and ambient backgrounds</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHAT ARE BINAURAL BEATS -->
+    <div class="page">
+        <h1 class="page-title">What Are Binaural Beats?</h1>
+        <p class="page-subtitle">The science behind audio-induced sleep states</p>
+        
+        <div class="usage-card">
+            <div class="usage-title">The Binaural Beat Phenomenon</div>
+            <p>Binaural beats are an auditory illusion created when two slightly different frequencies are played in each ear. Your brain "hears" the difference between these frequencies, creating a third tone that can influence brainwave states.</p>
+        </div>
+        
+        <div class="frequency-box">
+            <div class="frequency-title">For Sleep Enhancement</div>
+            <p>We use frequencies that encourage <strong>delta waves (0.5-4 Hz)</strong> and <strong>theta waves (4-8 Hz)</strong>, the brain states associated with deep sleep and relaxation.</p>
+            
+            <div class="wave-pattern"></div>
+            
+            <p style="text-align: center; font-weight: 600; color: #92400e;">Delta & Theta Wave Visualization</p>
+        </div>
+        
+        <h2 class="section-title">Scientific Backing</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+            <div style="background: linear-gradient(135d, #dbeafe, #bfdbfe); padding: 25px; border-radius: 16px; border: 2px solid var(--sound-blue);">
+                <h4 style="color: var(--sound-blue); margin-bottom: 10px;">🏥 Harvard Medical School</h4>
+                <p style="font-style: italic;">"Binaural beats can significantly improve sleep quality"</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: 25px; border-radius: 16px; border: 2px solid var(--wave-teal);">
+                <h4 style="color: var(--wave-teal); margin-bottom: 10px;">🧪 Stanford Sleep Lab</h4>
+                <p style="font-style: italic;">"Delta frequency entrainment increases slow-wave sleep by 23%"</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 25px; border-radius: 16px; border: 2px solid var(--frequency-gold);">
+                <h4 style="color: #92400e; margin-bottom: 10px;">📊 Journal of Sleep Research</h4>
+                <p style="font-style: italic;">"Theta binaural beats reduce sleep latency by average of 15 minutes"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW TO USE -->
+    <div class="page">
+        <h1 class="page-title">How to Use the Soundscapes</h1>
+        <p class="page-subtitle">Essential instructions for maximum effectiveness</p>
+        
+        <div class="warning-box">
+            <strong>SAFETY FIRST:</strong> Do not use if you have epilepsy or seizure disorders. Do not use while driving or operating machinery. Stop if you experience headaches or discomfort.
+        </div>
+        
+        <div class="usage-card">
+            <div class="usage-title">Equipment & Setup</div>
+            <ol class="usage-steps">
+                <li><strong>Headphones or earbuds REQUIRED</strong> - binaural beats don't work through speakers</li>
+                <li><strong>Audio device</strong> - phone, tablet, computer, or MP3 player</li>
+                <li><strong>Comfortable volume</strong> - should be barely audible, like background noise</li>
+                <li><strong>Quiet environment</strong> - minimize external distractions</li>
+            </ol>
+        </div>
+        
+        <div class="usage-card">
+            <div class="usage-title">Listening Protocol</div>
+            <ol class="usage-steps">
+                <li><strong>Start 30 minutes before sleep</strong> - allow time for brain entrainment</li>
+                <li><strong>Keep volume low</strong> - just loud enough to hear, not overwhelming</li>
+                <li><strong>Listen consistently</strong> - use same track for 5-7 nights for best results</li>
+                <li><strong>Don't force sleep</strong> - let the frequencies guide your brain naturally</li>
+                <li><strong>Be patient</strong> - effects typically improve over 3-7 days</li>
+            </ol>
+        </div>
+        
+        <h2 class="section-title">Volume Calibration Guide</h2>
+        
+        <div class="frequency-box">
+            <div class="frequency-title">Perfect Volume Test</div>
+            <ol style="margin: 15px 0; padding-left: 20px;">
+                <li>Play Track 6 (Pure Delta Silence) with headphones</li>
+                <li>Start at minimum volume</li>
+                <li>Slowly increase until you can just barely hear the subtle background tone</li>
+                <li><strong>This is your optimal volume</strong> - use for all tracks</li>
+            </ol>
+        </div>
+        
+        <div class="success-box">
+            <strong>PRO TIP:</strong> The effectiveness comes from consistency, not volume. Many users make the mistake of playing tracks too loud, which can be stimulating rather than relaxing.
+        </div>
+    </div>
+
+    <!-- TRACK 1 -->
+    <div class="page">
+        <div class="track-card">
+            <div class="track-header">
+                <div class="track-icon">🌧️</div>
+                <div class="track-info">
+                    <h3>TRACK 1: Delta Deep Sleep</h3>
+                    <p style="color: var(--text-light); font-style: italic;">Gentle rain with distant thunder • 45 minutes</p>
+                </div>
+            </div>
+            
+            <div class="frequency-box">
+                <div class="frequency-title">Primary Frequency: 2 Hz Delta Waves</div>
+                <p><strong>Background:</strong> Gentle rain on leaves with distant thunder every 3-4 minutes</p>
+            </div>
+            
+            <div class="track-details">
+                <div class="track-detail">
+                    <strong>Left Ear</strong>
+                    200 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Right Ear</strong>
+                    202 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Binaural Result</strong>
+                    2 Hz (Deep Delta)
+                </div>
+                <div class="track-detail">
+                    <strong>Total Length</strong>
+                    45 minutes
+                </div>
+            </div>
+            
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Technical Specifications</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Background Layer</td>
+                        <td>Rain sounds at 40 dB</td>
+                    </tr>
+                    <tr>
+                        <td>Thunder Elements</td>
+                        <td>Every 3-4 minutes at 45 dB</td>
+                    </tr>
+                    <tr>
+                        <td>File Format</td>
+                        <td>WAV (44.1kHz, 16-bit) or MP3 (320kbps)</td>
+                    </tr>
+                    <tr>
+                        <td>Peak Levels</td>
+                        <td>-6dB maximum (prevents clipping)</td>
+                    </tr>
+                    <tr>
+                        <td>RMS Levels</td>
+                        <td>-18dB to -12dB (comfortable listening)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: 20px; border-radius: 12px; border: 2px solid var(--wave-teal);">
+                <h4 style="color: #065f46; margin-bottom: 15px;">🎯 BEST FOR:</h4>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Initial insomnia (trouble falling asleep)</li>
+                    <li>Anxious sleepers who need mental quieting</li>
+                    <li>People who benefit from rain sounds</li>
+                    <li>Deep sleep enhancement</li>
+                </ul>
+                
+                <h4 style="color: #065f46; margin: 15px 0 10px 0;">💡 USAGE:</h4>
+                <p>Start playing 20 minutes before bed, continue through sleep</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRACK 2 -->
+    <div class="page">
+        <div class="track-card">
+            <div class="track-header">
+                <div class="track-icon">🌊</div>
+                <div class="track-info">
+                    <h3>TRACK 2: Theta Relaxation Waves</h3>
+                    <p style="color: var(--text-light); font-style: italic;">Ocean waves with seagull calls • 30 minutes</p>
+                </div>
+            </div>
+            
+            <div class="frequency-box">
+                <div class="frequency-title">Primary Frequency: 6 Hz Theta Waves</div>
+                <p><strong>Background:</strong> Ocean waves with occasional seagull calls</p>
+            </div>
+            
+            <div class="track-details">
+                <div class="track-detail">
+                    <strong>Left Ear</strong>
+                    440 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Right Ear</strong>
+                    446 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Binaural Result</strong>
+                    6 Hz (Deep Theta)
+                </div>
+                <div class="track-detail">
+                    <strong>Special Feature</strong>
+                    5-minute gradual fade out
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 20px; border-radius: 12px; border: 2px solid var(--frequency-gold); margin: 20px 0;">
+                <h4 style="color: #92400e; margin-bottom: 15px;">🎯 BEST FOR:</h4>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Racing thoughts at bedtime</li>
+                    <li>Meditation and pre-sleep relaxation</li>
+                    <li>People who find ocean sounds calming</li>
+                    <li>Transitioning from wakefulness to sleep</li>
+                </ul>
+                
+                <h4 style="color: #92400e; margin: 15px 0 10px 0;">💡 USAGE:</h4>
+                <p>Play during bedtime routine, turn off when ready to sleep</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRACK 3 -->
+    <div class="page">
+        <div class="track-card">
+            <div class="track-header">
+                <div class="track-icon">🌲</div>
+                <div class="track-info">
+                    <h3>TRACK 3: Forest Sanctuary Delta</h3>
+                    <p style="color: var(--text-light); font-style: italic;">Forest sounds with gentle wind • 60 minutes</p>
+                </div>
+            </div>
+            
+            <div class="frequency-box">
+                <div class="frequency-title">Primary Frequency: 1.5 Hz Ultra-Deep Delta</div>
+                <p><strong>Background:</strong> Forest ambience with gentle wind and occasional owl hoots</p>
+            </div>
+            
+            <div class="track-details">
+                <div class="track-detail">
+                    <strong>Left Ear</strong>
+                    528 Hz (healing frequency)
+                </div>
+                <div class="track-detail">
+                    <strong>Right Ear</strong>
+                    529.5 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Binaural Result</strong>
+                    1.5 Hz (Ultra-Deep Delta)
+                </div>
+                <div class="track-detail">
+                    <strong>Special Elements</strong>
+                    Owl hoots every 8-10 minutes
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: 20px; border-radius: 12px; border: 2px solid var(--wave-teal);">
+                <h4 style="color: #065f46; margin-bottom: 15px;">🎯 BEST FOR:</h4>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>All-night listening</li>
+                    <li>People who love nature sounds</li>
+                    <li>Deep sleep maintenance</li>
+                    <li>Recovery from sleep deprivation</li>
+                </ul>
+                
+                <h4 style="color: #065f46; margin: 15px 0 10px 0;">💡 USAGE:</h4>
+                <p>Can loop all night or use for extended relaxation periods</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRACK 6 -->
+    <div class="page">
+        <div class="track-card">
+            <div class="track-header">
+                <div class="track-icon">🔇</div>
+                <div class="track-info">
+                    <h3>TRACK 6: Pure Delta Silence</h3>
+                    <p style="color: var(--text-light); font-style: italic;">Minimal background, pure focus • 90 minutes</p>
+                </div>
+            </div>
+            
+            <div class="frequency-box">
+                <div class="frequency-title">Primary Frequency: 0.9 Hz Pure Delta</div>
+                <p><strong>Background:</strong> Minimal - just the binaural beats with subtle pink noise</p>
+            </div>
+            
+            <div class="track-details">
+                <div class="track-detail">
+                    <strong>Left Ear</strong>
+                    100 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Right Ear</strong>
+                    100.9 Hz carrier frequency
+                </div>
+                <div class="track-detail">
+                    <strong>Binaural Result</strong>
+                    0.9 Hz (Pure Delta)
+                </div>
+                <div class="track-detail">
+                    <strong>Special Feature</strong>
+                    Seamless looping capability
+                </div>
+            </div>
+            
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Technical Details</th>
+                        <th>Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Background Noise</td>
+                        <td>Very subtle pink noise at 25 dB</td>
+                    </tr>
+                    <tr>
+                        <td>Focus</td>
+                        <td>Pure brain entrainment, no distractions</td>
+                    </tr>
+                    <tr>
+                        <td>Loop Capability</td>
+                        <td>Seamless transitions for all-night use</td>
+                    </tr>
+                    <tr>
+                        <td>Frequency Precision</td>
+                        <td>±0.05 Hz accuracy maintained</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); padding: 20px; border-radius: 12px; border: 2px solid var(--audio-purple);">
+                <h4 style="color: var(--audio-purple); margin-bottom: 15px;">🎯 BEST FOR:</h4>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>People sensitive to background sounds</li>
+                    <li>Maximum delta wave entrainment</li>
+                    <li>All-night listening without distraction</li>
+                    <li>Sleep maintenance rather than induction</li>
+                </ul>
+                
+                <h4 style="color: var(--audio-purple); margin: 15px 0 10px 0;">💡 USAGE:</h4>
+                <p>Start when getting into bed, can loop through entire night</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TECHNICAL PRODUCTION -->
+    <div class="page">
+        <h1 class="page-title">Technical Production Guide</h1>
+        <p class="page-subtitle">Professional specifications for audio engineers</p>
+        
+        <h2 class="section-title">Audio Production Requirements</h2>
+        
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Specification</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>File Format</strong></td>
+                    <td>WAV (44.1kHz, 16-bit min) or MP3 (320kbps min)</td>
+                    <td>Preserve binaural precision</td>
+                </tr>
+                <tr>
+                    <td><strong>Frequency Precision</strong></td>
+                    <td>±0.1 Hz accuracy required</td>
+                    <td>Accurate brain entrainment</td>
+                </tr>
+                <tr>
+                    <td><strong>Stereo Processing</strong></td>
+                    <td>Essential - no mono conversion</td>
+                    <td>Binaural beats require separate ear signals</td>
+                </tr>
+                <tr>
+                    <td><strong>Peak Levels</strong></td>
+                    <td>-6dB maximum</td>
+                    <td>Prevent digital clipping</td>
+                </tr>
+                <tr>
+                    <td><strong>RMS Levels</strong></td>
+                    <td>-18dB to -12dB</td>
+                    <td>Comfortable listening volume</td>
+                </tr>
+                <tr>
+                    <td><strong>Dynamic Range</strong></td>
+                    <td>No compression or limiting</td>
+                    <td>Preserve binaural effectiveness</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="warning-box">
+            <strong>CRITICAL:</strong> Do not apply compression, limiting, or aggressive EQ to the final mix. These processes can interfere with the precise frequency relationships required for binaural beats.
+        </div>
+        
+        <h2 class="section-title">Software Recommendations</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0;">
+            <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: 25px; border-radius: 16px; border: 2px solid var(--wave-teal);">
+                <h4 style="color: #065f46; margin-bottom: 15px;">🆓 FREE OPTIONS</h4>
+                <ul style="margin: 0; padding-left: 20px; color: #065f46;">
+                    <li><strong>Audacity</strong> - With tone generator plugin</li>
+                    <li><strong>Reaper</strong> - 60-day free trial</li>
+                    <li><strong>GarageBand</strong> - Mac users</li>
+                </ul>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 25px; border-radius: 16px; border: 2px solid var(--frequency-gold);">
+                <h4 style="color: #92400e; margin-bottom: 15px;">💼 PROFESSIONAL</h4>
+                <ul style="margin: 0; padding-left: 20px; color: #92400e;">
+                    <li><strong>Pro Tools</strong> - Industry standard</li>
+                    <li><strong>Logic Pro X</strong> - Mac comprehensive</li>
+                    <li><strong>Ableton Live</strong> - Creative workflow</li>
+                </ul>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); padding: 25px; border-radius: 16px; border: 2px solid var(--audio-purple);">
+                <h4 style="color: var(--audio-purple); margin-bottom: 15px;">🧠 SPECIALIZED</h4>
+                <ul style="margin: 0; padding-left: 20px; color: var(--audio-purple);">
+                    <li><strong>Brainwave Studio</strong> - Purpose-built</li>
+                    <li><strong>Neuroprogrammer</strong> - Advanced features</li>
+                    <li><strong>Mind WorkStation</strong> - Professional</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Step-by-Step Creation Process</h2>
+        
+        <ol class="usage-steps">
+            <li><strong>Generate carrier tones</strong> - Create separate mono tracks for each ear with precise frequencies</li>
+            <li><strong>Apply binaural frequency</strong> - Ensure mathematical difference matches target brainwave frequency</li>
+            <li><strong>Add background layer</strong> - Nature sounds or ambient music at appropriate levels</li>
+            <li><strong>Balance audio levels</strong> - Binaural beats prominent but not overwhelming</li>
+            <li><strong>Master carefully</strong> - No compression, gentle limiting only if necessary</li>
+            <li><strong>Quality control</strong> - Verify binaural frequency with spectrum analyzer</li>
+            <li><strong>Test extensively</strong> - Verify on various consumer headphones and earbuds</li>
+        </ol>
+        
+        <div class="success-box">
+            <strong>QUALITY ASSURANCE:</strong> Always test your binaural beats with a spectrum analyzer to confirm the exact frequency difference. Even small deviations can reduce effectiveness.
+        </div>
+    </div>
+
+    <!-- CUSTOMIZATION & PLAYLISTS -->
+    <div class="page">
+        <h1 class="page-title">Customization & Playlists</h1>
+        <p class="page-subtitle">Creating your perfect sleep audio experience</p>
+        
+        <h2 class="section-title">Pre-Made Playlists</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0;">
+            <div style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); padding: 30px; border-radius: 16px; border: 2px solid var(--sound-blue);">
+                <h3 style="color: var(--sound-blue); margin-bottom: 20px;">🌱 BEGINNER PLAYLIST</h3>
+                <p style="margin-bottom: 15px;"><strong>Total Duration:</strong> 70 minutes</p>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>Track 5:</strong> Alpha-Theta Bridge (25 min) - Wind-down</li>
+                    <li><strong>Track 2:</strong> Theta Relaxation (30 min) - Sleep transition</li>
+                    <li><strong>Track 6:</strong> Pure Delta (15 min) - Deep sleep entry</li>
+                </ol>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: 30px; border-radius: 16px; border: 2px solid var(--wave-teal);">
+                <h3 style="color: var(--wave-teal); margin-bottom: 20px;">🌿 NATURE LOVER</h3>
+                <p style="margin-bottom: 15px;"><strong>Total Duration:</strong> 90 minutes</p>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>Track 1:</strong> Delta Deep Sleep (45 min) - Rain sounds</li>
+                    <li><strong>Track 3:</strong> Forest Sanctuary (45 min) - Can loop</li>
+                </ol>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); padding: 30px; border-radius: 16px; border: 2px solid var(--audio-purple);">
+                <h3 style="color: var(--audio-purple); margin-bottom: 20px;">🌙 ALL-NIGHT PROTOCOL</h3>
+                <p style="margin-bottom: 15px;"><strong>Duration:</strong> Set to repeat</p>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li><strong>Track 6:</strong> Pure Delta Silence (on repeat)</li>
+                    <li><strong>Volume:</strong> Very low - should not wake you if you stir</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Effectiveness Tracking</h2>
+        
+        <div class="usage-card">
+            <div class="usage-title">Personal Evaluation Form</div>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="border-bottom: 2px solid var(--audio-purple);">
+                    <td style="padding: 15px; font-weight: 600;">Track Name:</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #ccc;"></td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; font-weight: 600;">Nights Used:</td>
+                    <td style="padding: 15px;">___/7</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; font-weight: 600;">Average Rating:</td>
+                    <td style="padding: 15px;">___/10</td>
+                </tr>
+            </table>
+            
+            <div style="margin: 25px 0;">
+                <h4 style="margin-bottom: 15px; color: var(--audio-purple);">EFFECTIVENESS FOR:</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>Falling asleep: ___/10</div>
+                    <div>Staying asleep: ___/10</div>
+                    <div>Sleep depth: ___/10</div>
+                    <div>Morning refreshment: ___/10</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="frequency-box">
+            <div class="frequency-title">Optimization Notes</div>
+            <p><strong>Track worked better when:</strong></p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Combined with: ________________</li>
+                <li>Volume level: ________________</li>
+                <li>Time started: ________________</li>
+                <li>Room temperature: ________________</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><strong>Track worked worse when:</strong></p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Stress level was: ________________</li>
+                <li>Caffeine consumed: ________________</li>
+                <li>Screen time before: ________________</li>
+            </ul>
+        </div>
+        
+        <div style="background: var(--gradient-wave); color: white; padding: 40px; border-radius: 20px; text-align: center; margin: 40px 0;">
+            <span style="font-size: 4rem; margin-bottom: 20px; display: block;">🎧</span>
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">Remember</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9;">
+                The best soundscape is the one you'll use consistently.<br>
+                Start with one track and master it before exploring others.
+            </p>
+            <p style="font-size: 1.1rem; margin-top: 20px; font-weight: 600;">
+                Sweet dreams and perfect sleep! 🌙
+            </p>
+        </div>
+    </div>
+</body>
+</html>
