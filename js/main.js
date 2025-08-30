@@ -1,6 +1,8 @@
 // Stripe Configuration
-const STRIPE_PUBLIC_KEY = 'pk_test_51234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; // Replace with your Stripe public key
+const STRIPE_PUBLIC_KEY = 'pk_test_8Lfb60gbAK374AtGcoL8COpC'; // Stripe publishable key
 const PRODUCT_PRICE = 2700; // $27.00 in cents
+const STRIPE_PRICE_ID = 'price_1S1pzWBW0J6epKS6wNsiBukQ'; // Sleep Toolkit price ID
+const STRIPE_PRODUCT_ID = 'prod_SxlWBmU5Qxwuh6'; // Sleep Toolkit product ID
 
 // Initialize Stripe
 let stripe = null;
@@ -196,16 +198,32 @@ function setupStripeElements() {
         btnText.style.display = 'none';
         btnSpinner.style.display = 'flex';
         
-        // Here you would normally create a payment intent on your server
-        // and process the payment with Stripe
-        
-        // For demo purposes, show success after 2 seconds
-        setTimeout(() => {
-            showSuccessMessage();
+        try {
+            // Redirect to Stripe Checkout
+            const { error } = await stripe.redirectToCheckout({
+                lineItems: [{
+                    price: STRIPE_PRICE_ID,
+                    quantity: 1,
+                }],
+                mode: 'payment',
+                successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`,
+                cancelUrl: window.location.href,
+            });
+            
+            if (error) {
+                console.error('Error:', error);
+                const displayError = document.getElementById('card-errors');
+                displayError.textContent = error.message;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            const displayError = document.getElementById('card-errors');
+            displayError.textContent = 'An error occurred. Please try again.';
+        } finally {
             submitButton.disabled = false;
             btnText.style.display = 'flex';
             btnSpinner.style.display = 'none';
-        }, 2000);
+        }
     });
     
     // Handle card errors
@@ -221,7 +239,7 @@ function setupStripeElements() {
 
 // Setup Demo Checkout (when Stripe is not configured)
 function setupDemoCheckout() {
-    // Handle form submission for demo
+    // Try to use Stripe checkout even without elements
     const form = document.getElementById('payment-form');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -234,13 +252,45 @@ function setupDemoCheckout() {
         btnText.style.display = 'none';
         btnSpinner.style.display = 'flex';
         
-        // Demo success after 2 seconds
-        setTimeout(() => {
-            showSuccessMessage();
-            submitButton.disabled = false;
-            btnText.style.display = 'flex';
-            btnSpinner.style.display = 'none';
-        }, 2000);
+        try {
+            // Initialize Stripe if not already done
+            if (!stripe && STRIPE_PUBLIC_KEY.startsWith('pk_')) {
+                stripe = Stripe(STRIPE_PUBLIC_KEY);
+            }
+            
+            if (stripe && STRIPE_PRICE_ID) {
+                // Redirect to Stripe Checkout
+                const { error } = await stripe.redirectToCheckout({
+                    lineItems: [{
+                        price: STRIPE_PRICE_ID,
+                        quantity: 1,
+                    }],
+                    mode: 'payment',
+                    successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`,
+                    cancelUrl: window.location.href,
+                });
+                
+                if (error) {
+                    console.error('Error:', error);
+                    showDemoSuccess();
+                }
+            } else {
+                // Fallback to demo success
+                showDemoSuccess();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showDemoSuccess();
+        }
+        
+        function showDemoSuccess() {
+            setTimeout(() => {
+                showSuccessMessage();
+                submitButton.disabled = false;
+                btnText.style.display = 'flex';
+                btnSpinner.style.display = 'none';
+            }, 2000);
+        }
     });
 }
 

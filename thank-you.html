@@ -620,6 +620,16 @@
     <script>
         // Add some interactivity
         document.addEventListener('DOMContentLoaded', function() {
+            // Check for session_id parameter to confirm successful payment
+            const urlParams = new URLSearchParams(window.location.search);
+            const sessionId = urlParams.get('session_id');
+            
+            if (sessionId) {
+                console.log('Payment successful! Session ID:', sessionId);
+                // You can add analytics tracking here
+                // gtag('event', 'purchase', { value: 27, currency: 'USD' });
+            }
+            
             // Animate cards on scroll
             const cards = document.querySelectorAll('.download-card');
             
@@ -646,6 +656,11 @@
                 btn.addEventListener('click', function(e) {
                     // Add download analytics here if needed
                     console.log('Download clicked:', this.textContent.trim());
+                    
+                    // For demo purposes, show alert that files would be available
+                    // In production, these would link to actual hosted PDF files
+                    e.preventDefault();
+                    alert('In production, this would download the actual PDF file. For demo, files are stored locally in the toolkit/pdfs/ folder.');
                 });
             });
         });
