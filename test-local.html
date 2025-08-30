@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Test</title>
+</head>
+<body>
+    <button id="buy-now-hero" class="cta-button">Test Button</button>
+    <div id="checkout-modal" class="modal" style="display: none;">
+        <div class="checkout-container">
+            <h2>Test Modal</h2>
+        </div>
+    </div>
+
+    <script>
+function setupBuyButtons() {
+    const buyButtons = document.querySelectorAll('#buy-now-hero');
+    
+    buyButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Button clicked!');
+            openCheckoutModal();
+        });
+    });
+}
+
+function openCheckoutModal() {
+    const modal = document.getElementById('checkout-modal');
+    modal.style.display = 'block';
+    console.log('Modal opened!');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, setting up buttons...');
+    setupBuyButtons();
+});
+    </script>
+
+    <style>
+    .cta-button { padding: 20px; background: #f59e0b; color: white; border: none; cursor: pointer; }
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+    .checkout-container { background: white; margin: 50px auto; padding: 20px; max-width: 500px; }
+    </style>
+</body>
+</html>

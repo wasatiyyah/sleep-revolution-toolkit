@@ -2425,7 +2425,7 @@ function setupStripeElements() {
                     quantity: 1,
                 }],
                 mode: 'payment',
-                successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`,
+                successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}&x-vercel-protection-bypass=bc001427eda196c70638cfa086ba31e5`,
                 cancelUrl: window.location.href,
             });
             
@@ -2485,7 +2485,7 @@ function setupDemoCheckout() {
                         quantity: 1,
                     }],
                     mode: 'payment',
-                    successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`,
+                    successUrl: `${window.location.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}&x-vercel-protection-bypass=bc001427eda196c70638cfa086ba31e5`,
                     cancelUrl: window.location.href,
                 });
                 
