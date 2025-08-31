@@ -10,6 +10,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  console.log('🔗 Webhook received:', {
+    method: req.method,
+    headers: Object.keys(req.headers),
+    hasSignature: !!req.headers['stripe-signature']
+  });
+
   try {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -17,10 +23,19 @@ export default async function handler(req, res) {
     const sig = req.headers['stripe-signature'];
     let event;
 
+    // Handle raw body for signature verification
+    let body = req.body;
+    if (typeof body !== 'string') {
+      body = JSON.stringify(body);
+    }
+
     try {
-      event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+      event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+      console.log('✅ Webhook signature verified, event type:', event.type);
     } catch (err) {
-      console.error('Webhook signature verification failed:', err.message);
+      console.error('❌ Webhook signature verification failed:', err.message);
+      console.error('Body type:', typeof req.body);
+      console.error('Endpoint secret exists:', !!endpointSecret);
       return res.status(400).json({ error: 'Webhook signature verification failed' });
     }
 
