@@ -17,8 +17,14 @@ export default async function handler(req, res) {
   });
 
   try {
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    // Use test mode if test keys are available
+    const stripeKey = process.env.STRIPE_SECRET_KEY_TEST || process.env.STRIPE_SECRET_KEY;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET_TEST || process.env.STRIPE_WEBHOOK_SECRET;
+    
+    console.log('🔧 Using Stripe mode:', stripeKey?.includes('test') ? 'TEST' : 'LIVE');
+    
+    const stripe = require('stripe')(stripeKey);
+    const endpointSecret = webhookSecret;
 
     const sig = req.headers['stripe-signature'];
     let event;
