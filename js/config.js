@@ -20,7 +20,7 @@ window.CONFIG = {
         isProduction: isProduction,
         isDevelopment: isDevelopment,
         websiteUrl: isProduction 
-            ? 'https://sleep-toolkit-website.vercel.app' 
+            ? 'https://sleeprevolutiontoolkit.com' 
             : window.location.origin
     },
 
