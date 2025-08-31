@@ -433,7 +433,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn">
+                <a href="toolkit/final-pdfs/Sleep_Revolution_Toolkit_Main_Guide.pdf" class="download-btn" download="Sleep_Revolution_Toolkit_Main_Guide.pdf">
                     <span>⬇️</span>
                     Download Main Guide
                 </a>
@@ -460,7 +460,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn">
+                <a href="toolkit/final-pdfs/Quick_Reference_Emergency_Cards.pdf" class="download-btn" download="Quick_Reference_Emergency_Cards.pdf">
                     <span>⬇️</span>
                     Download Emergency Cards
                 </a>
@@ -487,7 +487,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn">
+                <a href="toolkit/final-pdfs/30_Day_Sleep_Revolution_Tracker.pdf" class="download-btn" download="30_Day_Sleep_Revolution_Tracker.pdf">
                     <span>⬇️</span>
                     Download Sleep Tracker
                 </a>
@@ -514,7 +514,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn">
+                <a href="toolkit/final-pdfs/Sleep_Revolution_Bonus_Materials.pdf" class="download-btn" download="Sleep_Revolution_Bonus_Materials.pdf">
                     <span>⬇️</span>
                     Download Bonus Materials
                 </a>
@@ -541,7 +541,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn">
+                <a href="toolkit/final-pdfs/Sleep_Soundscapes_Instructions.pdf" class="download-btn" download="Sleep_Soundscapes_Instructions.pdf">
                     <span>⬇️</span>
                     Download Audio Guide
                 </a>
@@ -557,12 +557,12 @@
         <p style="margin-bottom: 30px; color: #64748b; font-size: 1.1rem;">
             Download the complete Sleep Revolution Toolkit as a single ZIP file
         </p>
-        <a href="#" class="download-all-btn">
+        <a href="toolkit/final-pdfs/sleeprevolutiontoolkit.zip" class="download-all-btn" download="SleepRevolutionToolkit.zip">
             <span>📦</span>
             Download Complete Toolkit (ZIP)
         </a>
         <p style="margin-top: 15px; font-size: 0.9rem; color: #64748b;">
-            Includes all 5 PDFs • 7MB total • Lifetime access
+            Includes all 5 PDFs • 6.9MB total • Lifetime access
         </p>
     </section>
 
@@ -654,13 +654,25 @@
             // Add click tracking for download buttons
             document.querySelectorAll('.download-btn, .download-all-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
-                    // Add download analytics here if needed
-                    console.log('Download clicked:', this.textContent.trim());
+                    // Track downloads for analytics
+                    const fileName = this.getAttribute('href').split('/').pop();
+                    console.log('Download started:', fileName);
                     
-                    // For demo purposes, show alert that files would be available
-                    // In production, these would link to actual hosted PDF files
-                    e.preventDefault();
-                    alert('In production, this would download the actual PDF file. For demo, files are stored locally in the toolkit/pdfs/ folder.');
+                    // Add analytics tracking here if needed
+                    // gtag('event', 'file_download', { 
+                    //     file_name: fileName,
+                    //     link_url: this.href
+                    // });
+                    
+                    // Show visual feedback
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span>✅</span> Download Started!';
+                    this.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.background = '';
+                    }, 2000);
                 });
             });
         });
