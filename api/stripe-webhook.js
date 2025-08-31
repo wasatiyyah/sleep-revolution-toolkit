@@ -2,6 +2,7 @@
 // This handles successful payments and order fulfillment
 
 const EmailService = require('../lib/email-service');
+const SimpleEmailService = require('../lib/email-service-simple');
 
 export default async function handler(req, res) {
   // Only allow POST requests
@@ -67,8 +68,23 @@ async function handleSuccessfulPayment(session) {
   }
 
   try {
+    // Auto-detect which email service to use based on available API keys
+    let emailService;
+    
+    if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== 're_your_resend_api_key_here') {
+      // Use Resend (professional email service)
+      emailService = new EmailService();
+      console.log('📧 Using Resend email service');
+    } else if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+      // Use Gmail SMTP fallback
+      emailService = new SimpleEmailService();
+      console.log('📧 Using Gmail SMTP service');
+    } else {
+      console.error('❌ No email service configured. Please set RESEND_API_KEY or EMAIL_USER/EMAIL_PASSWORD');
+      return;
+    }
+    
     // Send download links email immediately
-    const emailService = new EmailService();
     await emailService.sendDownloadLinks(customerEmail, customerName, session.id);
     
     console.log(`✅ Download email sent to ${customerEmail}`);
