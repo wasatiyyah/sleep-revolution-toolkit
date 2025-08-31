@@ -1,0 +1,255 @@
+{
+  "name": "Sleep Toolkit Website Environment Variables",
+  "description": "Configuration template for Vercel deployment",
+  "variables": [
+    {
+      "key": "NODE_ENV",
+      "value": "production",
+      "target": ["production"],
+      "required": true,
+      "description": "Environment mode"
+    },
+    {
+      "key": "PRODUCTION_MODE",
+      "value": "true",
+      "target": ["production"],
+      "required": true,
+      "description": "Enable production features"
+    },
+    {
+      "key": "STRIPE_PUBLISHABLE_KEY",
+      "value": "pk_live_your_live_key_here",
+      "target": ["production"],
+      "required": true,
+      "sensitive": false,
+      "description": "Stripe live publishable key (safe to expose to client)"
+    },
+    {
+      "key": "STRIPE_SECRET_KEY",
+      "value": "sk_live_your_live_secret_here",
+      "target": ["production"],
+      "required": true,
+      "sensitive": true,
+      "description": "Stripe live secret key (KEEP PRIVATE)"
+    },
+    {
+      "key": "STRIPE_WEBHOOK_SECRET",
+      "value": "whsec_live_your_webhook_secret",
+      "target": ["production"],
+      "required": false,
+      "sensitive": true,
+      "description": "Stripe webhook secret for payment confirmations"
+    },
+    {
+      "key": "STRIPE_PRODUCT_ID",
+      "value": "prod_your_product_id",
+      "target": ["production", "preview", "development"],
+      "required": true,
+      "description": "Stripe product ID for Sleep Toolkit"
+    },
+    {
+      "key": "STRIPE_PRICE_ID",
+      "value": "price_your_price_id",
+      "target": ["production", "preview", "development"],
+      "required": true,
+      "description": "Stripe price ID for $27 product"
+    },
+    {
+      "key": "STRIPE_PAYMENT_LINK",
+      "value": "https://buy.stripe.com/live_your_payment_link",
+      "target": ["production"],
+      "required": true,
+      "description": "Stripe payment link for production"
+    },
+    {
+      "key": "GA4_MEASUREMENT_ID",
+      "value": "G-XXXXXXXXXX",
+      "target": ["production"],
+      "required": false,
+      "description": "Google Analytics 4 Measurement ID"
+    },
+    {
+      "key": "GTM_CONTAINER_ID",
+      "value": "GTM-XXXXXXX",
+      "target": ["production"],
+      "required": false,
+      "description": "Google Tag Manager Container ID"
+    },
+    {
+      "key": "FACEBOOK_PIXEL_ID",
+      "value": "123456789012345",
+      "target": ["production"],
+      "required": false,
+      "description": "Facebook Pixel ID for conversion tracking"
+    },
+    {
+      "key": "GOOGLE_ADS_CUSTOMER_ID",
+      "value": "123-456-7890",
+      "target": ["production"],
+      "required": false,
+      "description": "Google Ads Customer ID"
+    },
+    {
+      "key": "GOOGLE_ADS_CONVERSION_ID",
+      "value": "AW-123456789",
+      "target": ["production"],
+      "required": false,
+      "description": "Google Ads Conversion Tracking ID"
+    },
+    {
+      "key": "GOOGLE_ADS_CONVERSION_LABEL",
+      "value": "conversion_label",
+      "target": ["production"],
+      "required": false,
+      "description": "Google Ads Conversion Label"
+    },
+    {
+      "key": "PRODUCTION_URL",
+      "value": "https://sleep-toolkit.com",
+      "target": ["production"],
+      "required": true,
+      "description": "Production website URL"
+    },
+    {
+      "key": "API_BASE_URL",
+      "value": "https://api.sleep-toolkit.com",
+      "target": ["production"],
+      "required": false,
+      "description": "API base URL for backend services"
+    },
+    {
+      "key": "SMTP_HOST",
+      "value": "smtp.gmail.com",
+      "target": ["production"],
+      "required": false,
+      "description": "SMTP server for sending emails"
+    },
+    {
+      "key": "SMTP_PORT",
+      "value": "587",
+      "target": ["production"],
+      "required": false,
+      "description": "SMTP port"
+    },
+    {
+      "key": "SMTP_USER",
+      "value": "orders@sleep-toolkit.com",
+      "target": ["production"],
+      "required": false,
+      "description": "SMTP username"
+    },
+    {
+      "key": "SMTP_PASSWORD",
+      "value": "your_smtp_app_password",
+      "target": ["production"],
+      "required": false,
+      "sensitive": true,
+      "description": "SMTP app password"
+    },
+    {
+      "key": "FROM_EMAIL",
+      "value": "orders@sleep-toolkit.com",
+      "target": ["production"],
+      "required": false,
+      "description": "From email address for notifications"
+    },
+    {
+      "key": "FROM_NAME",
+      "value": "Sleep Toolkit",
+      "target": ["production"],
+      "required": false,
+      "description": "From name for email notifications"
+    },
+    {
+      "key": "JWT_SECRET",
+      "value": "generate_a_secure_32_char_secret_here",
+      "target": ["production"],
+      "required": false,
+      "sensitive": true,
+      "description": "JWT signing secret (32+ characters)"
+    },
+    {
+      "key": "SESSION_SECRET",
+      "value": "generate_a_secure_32_char_secret_here",
+      "target": ["production"],
+      "required": false,
+      "sensitive": true,
+      "description": "Session secret (32+ characters)"
+    },
+    {
+      "key": "ENABLE_ANALYTICS",
+      "value": "true",
+      "target": ["production"],
+      "required": false,
+      "description": "Enable Google Analytics tracking"
+    },
+    {
+      "key": "ENABLE_ADS_TRACKING",
+      "value": "true",
+      "target": ["production"],
+      "required": false,
+      "description": "Enable ads conversion tracking"
+    },
+    {
+      "key": "ENABLE_EMAIL_NOTIFICATIONS",
+      "value": "true",
+      "target": ["production"],
+      "required": false,
+      "description": "Enable email notifications for orders"
+    },
+    {
+      "key": "ENABLE_DEBUG_MODE",
+      "value": "false",
+      "target": ["production"],
+      "required": false,
+      "description": "Disable debug mode in production"
+    }
+  ],
+  "development": [
+    {
+      "key": "STRIPE_PUBLISHABLE_KEY_TEST",
+      "value": "pk_test_8Lfb60gbAK374AtGcoL8COpC",
+      "description": "Current test publishable key"
+    },
+    {
+      "key": "STRIPE_SECRET_KEY_TEST", 
+      "value": "sk_test_your_test_secret",
+      "sensitive": true,
+      "description": "Test secret key"
+    },
+    {
+      "key": "STRIPE_PAYMENT_LINK",
+      "value": "https://buy.stripe.com/test_8x23cuapJdM8gMN2mB73G00",
+      "description": "Current test payment link"
+    },
+    {
+      "key": "ENABLE_DEBUG_MODE",
+      "value": "true",
+      "description": "Enable debug mode for development"
+    }
+  ],
+  "deployment_commands": {
+    "add_all_production_vars": "cat vercel-env-setup.json | jq -r '.variables[] | select(.target[]? == \"production\") | \"vercel env add \" + .key + \" production\"'",
+    "add_development_vars": "cat vercel-env-setup.json | jq -r '.development[] | \"vercel env add \" + .key + \" development\"'",
+    "list_required_vars": "cat vercel-env-setup.json | jq -r '.variables[] | select(.required == true) | .key'"
+  },
+  "setup_instructions": [
+    "1. Install Vercel CLI: npm i -g vercel",
+    "2. Login to Vercel: vercel login",
+    "3. Link project: vercel link",
+    "4. Add environment variables:",
+    "   vercel env add STRIPE_PUBLISHABLE_KEY production",
+    "   vercel env add STRIPE_SECRET_KEY production",
+    "   vercel env add GA4_MEASUREMENT_ID production",
+    "   (repeat for all required variables)",
+    "5. Deploy: vercel --prod"
+  ],
+  "security_notes": [
+    "🔒 Never commit sensitive keys to version control",
+    "🔄 Rotate keys regularly (monthly for critical services)",
+    "👀 Monitor key usage in service dashboards",
+    "🚫 Use different keys for development and production",
+    "📧 Set up alerts for unusual API usage",
+    "🔐 Use least-privilege principle for API keys"
+  ]
+}

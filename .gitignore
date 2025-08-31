@@ -1,1 +1,173 @@
+# ===========================================
+# ENVIRONMENT & SECRETS
+# ===========================================
+# NEVER commit these files!
+.env
+.env.local
+.env.staging
+
+# Allow template and example files
+!.env.example
+!.env.production
+
+# API Keys and secrets
+config/secrets.json
+secrets/
+private/
+*.key
+*.pem
+*.p12
+
+# ===========================================
+# DEPENDENCIES
+# ===========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ===========================================
+# BUILD OUTPUT
+# ===========================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+public/build/
+
+# ===========================================
+# LOGS
+# ===========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ===========================================
+# RUNTIME DATA
+# ===========================================
+pids/
+*.pid
+*.seed
+*.pid.lock
+lib-cov/
+coverage/
+.nyc_output/
+.grunt/
+.sass-cache/
+
+# ===========================================
+# TEMPORARY FILES
+# ===========================================
+tmp/
+temp/
+.tmp/
+*.tmp
+*.temp
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# EDITOR FILES
+# ===========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# ===========================================
+# OS FILES
+# ===========================================
+Icon?
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# VERCEL
+# ===========================================
 .vercel
+.vercel.json
+
+# ===========================================
+# TESTING
+# ===========================================
+test-results/
+playwright-report/
+coverage/
+*.spec.png
+*.png
+debug-*.png
+test-*.png
+checkout-modal-*.png
+stripe-*.png
+working-modal.png
+
+# ===========================================
+# BACKUP FILES
+# ===========================================
+*.backup
+*.bak
+*.old
+*~
+
+# ===========================================
+# STRIPE & PAYMENT DATA
+# ===========================================
+stripe-cli-logs/
+webhook-logs/
+payment-test-data/
+
+# ===========================================
+# ANALYTICS & TRACKING
+# ===========================================
+google-analytics-*.json
+facebook-pixel-*.json
+tracking-data/
+
+# ===========================================
+# DATABASE
+# ===========================================
+*.sqlite
+*.sqlite3
+*.db
+database/
+
+# ===========================================
+# CERTIFICATES & SECURITY
+# ===========================================
+ssl/
+certificates/
+*.crt
+*.csr
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ===========================================
+# DEPLOYMENT ARTIFACTS
+# ===========================================
+deploy/
+deployment/
+*.tar.gz
+*.zip
+*.rar
