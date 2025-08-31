@@ -171,3 +171,6 @@ deployment/
 *.tar.gz
 *.zip
 *.rar
+
+# Allow product ZIP file
+!toolkit/final-pdfs/sleeprevolutiontoolkit.zip
