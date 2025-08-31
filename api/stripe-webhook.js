@@ -44,10 +44,16 @@ export default async function handler(req, res) {
       case 'checkout.session.completed':
         const session = event.data.object;
         console.log('✅ Payment successful:', session.id);
+        console.log('📧 Customer email:', session.customer_details?.email);
         
-        // Send download links immediately
-        await handleSuccessfulPayment(session);
-        break;
+        // Respond to Stripe immediately
+        res.status(200).json({ received: true, event_id: event.id });
+        
+        // Send download links asynchronously (don't await)
+        handleSuccessfulPayment(session).catch(err => {
+          console.error('❌ Email sending failed:', err);
+        });
+        return;
 
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object;
