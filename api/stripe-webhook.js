@@ -1,6 +1,8 @@
 // Vercel Serverless Function for Stripe Webhooks
 // This handles successful payments and order fulfillment
 
+const EmailService = require('../lib/email-service');
+
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -27,7 +29,7 @@ export default async function handler(req, res) {
         const session = event.data.object;
         console.log('✅ Payment successful:', session.id);
         
-        // Here you can add email notifications, analytics tracking, etc.
+        // Send download links immediately
         await handleSuccessfulPayment(session);
         break;
 
@@ -48,16 +50,43 @@ export default async function handler(req, res) {
 }
 
 async function handleSuccessfulPayment(session) {
+  const customerEmail = session.customer_details?.email;
+  const customerName = session.customer_details?.name;
+  
   console.log('Processing successful payment:', {
     sessionId: session.id,
-    customerEmail: session.customer_details?.email,
+    customerEmail: customerEmail,
+    customerName: customerName,
     amount: session.amount_total,
     currency: session.currency
   });
 
-  // Add your post-purchase logic here:
-  // - Send confirmation email
-  // - Add to analytics
-  // - Update database
-  // - Send to CRM
+  if (!customerEmail) {
+    console.error('❌ No customer email found in session');
+    return;
+  }
+
+  try {
+    // Send download links email immediately
+    const emailService = new EmailService();
+    await emailService.sendDownloadLinks(customerEmail, customerName, session.id);
+    
+    console.log(`✅ Download email sent to ${customerEmail}`);
+    
+    // Optional: Add to analytics, CRM, etc.
+    await trackPurchase(session);
+    
+  } catch (error) {
+    console.error('❌ Failed to send download email:', error);
+    // You might want to add this to a retry queue
+  }
+}
+
+async function trackPurchase(session) {
+  // Add analytics tracking, CRM integration, etc.
+  console.log('📊 Tracking purchase analytics:', {
+    revenue: session.amount_total / 100,
+    customer: session.customer_details?.email,
+    timestamp: new Date().toISOString()
+  });
 }
