@@ -126,6 +126,8 @@ coverage/
 *.png
 !toolkit/images/*.png
 !toolkit/images/*.jpg
+!toolkit/final-pdfs/*.pdf
+!toolkit/final-pdfs/*.zip
 debug-*.js
 test-*.js
 test-*.html

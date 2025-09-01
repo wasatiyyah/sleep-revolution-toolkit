@@ -98,16 +98,18 @@ export default async function handler(req, res) {
 
     // Get file info
     const fileInfo = VALID_FILES[file];
-    // In Vercel, the root directory is /var/task/
-    const filePath = path.join(process.cwd(), fileInfo.path);
+    // Build the public URL for the file instead of trying to read from filesystem
+    const fileUrl = `https://sleeprevolutiontoolkit.com/${fileInfo.path}`;
+    
+    console.log('📄 Redirecting to file:', {
+      file: fileInfo.filename,
+      url: fileUrl,
+      session: session_id.substring(0, 15) + '...'
+    });
 
-    // Check if file exists
-    if (!fs.existsSync(filePath)) {
-      console.error('❌ File not found on server:', filePath);
-      return res.status(404).json({ 
-        error: 'File temporarily unavailable. Please contact support.' 
-      });
-    }
+    // Instead of serving the file directly, redirect to it
+    // This works because the files are actually public in the deployment
+    return res.redirect(fileUrl);
 
     // Get file stats
     const stats = fs.statSync(filePath);
