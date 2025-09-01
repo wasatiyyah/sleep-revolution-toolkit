@@ -1,39 +1,38 @@
 // Secure Download API - Only for verified customers
 // This endpoint validates purchase and serves protected files
 
-const path = require('path');
-const fs = require('fs');
+const { head, list } = require('@vercel/blob');
 
 // Valid file mapping (only these files can be downloaded)
 const VALID_FILES = {
   'main-guide': {
     filename: 'Sleep_Revolution_Toolkit_Main_Guide.pdf',
-    path: 'private/secure-files/Sleep_Revolution_Toolkit_Main_Guide.pdf',
+    blobPath: 'secure-files/Sleep_Revolution_Toolkit_Main_Guide.pdf',
     contentType: 'application/pdf'
   },
   'emergency-cards': {
     filename: 'Quick_Reference_Emergency_Cards.pdf',
-    path: 'private/secure-files/Quick_Reference_Emergency_Cards.pdf',
+    blobPath: 'secure-files/Quick_Reference_Emergency_Cards.pdf',
     contentType: 'application/pdf'
   },
   'sleep-tracker': {
     filename: '30_Day_Sleep_Revolution_Tracker.pdf',
-    path: 'private/secure-files/30_Day_Sleep_Revolution_Tracker.pdf',
+    blobPath: 'secure-files/30_Day_Sleep_Revolution_Tracker.pdf',
     contentType: 'application/pdf'
   },
   'bonus-materials': {
     filename: 'Sleep_Revolution_Bonus_Materials.pdf',
-    path: 'private/secure-files/Sleep_Revolution_Bonus_Materials.pdf',
+    blobPath: 'secure-files/Sleep_Revolution_Bonus_Materials.pdf',
     contentType: 'application/pdf'
   },
   'audio-guide': {
     filename: 'Sleep_Soundscapes_Instructions.pdf',
-    path: 'private/secure-files/Sleep_Soundscapes_Instructions.pdf',
+    blobPath: 'secure-files/Sleep_Soundscapes_Instructions.pdf',
     contentType: 'application/pdf'
   },
   'complete-toolkit': {
     filename: 'sleeprevolutiontoolkit.zip',
-    path: 'private/secure-files/sleeprevolutiontoolkit.zip',
+    blobPath: 'secure-files/sleeprevolutiontoolkit.zip',
     contentType: 'application/zip'
   }
 };
