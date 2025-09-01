@@ -31,7 +31,7 @@ window.CONFIG = {
         publishableKey: isProduction 
             ? 'pk_live_zKkKhZMf8HuNCE8GDGIaNPwQ'  // Replace with your live key
             : 'pk_test_8Lfb60gbAK374AtGcoL8COpC',
-        paymentLink: 'https://buy.stripe.com/test_8x23cuapJdM8gMN2mB73G00',
+        paymentLink: 'https://buy.stripe.com/aFabJ055p37u2VXaT773G07',
         priceId: 'price_1S1pzWBW0J6epKS6wNsiBukQ',
         productId: 'prod_SxlWBmU5Qxwuh6'
     },

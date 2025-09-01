@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - Sleep Revolution Toolkit</title>
     
+    <!-- SEO: Prevent indexing of private thank you page -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="slurp" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="duckduckbot" content="noindex, nofollow, noarchive, nosnippet">
+    
+    <!-- Additional privacy protection -->
+    <meta name="google" content="notranslate">
+    <meta name="referrer" content="no-referrer">
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -447,7 +458,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn secure-download" data-file="main-guide" data-filename="Sleep_Revolution_Toolkit_Main_Guide.pdf">
+                <a href="https://lfg1bmxz5ycoygjm.public.blob.vercel-storage.com/Sleep_Revolution_Toolkit_Main_Guide.pdf" class="download-btn" download="Sleep_Revolution_Toolkit_Main_Guide.pdf">
                     <span>⬇️</span>
                     Download Main Guide
                 </a>
@@ -474,7 +485,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn secure-download" data-file="emergency-cards" data-filename="Quick_Reference_Emergency_Cards.pdf">
+                <a href="https://lfg1bmxz5ycoygjm.public.blob.vercel-storage.com/Quick_Reference_Emergency_Cards.pdf" class="download-btn" download="Quick_Reference_Emergency_Cards.pdf">
                     <span>⬇️</span>
                     Download Emergency Cards
                 </a>
@@ -501,7 +512,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn secure-download" data-file="sleep-tracker" data-filename="30_Day_Sleep_Revolution_Tracker.pdf">
+                <a href="https://lfg1bmxz5ycoygjm.public.blob.vercel-storage.com/30_Day_Sleep_Revolution_Tracker.pdf" class="download-btn" download="30_Day_Sleep_Revolution_Tracker.pdf">
                     <span>⬇️</span>
                     Download Sleep Tracker
                 </a>
@@ -528,7 +539,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn secure-download" data-file="bonus-materials" data-filename="Sleep_Revolution_Bonus_Materials.pdf">
+                <a href="https://lfg1bmxz5ycoygjm.public.blob.vercel-storage.com/Sleep_Revolution_Bonus_Materials.pdf" class="download-btn" download="Sleep_Revolution_Bonus_Materials.pdf">
                     <span>⬇️</span>
                     Download Bonus Materials
                 </a>
@@ -555,7 +566,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="#" class="download-btn secure-download" data-file="audio-guide" data-filename="Sleep_Soundscapes_Instructions.pdf">
+                <a href="https://lfg1bmxz5ycoygjm.public.blob.vercel-storage.com/Sleep_Soundscapes_Instructions%20%281%29.pdf" class="download-btn" download="Sleep_Soundscapes_Instructions.pdf">
                     <span>⬇️</span>
                     Download Audio Guide
                 </a>
@@ -571,7 +582,7 @@
         <p style="margin-bottom: 30px; color: #64748b; font-size: 1.1rem;">
             Download the complete Sleep Revolution Toolkit as a single ZIP file
         </p>
-        <a href="#" class="download-all-btn secure-download" data-file="complete-toolkit" data-filename="sleeprevolutiontoolkit.zip">
+        <a href="https://lfg1bmxz5ycoygjm.public.blob.vercel-storage.com/sleeprevolutiontoolkit%20%281%29.zip" class="download-all-btn" download="sleeprevolutiontoolkit.zip">
             <span>📦</span>
             Download Complete Toolkit (ZIP)
         </a>
@@ -704,73 +715,38 @@
                 observer.observe(card);
             });
             
-            // Handle secure downloads
-            document.querySelectorAll('.secure-download').forEach(btn => {
+            // Handle download tracking
+            document.querySelectorAll('.download-btn, .download-all-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const fileKey = this.getAttribute('data-file');
-                    const fileName = this.getAttribute('data-filename');
+                    const fileName = this.getAttribute('download') || this.href.split('/').pop();
+                    const fileUrl = this.href;
                     const urlParams = new URLSearchParams(window.location.search);
                     const sessionId = urlParams.get('session_id');
                     
-                    if (!sessionId) {
-                        alert('No purchase session found. Please access this page from your purchase confirmation email.');
-                        return;
-                    }
-                    
-                    // Show loading state
-                    const originalText = this.innerHTML;
-                    this.innerHTML = '<span>⏳</span> Preparing Download...';
-                    this.style.background = 'linear-gradient(135deg, #f59e0b, #f97316)';
-                    
-                    // Build secure download URL with protection bypass if present
-                    const bypassParam = urlParams.get('x-vercel-protection-bypass');
-                    let secureUrl = `/api/secure-download?file=${fileKey}&session_id=${sessionId}`;
-                    if (bypassParam) {
-                        secureUrl += `&x-vercel-protection-bypass=${bypassParam}`;
-                    }
-                    
-                    console.log('🔒 Initiating secure download:', {
-                        file: fileKey,
+                    console.log('📥 Starting download:', {
                         fileName: fileName,
-                        session: sessionId.substring(0, 15) + '...'
+                        fileUrl: fileUrl.substring(0, 50) + '...'
                     });
                     
                     // Track download with GTM dataLayer
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
-                        'event': 'secure_file_download',
+                        'event': 'file_download',
                         'file_name': fileName,
-                        'file_key': fileKey,
-                        'download_type': 'secure_toolkit_file',
-                        'session_id': sessionId.substring(0, 20) + '...'
+                        'download_type': 'toolkit_file',
+                        'session_id': sessionId ? sessionId.substring(0, 20) + '...' : 'no_session'
                     });
                     
-                    // Create a temporary anchor element and trigger download
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = secureUrl;
-                    downloadLink.download = fileName;
-                    downloadLink.style.display = 'none';
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
+                    // Visual feedback
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span>✅</span> Download Started!';
+                    this.style.background = 'linear-gradient(135deg, #059669, #10b981)';
                     
-                    // Clean up
+                    // Reset button after delay
                     setTimeout(() => {
-                        document.body.removeChild(downloadLink);
-                    }, 100);
-                    
-                    // Show success state
-                    setTimeout(() => {
-                        this.innerHTML = '<span>✅</span> Download Started!';
-                        this.style.background = 'linear-gradient(135deg, #059669, #10b981)';
-                        
-                        // Reset button after delay
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            this.style.background = '';
-                        }, 3000);
-                    }, 500);
+                        this.innerHTML = originalText;
+                        this.style.background = '';
+                    }, 2000);
                 });
             });
         });
