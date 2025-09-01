@@ -8,7 +8,6 @@
 
 # Allow template and example files
 !.env.example
-!.env.production
 
 # API Keys and secrets
 config/secrets.json
@@ -120,14 +119,22 @@ Thumbs.db
 # ===========================================
 test-results/
 playwright-report/
+playwright/.cache/
 coverage/
+*.spec.js
 *.spec.png
 *.png
+!toolkit/images/*.png
+!toolkit/images/*.jpg
+debug-*.js
+test-*.js
+test-*.html
 debug-*.png
 test-*.png
 checkout-modal-*.png
 stripe-*.png
 working-modal.png
+after-payment-submit.png
 
 # ===========================================
 # BACKUP FILES
@@ -213,3 +220,26 @@ deployment/
 
 # Allow product ZIP file
 !toolkit/final-pdfs/sleeprevolutiontoolkit.zip
+
+# ===========================================
+# DOCUMENTATION & SETUP FILES
+# ===========================================
+*.md
+!README.md
+setup-*.js
+scripts/
+examples/
+lib/gtm-api-service.js
+lib/email-service-simple.js
+config/environment.js
+GTM*.md
+GOOGLE*.md
+CONSOLE*.md
+
+# ===========================================
+# PERSONAL & DEVELOPMENT FILES
+# ===========================================
+test-webhook-env.js
+debug-webhook-manual.js
+test-complete-flow.spec.js
+test-local.html
