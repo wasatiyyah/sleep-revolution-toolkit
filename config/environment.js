@@ -3,6 +3,9 @@
  * Handles all environment variables and provides type-safe access
  */
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 class EnvironmentConfig {
     constructor() {
         this.isProduction = process.env.NODE_ENV === 'production' || process.env.PRODUCTION_MODE === 'true';
@@ -40,7 +43,15 @@ class EnvironmentConfig {
                 apiSecret: process.env.GA4_API_SECRET
             },
             tagManager: {
-                containerId: process.env.GTM_CONTAINER_ID
+                containerId: process.env.GTM_CONTAINER_ID,
+                api: {
+                    enabled: process.env.GTM_API_ENABLED === 'true',
+                    accountId: process.env.GTM_ACCOUNT_ID,
+                    containerId: process.env.GTM_CONTAINER_ID,
+                    containerPublicId: process.env.GTM_CONTAINER_PUBLIC_ID || 'GTM-TPZ2XNWV',
+                    workspaceId: process.env.GTM_WORKSPACE_ID,
+                    apiKey: process.env.GTM_API_KEY
+                }
             },
             searchConsole: {
                 siteUrl: process.env.SEARCH_CONSOLE_SITE_URL,
@@ -50,6 +61,13 @@ class EnvironmentConfig {
                 customerId: process.env.GOOGLE_ADS_CUSTOMER_ID,
                 conversionId: process.env.GOOGLE_ADS_CONVERSION_ID,
                 conversionLabel: process.env.GOOGLE_ADS_CONVERSION_LABEL
+            },
+            cloud: {
+                projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+                serviceAccountKey: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_KEY,
+                serviceAccountKeyPath: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_KEY_PATH,
+                region: process.env.GOOGLE_CLOUD_REGION || 'us-central1',
+                zone: process.env.GOOGLE_CLOUD_ZONE || 'us-central1-a'
             }
         };
     }
@@ -183,7 +201,9 @@ class EnvironmentConfig {
             'STRIPE_PUBLISHABLE_KEY_LIVE',
             'STRIPE_SECRET_KEY_LIVE',
             'GA4_MEASUREMENT_ID',
-            'PRODUCTION_URL'
+            'PRODUCTION_URL',
+            'GOOGLE_CLOUD_PROJECT_ID',
+            'GOOGLE_CLOUD_SERVICE_ACCOUNT_KEY'
         ];
 
         const missing = requiredProdVars.filter(varName => !process.env[varName]);

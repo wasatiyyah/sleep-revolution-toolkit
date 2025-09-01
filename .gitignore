@@ -18,6 +18,14 @@ private/
 *.pem
 *.p12
 
+# Google Cloud Service Account Keys
+gen-lang-client-*.json
+*-48fc2b352f1f.json
+google-cloud-*.json
+gcp-*.json
+service-account-*.json
+*.service-account.json
+
 # ===========================================
 # DEPENDENCIES
 # ===========================================
@@ -142,6 +150,37 @@ payment-test-data/
 google-analytics-*.json
 facebook-pixel-*.json
 tracking-data/
+
+# ===========================================
+# GOOGLE CLOUD & CREDENTIALS
+# ===========================================
+# Service account keys
+gen-lang-client-*.json
+*-48fc2b352f1f.json
+google-cloud-*.json
+gcp-*.json
+service-account-*.json
+*.service-account.json
+
+# Google Cloud CLI configuration
+.gcloud/
+gcloud-config/
+
+# Application default credentials
+application_default_credentials.json
+
+# Additional credential patterns
+credentials.json
+*credentials*.json
+*secret*.json
+*key*.json
+
+# Environment-specific credential files
+.env.production
+.env.staging
+.env.local
+.env.development
+.env.test
 
 # ===========================================
 # DATABASE

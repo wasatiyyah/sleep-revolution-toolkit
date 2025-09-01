@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - Sleep Revolution Toolkit</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','228714811');</script>
+    <!-- End Google Tag Manager -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -365,6 +374,11 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=228714811"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <!-- Hero Section -->
     <section class="thank-you-hero">
         <div class="thank-you-container">
@@ -380,7 +394,7 @@
                 <div class="order-details">
                     <div class="detail-item">
                         <div class="detail-label">Order ID</div>
-                        <div class="detail-value">#SR2024-001</div>
+                        <div class="detail-value" id="order-id">#Loading...</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Total Value</div>
@@ -626,8 +640,47 @@
             
             if (sessionId) {
                 console.log('Payment successful! Session ID:', sessionId);
-                // You can add analytics tracking here
-                // gtag('event', 'purchase', { value: 27, currency: 'USD' });
+                
+                // Update order ID with session ID
+                const orderIdElement = document.getElementById('order-id');
+                if (orderIdElement) {
+                    // Format session ID for display (take last 8 characters)
+                    const shortId = sessionId.substring(sessionId.lastIndexOf('_') + 1, sessionId.lastIndexOf('_') + 9);
+                    orderIdElement.textContent = `#${shortId.toUpperCase()}`;
+                }
+                
+                // Track conversion with GTM dataLayer
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'purchase',
+                    'ecommerce': {
+                        'transaction_id': sessionId,
+                        'value': 27.0,
+                        'currency': 'USD',
+                        'items': [{
+                            'item_id': 'sleep-toolkit',
+                            'item_name': 'Sleep Revolution Toolkit',
+                            'category': 'Digital Products',
+                            'quantity': 1,
+                            'price': 27.0
+                        }]
+                    }
+                });
+                
+                // Also push a conversion event for Google Ads
+                window.dataLayer.push({
+                    'event': 'conversion',
+                    'send_to': 'AW-17520411408',
+                    'value': 27.0,
+                    'currency': 'USD',
+                    'transaction_id': sessionId
+                });
+            } else {
+                // Fallback if no session ID
+                const orderIdElement = document.getElementById('order-id');
+                if (orderIdElement) {
+                    orderIdElement.textContent = '#DEMO-ORDER';
+                }
             }
             
             // Animate cards on scroll
@@ -658,11 +711,14 @@
                     const fileName = this.getAttribute('href').split('/').pop();
                     console.log('Download started:', fileName);
                     
-                    // Add analytics tracking here if needed
-                    // gtag('event', 'file_download', { 
-                    //     file_name: fileName,
-                    //     link_url: this.href
-                    // });
+                    // Track download with GTM dataLayer
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'file_download',
+                        'file_name': fileName,
+                        'link_url': this.href,
+                        'download_type': 'toolkit_file'
+                    });
                     
                     // Show visual feedback
                     const originalText = this.innerHTML;
