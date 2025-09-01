@@ -2,12 +2,22 @@
   "functions": {
     "api/stripe-webhook.js": {
       "maxDuration": 10
+    },
+    "api/secure-download.js": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
       "source": "/thank-you",
       "destination": "/thank-you.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/private/(.*)",
+      "destination": "/404",
+      "statusCode": 404
     }
   ],
   "headers": [
@@ -29,11 +39,11 @@
       ]
     },
     {
-      "source": "/toolkit/final-pdfs/(.*)",
+      "source": "/private/(.*)",
       "headers": [
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive, nosnippet, noimageindex"
         }
       ]
     }
