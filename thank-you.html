@@ -724,8 +724,12 @@
                     this.innerHTML = '<span>⏳</span> Preparing Download...';
                     this.style.background = 'linear-gradient(135deg, #f59e0b, #f97316)';
                     
-                    // Build secure download URL
-                    const secureUrl = `/api/secure-download?file=${fileKey}&session_id=${sessionId}`;
+                    // Build secure download URL with protection bypass if present
+                    const bypassParam = urlParams.get('x-vercel-protection-bypass');
+                    let secureUrl = `/api/secure-download?file=${fileKey}&session_id=${sessionId}`;
+                    if (bypassParam) {
+                        secureUrl += `&x-vercel-protection-bypass=${bypassParam}`;
+                    }
                     
                     console.log('🔒 Initiating secure download:', {
                         file: fileKey,
