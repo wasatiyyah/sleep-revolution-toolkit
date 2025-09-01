@@ -12,7 +12,8 @@
 # API Keys and secrets
 config/secrets.json
 secrets/
-private/
+private/*
+!private/secure-files/
 *.key
 *.pem
 *.p12
@@ -126,8 +127,6 @@ coverage/
 *.png
 !toolkit/images/*.png
 !toolkit/images/*.jpg
-!toolkit/final-pdfs/*.pdf
-!toolkit/final-pdfs/*.zip
 debug-*.js
 test-*.js
 test-*.html
@@ -217,11 +216,15 @@ certificates/
 deploy/
 deployment/
 *.tar.gz
-*.zip
 *.rar
 
-# Allow product ZIP file
-!toolkit/final-pdfs/sleeprevolutiontoolkit.zip
+# Block all product files - these should NOT be in public repository
+toolkit/final-pdfs/*.pdf
+toolkit/final-pdfs/*.zip
+
+# Allow private secure files for deployment
+!private/secure-files/*.pdf
+!private/secure-files/*.zip
 
 # ===========================================
 # DOCUMENTATION & SETUP FILES

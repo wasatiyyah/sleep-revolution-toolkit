@@ -8,32 +8,32 @@ const fs = require('fs');
 const VALID_FILES = {
   'main-guide': {
     filename: 'Sleep_Revolution_Toolkit_Main_Guide.pdf',
-    path: 'toolkit/final-pdfs/Sleep_Revolution_Toolkit_Main_Guide.pdf',
+    path: 'private/secure-files/Sleep_Revolution_Toolkit_Main_Guide.pdf',
     contentType: 'application/pdf'
   },
   'emergency-cards': {
     filename: 'Quick_Reference_Emergency_Cards.pdf',
-    path: 'toolkit/final-pdfs/Quick_Reference_Emergency_Cards.pdf',
+    path: 'private/secure-files/Quick_Reference_Emergency_Cards.pdf',
     contentType: 'application/pdf'
   },
   'sleep-tracker': {
     filename: '30_Day_Sleep_Revolution_Tracker.pdf',
-    path: 'toolkit/final-pdfs/30_Day_Sleep_Revolution_Tracker.pdf',
+    path: 'private/secure-files/30_Day_Sleep_Revolution_Tracker.pdf',
     contentType: 'application/pdf'
   },
   'bonus-materials': {
     filename: 'Sleep_Revolution_Bonus_Materials.pdf',
-    path: 'toolkit/final-pdfs/Sleep_Revolution_Bonus_Materials.pdf',
+    path: 'private/secure-files/Sleep_Revolution_Bonus_Materials.pdf',
     contentType: 'application/pdf'
   },
   'audio-guide': {
     filename: 'Sleep_Soundscapes_Instructions.pdf',
-    path: 'toolkit/final-pdfs/Sleep_Soundscapes_Instructions.pdf',
+    path: 'private/secure-files/Sleep_Soundscapes_Instructions.pdf',
     contentType: 'application/pdf'
   },
   'complete-toolkit': {
     filename: 'sleeprevolutiontoolkit.zip',
-    path: 'toolkit/final-pdfs/sleeprevolutiontoolkit.zip',
+    path: 'private/secure-files/sleeprevolutiontoolkit.zip',
     contentType: 'application/zip'
   }
 };
@@ -99,17 +99,22 @@ export default async function handler(req, res) {
     // Get file info
     const fileInfo = VALID_FILES[file];
     
-    // Build the file URL with protection bypass parameter
-    const fileUrl = `https://sleeprevolutiontoolkit.com/${fileInfo.path}?x-vercel-protection-bypass=bc001427eda196c70638cfa086ba31e5`;
+    // Build file path (files are now included in deployment)
+    const filePath = path.join(process.cwd(), fileInfo.path);
     
-    console.log('📄 Redirecting to file:', {
+    console.log('📄 Attempting to serve file:', {
       file: fileInfo.filename,
-      url: fileUrl,
+      path: filePath,
       session: session_id.substring(0, 15) + '...'
     });
 
-    // Redirect to the file with protection bypass
-    return res.redirect(fileUrl);
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+      console.error('❌ File not found on server:', filePath);
+      return res.status(404).json({ 
+        error: 'File not available. Please contact support.' 
+      });
+    }
 
     // Get file stats
     const stats = fs.statSync(filePath);
