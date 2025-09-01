@@ -447,7 +447,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="toolkit/final-pdfs/Sleep_Revolution_Toolkit_Main_Guide.pdf" class="download-btn" download="Sleep_Revolution_Toolkit_Main_Guide.pdf">
+                <a href="#" class="download-btn secure-download" data-file="main-guide" data-filename="Sleep_Revolution_Toolkit_Main_Guide.pdf">
                     <span>⬇️</span>
                     Download Main Guide
                 </a>
@@ -474,7 +474,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="toolkit/final-pdfs/Quick_Reference_Emergency_Cards.pdf" class="download-btn" download="Quick_Reference_Emergency_Cards.pdf">
+                <a href="#" class="download-btn secure-download" data-file="emergency-cards" data-filename="Quick_Reference_Emergency_Cards.pdf">
                     <span>⬇️</span>
                     Download Emergency Cards
                 </a>
@@ -501,7 +501,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="toolkit/final-pdfs/30_Day_Sleep_Revolution_Tracker.pdf" class="download-btn" download="30_Day_Sleep_Revolution_Tracker.pdf">
+                <a href="#" class="download-btn secure-download" data-file="sleep-tracker" data-filename="30_Day_Sleep_Revolution_Tracker.pdf">
                     <span>⬇️</span>
                     Download Sleep Tracker
                 </a>
@@ -528,7 +528,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="toolkit/final-pdfs/Sleep_Revolution_Bonus_Materials.pdf" class="download-btn" download="Sleep_Revolution_Bonus_Materials.pdf">
+                <a href="#" class="download-btn secure-download" data-file="bonus-materials" data-filename="Sleep_Revolution_Bonus_Materials.pdf">
                     <span>⬇️</span>
                     Download Bonus Materials
                 </a>
@@ -555,7 +555,7 @@
                         <div class="stat-label">Format</div>
                     </div>
                 </div>
-                <a href="toolkit/final-pdfs/Sleep_Soundscapes_Instructions.pdf" class="download-btn" download="Sleep_Soundscapes_Instructions.pdf">
+                <a href="#" class="download-btn secure-download" data-file="audio-guide" data-filename="Sleep_Soundscapes_Instructions.pdf">
                     <span>⬇️</span>
                     Download Audio Guide
                 </a>
@@ -571,7 +571,7 @@
         <p style="margin-bottom: 30px; color: #64748b; font-size: 1.1rem;">
             Download the complete Sleep Revolution Toolkit as a single ZIP file
         </p>
-        <a href="toolkit/final-pdfs/sleeprevolutiontoolkit.zip" class="download-all-btn" download="SleepRevolutionToolkit.zip">
+        <a href="#" class="download-all-btn secure-download" data-file="complete-toolkit" data-filename="sleeprevolutiontoolkit.zip">
             <span>📦</span>
             Download Complete Toolkit (ZIP)
         </a>
@@ -704,31 +704,66 @@
                 observer.observe(card);
             });
             
-            // Add click tracking for download buttons
-            document.querySelectorAll('.download-btn, .download-all-btn').forEach(btn => {
+            // Handle secure downloads
+            document.querySelectorAll('.secure-download').forEach(btn => {
                 btn.addEventListener('click', function(e) {
-                    // Track downloads for analytics
-                    const fileName = this.getAttribute('href').split('/').pop();
-                    console.log('Download started:', fileName);
+                    e.preventDefault();
+                    
+                    const fileKey = this.getAttribute('data-file');
+                    const fileName = this.getAttribute('data-filename');
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const sessionId = urlParams.get('session_id');
+                    
+                    if (!sessionId) {
+                        alert('No purchase session found. Please access this page from your purchase confirmation email.');
+                        return;
+                    }
+                    
+                    // Show loading state
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span>⏳</span> Preparing Download...';
+                    this.style.background = 'linear-gradient(135deg, #f59e0b, #f97316)';
+                    
+                    // Build secure download URL
+                    const secureUrl = `/api/secure-download?file=${fileKey}&session_id=${sessionId}`;
+                    
+                    console.log('🔒 Initiating secure download:', {
+                        file: fileKey,
+                        fileName: fileName,
+                        session: sessionId.substring(0, 15) + '...'
+                    });
                     
                     // Track download with GTM dataLayer
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
-                        'event': 'file_download',
+                        'event': 'secure_file_download',
                         'file_name': fileName,
-                        'link_url': this.href,
-                        'download_type': 'toolkit_file'
+                        'file_key': fileKey,
+                        'download_type': 'secure_toolkit_file',
+                        'session_id': sessionId.substring(0, 20) + '...'
                     });
                     
-                    // Show visual feedback
-                    const originalText = this.innerHTML;
-                    this.innerHTML = '<span>✅</span> Download Started!';
-                    this.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                    // Create hidden iframe for download (prevents page navigation)
+                    const downloadFrame = document.createElement('iframe');
+                    downloadFrame.style.display = 'none';
+                    downloadFrame.src = secureUrl;
+                    document.body.appendChild(downloadFrame);
                     
+                    // Show success state
                     setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.style.background = '';
-                    }, 2000);
+                        this.innerHTML = '<span>✅</span> Download Started!';
+                        this.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                        
+                        // Reset button after delay
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = '';
+                            // Remove the download frame
+                            if (downloadFrame.parentNode) {
+                                downloadFrame.parentNode.removeChild(downloadFrame);
+                            }
+                        }, 3000);
+                    }, 500);
                 });
             });
         });
