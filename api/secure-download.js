@@ -98,8 +98,9 @@ export default async function handler(req, res) {
 
     // Get file info
     const fileInfo = VALID_FILES[file];
-    // Build the public URL for the file instead of trying to read from filesystem
-    const fileUrl = `https://sleeprevolutiontoolkit.com/${fileInfo.path}`;
+    
+    // Build the file URL with protection bypass parameter
+    const fileUrl = `https://sleeprevolutiontoolkit.com/${fileInfo.path}?x-vercel-protection-bypass=bc001427eda196c70638cfa086ba31e5`;
     
     console.log('📄 Redirecting to file:', {
       file: fileInfo.filename,
@@ -107,8 +108,7 @@ export default async function handler(req, res) {
       session: session_id.substring(0, 15) + '...'
     });
 
-    // Instead of serving the file directly, redirect to it
-    // This works because the files are actually public in the deployment
+    // Redirect to the file with protection bypass
     return res.redirect(fileUrl);
 
     // Get file stats
