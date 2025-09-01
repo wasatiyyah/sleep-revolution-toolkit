@@ -747,11 +747,18 @@
                         'session_id': sessionId.substring(0, 20) + '...'
                     });
                     
-                    // Create hidden iframe for download (prevents page navigation)
-                    const downloadFrame = document.createElement('iframe');
-                    downloadFrame.style.display = 'none';
-                    downloadFrame.src = secureUrl;
-                    document.body.appendChild(downloadFrame);
+                    // Create a temporary anchor element and trigger download
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = secureUrl;
+                    downloadLink.download = fileName;
+                    downloadLink.style.display = 'none';
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    
+                    // Clean up
+                    setTimeout(() => {
+                        document.body.removeChild(downloadLink);
+                    }, 100);
                     
                     // Show success state
                     setTimeout(() => {
@@ -762,10 +769,6 @@
                         setTimeout(() => {
                             this.innerHTML = originalText;
                             this.style.background = '';
-                            // Remove the download frame
-                            if (downloadFrame.parentNode) {
-                                downloadFrame.parentNode.removeChild(downloadFrame);
-                            }
                         }, 3000);
                     }, 500);
                 });

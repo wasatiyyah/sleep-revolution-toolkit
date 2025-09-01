@@ -8,32 +8,32 @@ const fs = require('fs');
 const VALID_FILES = {
   'main-guide': {
     filename: 'Sleep_Revolution_Toolkit_Main_Guide.pdf',
-    path: '../toolkit/final-pdfs/Sleep_Revolution_Toolkit_Main_Guide.pdf',
+    path: 'toolkit/final-pdfs/Sleep_Revolution_Toolkit_Main_Guide.pdf',
     contentType: 'application/pdf'
   },
   'emergency-cards': {
     filename: 'Quick_Reference_Emergency_Cards.pdf',
-    path: '../toolkit/final-pdfs/Quick_Reference_Emergency_Cards.pdf',
+    path: 'toolkit/final-pdfs/Quick_Reference_Emergency_Cards.pdf',
     contentType: 'application/pdf'
   },
   'sleep-tracker': {
     filename: '30_Day_Sleep_Revolution_Tracker.pdf',
-    path: '../toolkit/final-pdfs/30_Day_Sleep_Revolution_Tracker.pdf',
+    path: 'toolkit/final-pdfs/30_Day_Sleep_Revolution_Tracker.pdf',
     contentType: 'application/pdf'
   },
   'bonus-materials': {
     filename: 'Sleep_Revolution_Bonus_Materials.pdf',
-    path: '../toolkit/final-pdfs/Sleep_Revolution_Bonus_Materials.pdf',
+    path: 'toolkit/final-pdfs/Sleep_Revolution_Bonus_Materials.pdf',
     contentType: 'application/pdf'
   },
   'audio-guide': {
     filename: 'Sleep_Soundscapes_Instructions.pdf',
-    path: '../toolkit/final-pdfs/Sleep_Soundscapes_Instructions.pdf',
+    path: 'toolkit/final-pdfs/Sleep_Soundscapes_Instructions.pdf',
     contentType: 'application/pdf'
   },
   'complete-toolkit': {
     filename: 'sleeprevolutiontoolkit.zip',
-    path: '../toolkit/final-pdfs/sleeprevolutiontoolkit.zip',
+    path: 'toolkit/final-pdfs/sleeprevolutiontoolkit.zip',
     contentType: 'application/zip'
   }
 };
@@ -98,7 +98,8 @@ export default async function handler(req, res) {
 
     // Get file info
     const fileInfo = VALID_FILES[file];
-    const filePath = path.join(__dirname, fileInfo.path);
+    // In Vercel, the root directory is /var/task/
+    const filePath = path.join(process.cwd(), fileInfo.path);
 
     // Check if file exists
     if (!fs.existsSync(filePath)) {
