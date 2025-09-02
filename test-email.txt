@@ -1,0 +1,15 @@
+From: test-customer@example.com
+To: orders@sleeprevolutiontoolkit.com
+Subject: Test Order Question - Clean Format Test
+
+Hello Sleep Revolution Team,
+
+I have a question about my recent order for the Sleep Revolution Toolkit. 
+
+When will my order be shipped? I'm very excited to start improving my sleep!
+
+Also, do you have any additional tips while I wait for delivery?
+
+Thank you for your time,
+John Smith
+john@example.com

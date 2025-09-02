@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPZ2XNWV');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Sleep Type Results - Personalized Sleep Report</title>
+    <meta name="description" content="Your personalized sleep assessment results with specific recommendations for your unique sleep type.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #f59e0b;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --success: #10b981;
+    --danger: #ef4444;
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--light);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+/* Results Hero */
+.results-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.results-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.personal-greeting {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+/* Sleep Type Card */
+.sleep-type-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.sleep-type-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sleep-type-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.sleep-type-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.sleep-type-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.sleep-type-description {
+    font-size: 18px;
+    color: var(--dark);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Analysis Section */
+.analysis-section {
+    padding: 60px 0;
+    background: #f8fafc;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.analysis-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+.analysis-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.analysis-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.analysis-card li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.analysis-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.cta-section .subtitle {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.solution-preview {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 40px 0;
+    backdrop-filter: blur(10px);
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.preview-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.preview-item .icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.preview-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.preview-item p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+}
+
+.cta-button:hover {
+    background: #059669;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+}
+
+.price-highlight {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--secondary);
+    margin: 20px 0;
+}
+
+.urgency-text {
+    font-size: 14px;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+/* Trust Signals */
+.trust-section {
+    padding: 60px 0;
+    background: white;
+    text-align: center;
+}
+
+.trust-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@media (max-width: 768px) {
+    .results-hero h1 {
+        font-size: 32px;
+    }
+    
+    .sleep-type-card {
+        padding: 30px 20px;
+    }
+    
+    .sleep-type-title {
+        font-size: 28px;
+    }
+    
+    .cta-section h2 {
+        font-size: 28px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPZ2XNWV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Sleep Revolution</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results Hero -->
+    <section class="results-hero">
+        <div class="container">
+            <h1>Your Sleep Type Results</h1>
+            <p class="personal-greeting">
+                <span id="personalGreeting">Here's your personalized sleep analysis...</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Sleep Type Results -->
+    <section class="sleep-type-section">
+        <div class="container">
+            <div class="sleep-type-card fade-in" id="sleepTypeCard">
+                <span class="sleep-type-icon" id="sleepTypeIcon">🧠</span>
+                <h2 class="sleep-type-title" id="sleepTypeTitle">The Overthinker</h2>
+                <p class="sleep-type-description" id="sleepTypeDescription">
+                    Your mind races with thoughts, worries, and mental chatter when you try to sleep. You're likely highly intelligent, analytical, and tend to process the day's events when your head hits the pillow.
+                </p>
+            </div>
+
+            <div class="analysis-section">
+                <div class="container">
+                    <h2 style="text-align: center; font-size: 32px; margin-bottom: 20px;">Your Personalized Analysis</h2>
+                    <div class="analysis-grid">
+                        <div class="analysis-card fade-in">
+                            <h3><span>🎯</span> Root Causes</h3>
+                            <ul id="rootCauses">
+                                <li>Overactive prefrontal cortex at bedtime</li>
+                                <li>High cortisol levels from daily stress</li>
+                                <li>Lack of mental transition ritual</li>
+                                <li>Racing thoughts and problem-solving mode</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card fade-in">
+                            <h3><span>⚡</span> Quick Wins</h3>
+                            <ul id="quickWins">
+                                <li>Brain dump technique (5 minutes before bed)</li>
+                                <li>4-7-8 breathing to activate parasympathetic nervous system</li>
+                                <li>Cool room temperature (65-68°F)</li>
+                                <li>No screens 30 minutes before bed</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card fade-in">
+                            <h3><span>🧪</span> Scientific Approach</h3>
+                            <ul id="scientificApproach">
+                                <li>Cognitive restructuring for bedtime thoughts</li>
+                                <li>Progressive muscle relaxation sequence</li>
+                                <li>Melatonin timing optimization</li>
+                                <li>Sleep architecture restoration protocol</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card fade-in">
+                            <h3><span>⏰</span> Timeline</h3>
+                            <ul id="timeline">
+                                <li>Week 1: Notice 20-30% improvement</li>
+                                <li>Week 2: Fall asleep 50% faster</li>
+                                <li>Week 3-4: Consistent 7-8 hour nights</li>
+                                <li>Month 2+: Automatic sleep patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Sleep in 30 Days?</h2>
+                <p class="subtitle">
+                    This analysis is just the beginning. Get the complete Sleep Revolution Toolkit with the exact step-by-step system that has helped over 47,000 people fall asleep in 12 minutes or less - specifically designed for your sleep type.
+                </p>
+
+                <div class="solution-preview">
+                    <h3 style="font-size: 24px; margin-bottom: 30px;">What's Inside The Complete System:</h3>
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <span class="icon">📚</span>
+                            <h4>Sleep Type Guide</h4>
+                            <p>Detailed protocols for your specific sleep type</p>
+                        </div>
+                        <div class="preview-item">
+                            <span class="icon">🧠</span>
+                            <h4>Neuroscience Method</h4>
+                            <p>Brain-based techniques that actually work</p>
+                        </div>
+                        <div class="preview-item">
+                            <span class="icon">⚡</span>
+                            <h4>12-Minute Protocol</h4>
+                            <p>The exact sequence to fall asleep fast</p>
+                        </div>
+                        <div class="preview-item">
+                            <span class="icon">📋</span>
+                            <h4>Quick Reference Cards</h4>
+                            <p>Emergency sleep techniques for tough nights</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-highlight">
+                    Complete System: Only $27 (Normally $97)
+                </div>
+
+                <a href="index.html" class="cta-button" onclick="trackPurchaseIntent()">
+                    🚀 Get The Complete Sleep Revolution Toolkit
+                </a>
+
+                <p class="urgency-text">
+                    ⏰ Special Assessment Price - Limited Time Only
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 style="font-size: 28px; margin-bottom: 40px;">Join Thousands Who've Transformed Their Sleep</h2>
+            <div class="trust-stats">
+                <div class="stat">
+                    <span class="stat-number">47,000+</span>
+                    <span class="stat-label">Success Stories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12 Min</span>
+                    <span class="stat-label">Average Sleep Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">94%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">30 Days</span>
+                    <span class="stat-label">Full Transformation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Sleep type configurations
+        const sleepTypes = {
+            'overthinker': {
+                icon: '🧠',
+                title: 'The Overthinker',
+                description: 'Your mind races with thoughts, worries, and mental chatter when you try to sleep. You\'re likely highly intelligent, analytical, and tend to process the day\'s events when your head hits the pillow.',
+                rootCauses: [
+                    'Overactive prefrontal cortex at bedtime',
+                    'High cortisol levels from daily stress',
+                    'Lack of mental transition ritual',
+                    'Racing thoughts and problem-solving mode'
+                ],
+                quickWins: [
+                    'Brain dump technique (5 minutes before bed)',
+                    '4-7-8 breathing to activate parasympathetic nervous system',
+                    'Cool room temperature (65-68°F)',
+                    'No screens 30 minutes before bed'
+                ]
+            },
+            'anxious': {
+                icon: '😰',
+                title: 'The Anxious Sleeper',
+                description: 'Worry and anxiety keep you awake, creating a cycle of sleep anxiety that makes bedtime stressful. Your nervous system is often in a heightened state of alert.',
+                rootCauses: [
+                    'Elevated anxiety and stress hormones',
+                    'Hypervigilant nervous system',
+                    'Fear of not sleeping creates more anxiety',
+                    'Sympathetic nervous system dominance'
+                ],
+                quickWins: [
+                    'Progressive muscle relaxation sequence',
+                    'Anxiety-specific breathing techniques',
+                    'Magnesium supplement before bed',
+                    'Guided meditation for sleep anxiety'
+                ]
+            },
+            'physical': {
+                icon: '💪',
+                title: 'The Physical Restless',
+                description: 'Physical discomfort, restlessness, or tension prevents you from settling into sleep. Your body struggles to find the relaxation needed for deep rest.',
+                rootCauses: [
+                    'Physical tension and muscle tightness',
+                    'Poor sleep environment setup',
+                    'Lack of physical relaxation routine',
+                    'Possible nutritional imbalances'
+                ],
+                quickWins: [
+                    'Gentle stretching routine before bed',
+                    'Weighted blanket for deep pressure',
+                    'Epsom salt bath 1-2 hours before sleep',
+                    'Room temperature optimization'
+                ]
+            },
+            'irregular': {
+                icon: '⏰',
+                title: 'The Schedule Shifter',
+                description: 'Irregular schedules, shift work, or inconsistent sleep patterns have disrupted your natural circadian rhythm. Your internal clock needs recalibration.',
+                rootCauses: [
+                    'Disrupted circadian rhythm',
+                    'Inconsistent sleep-wake cycles',
+                    'Light exposure at wrong times',
+                    'Social and work schedule conflicts'
+                ],
+                quickWins: [
+                    'Consistent wake time (even on weekends)',
+                    'Morning light exposure within 30 minutes',
+                    'Evening blue light blocking glasses',
+                    'Gradual schedule adjustment protocol'
+                ]
+            }
+        };
+
+        // Determine sleep type based on assessment answers
+        function determineSleepType(answers) {
+            // This is a simplified algorithm - in production, you'd want more sophisticated analysis
+            if (answers['3'] === 'racing-mind' || answers['4'] === 'tired-wired') {
+                return 'overthinker';
+            } else if (answers['3'] === 'anxiety' || answers['4'] === 'consistently-tired') {
+                return 'anxious';
+            } else if (answers['3'] === 'physical' || answers['2'] === 'slow') {
+                return 'physical';
+            } else {
+                return 'irregular';
+            }
+        }
+
+        // Load and display results
+        function loadResults() {
+            const assessmentData = JSON.parse(localStorage.getItem('sleepAssessment') || '{}');
+            
+            if (!assessmentData.answers || !assessmentData.firstName) {
+                // Redirect back to assessment if no data
+                window.location.href = 'sleep-assessment.html';
+                return;
+            }
+
+            const sleepType = determineSleepType(assessmentData.answers);
+            const typeConfig = sleepTypes[sleepType];
+
+            // Personalize greeting
+            document.getElementById('personalGreeting').textContent = 
+                `Hi ${assessmentData.firstName}! Based on your assessment, here's your personalized sleep analysis...`;
+
+            // Update sleep type display
+            document.getElementById('sleepTypeIcon').textContent = typeConfig.icon;
+            document.getElementById('sleepTypeTitle').textContent = typeConfig.title;
+            document.getElementById('sleepTypeDescription').textContent = typeConfig.description;
+
+            // Update analysis sections
+            updateList('rootCauses', typeConfig.rootCauses);
+            updateList('quickWins', typeConfig.quickWins);
+
+            // Generic sections for all types
+            updateList('scientificApproach', [
+                'Evidence-based sleep protocols',
+                'Neuroscience-backed techniques',
+                'Personalized optimization plan',
+                'Progress tracking system'
+            ]);
+
+            updateList('timeline', [
+                'Week 1: Notice 20-30% improvement',
+                'Week 2: Fall asleep 50% faster',
+                'Week 3-4: Consistent 7-8 hour nights',
+                'Month 2+: Automatic sleep patterns'
+            ]);
+
+            // Track the view
+            gtag('event', 'results_viewed', {
+                'event_category': 'Lead Generation',
+                'event_label': sleepType,
+                'sleep_type': sleepType
+            });
+
+            // Add fade-in animations
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.style.opacity = '1';
+                });
+            }, 500);
+        }
+
+        function updateList(elementId, items) {
+            const list = document.getElementById(elementId);
+            list.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
+
+        function trackPurchaseIntent() {
+            gtag('event', 'purchase_intent', {
+                'event_category': 'Conversion',
+                'event_label': 'Results Page CTA Click'
+            });
+        }
+
+        // Load results when page loads
+        document.addEventListener('DOMContentLoaded', loadResults);
+    </script>
+</body>
+</html>

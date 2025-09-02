@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPZ2XNWV');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Your Email! Your Emergency Sleep Kit is On Its Way</title>
+    <meta name="description" content="Your free Emergency Sleep Kit has been sent to your email. Start your sleep transformation tonight!">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #4a5568;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .email-notice {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .email-notice h3 {
+            color: #059669;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .email-notice p {
+            font-size: 16px;
+            color: #166534;
+            margin-bottom: 10px;
+        }
+
+        .next-steps {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: #1a202c;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .step {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step-content p {
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        .upgrade-reminder {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .upgrade-reminder h3 {
+            color: #92400e;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .upgrade-cta {
+            background: #ef4444;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .upgrade-cta:hover {
+            background: #dc2626;
+        }
+
+        .social-share {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .facebook { background: #1877f2; }
+        .twitter { background: #1da1f2; }
+        .linkedin { background: #0077b5; }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer a {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .success-card {
+                padding: 40px 25px;
+            }
+            
+            .main-title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPZ2XNWV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+        <div class="success-card">
+            <div class="success-icon">✅</div>
+            
+            <h1 class="main-title">Your Emergency Sleep Kit is On Its Way!</h1>
+            
+            <p class="subtitle">
+                Check your email inbox for your <strong>FREE Emergency Sleep Kit</strong> with the Quick Reference Cards that will help you fall asleep faster tonight.
+            </p>
+
+            <div class="email-notice">
+                <h3>📧 Check Your Email Now</h3>
+                <p><strong>Subject Line:</strong> "[Your Name], Your Emergency Sleep Kit is Here! 🎯"</p>
+                <p><strong>From:</strong> Sleep Revolution Toolkit</p>
+                <p style="margin-top: 15px; font-size: 14px;">
+                    <strong>Don't see it?</strong> Check your spam/promotions folder. Add us to your contacts to ensure you receive our helpful emails.
+                </p>
+            </div>
+
+            <div class="next-steps">
+                <h3>🎯 Your Next Steps to Better Sleep</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Download Your Emergency Kit</h4>
+                        <p>Click the download link in your email to get the Quick Reference Emergency Cards</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Try the 3-2-1 Knockout Protocol Tonight</h4>
+                        <p>Most people fall asleep within 12 minutes using this technique on their first try</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Watch for Our Sleep Tips</h4>
+                        <p>Over the next few days, we'll send you powerful sleep optimization strategies</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Keep the Cards by Your Bedside</h4>
+                        <p>Print them out for quick reference during those tough 2 AM moments</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upgrade-reminder">
+                <h3>⚡ Want the Complete Sleep Transformation?</h3>
+                <p>Your emergency kit is powerful, but it's just the beginning. The complete Sleep Revolution Toolkit has helped over 47,000 people achieve consistent, restorative sleep.</p>
+                <p style="margin: 15px 0; font-weight: 600; color: #92400e;">Special limited-time price: <span style="text-decoration: line-through;">$97</span> → $27</p>
+                <a href="/upsell-toolkit.html" class="upgrade-cta">🚀 Get Complete Toolkit for $27</a>
+            </div>
+
+            <div class="social-share">
+                <h3>Help Your Friends Sleep Better Too!</h3>
+                <p>Share this free resource with anyone you know who struggles with sleep</p>
+                <div class="share-buttons">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sleeprevolutiontoolkit.com/free-emergency-kit.html" target="_blank" class="share-btn facebook">Share on Facebook</a>
+                    <a href="https://twitter.com/intent/tweet?text=Just got this amazing free sleep kit that helps you fall asleep in 12 minutes!&url=https://sleeprevolutiontoolkit.com/free-emergency-kit.html" target="_blank" class="share-btn twitter">Share on Twitter</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://sleeprevolutiontoolkit.com/free-emergency-kit.html" target="_blank" class="share-btn linkedin">Share on LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Sleep Revolution Toolkit</p>
+            <p>Any issues with your order? 📧 <a href="mailto:orders@sleeprevolutiontoolkit.com">orders@sleeprevolutiontoolkit.com</a></p>
+            <p style="margin-top: 15px;">Developed by <a href="https://kingsmenconsultancy.org">Kingsmen Consultancy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Track free kit thank you page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'view_free_kit_thanks', {
+                'event_category': 'Engagement',
+                'event_label': 'Free Kit Thank You Page'
+            });
+        }
+
+        // Track upgrade clicks from thank you page
+        document.querySelector('.upgrade-cta').addEventListener('click', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'upgrade_click_thanks_page', {
+                    'event_category': 'Conversion',
+                    'event_label': 'Upgrade from Thank You Page'
+                });
+            }
+        });
+
+        // Show personalized message based on localStorage data
+        window.addEventListener('load', function() {
+            const leadData = localStorage.getItem('leadData');
+            if (leadData) {
+                try {
+                    const data = JSON.parse(leadData);
+                    if (data.firstName) {
+                        // Personalize the email subject line shown
+                        const subjectLine = document.querySelector('.email-notice p');
+                        if (subjectLine && subjectLine.innerHTML.includes('[Your Name]')) {
+                            subjectLine.innerHTML = subjectLine.innerHTML.replace('[Your Name]', data.firstName);
+                        }
+                    }
+                } catch (e) {
+                    console.log('Could not parse lead data');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

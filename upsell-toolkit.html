@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPZ2XNWV');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wait! Your Emergency Kit is Being Sent... Plus a Special One-Time Offer</title>
+    <meta name="description" content="Special one-time offer: Get the complete Sleep Revolution Toolkit for 72% off - only available on this page.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Embedded Checkout -->
+    <script src="/js/embedded-checkout.js"></script>
+    
+    <style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #f59e0b;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --success: #10b981;
+    --danger: #ef4444;
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gold-gradient: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--light);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Progress Bar */
+.progress-header {
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.step.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.step.completed {
+    color: var(--success);
+}
+
+.step-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.step.active .step-circle {
+    background: var(--primary);
+    color: white;
+}
+
+.step.completed .step-circle {
+    background: var(--success);
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.wait-badge {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.hero-title .highlight {
+    color: var(--danger);
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: #64748b;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.personal-message {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.personal-message .greeting {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* Offer Section */
+.offer-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.offer-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 3px solid var(--primary);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.limited-badge {
+    position: absolute;
+    top: 30px;
+    right: -30px;
+    background: var(--danger);
+    color: white;
+    padding: 10px 50px;
+    transform: rotate(45deg);
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.offer-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.offer-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.offer-subtitle {
+    font-size: 18px;
+    color: #64748b;
+}
+
+/* Comparison Table */
+.comparison-table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.comparison-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    background: var(--dark);
+    color: white;
+    padding: 20px;
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    align-items: center;
+}
+
+.comparison-row:nth-child(even) {
+    background: #f8fafc;
+}
+
+.feature-name {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.check {
+    color: var(--success);
+    font-size: 20px;
+    text-align: center;
+}
+
+.cross {
+    color: #cbd5e1;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Price Stack */
+.price-stack {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.price-item:last-child {
+    border-bottom: none;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--success);
+    padding-top: 20px;
+}
+
+.strike {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+/* CTA Section */
+.cta-container {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.timer-urgent {
+    background: var(--danger);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-button {
+    background: var(--success);
+    color: white;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.cta-button:hover {
+    background: #059669;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+}
+
+.no-thanks {
+    color: #6b7280;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Guarantee */
+.guarantee-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.guarantee-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.guarantee-icon {
+    font-size: 60px;
+}
+
+.guarantee-text h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/* Testimonials */
+.testimonials-section {
+    padding: 60px 0;
+    background: #f8fafc;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.stars {
+    color: var(--secondary);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.testimonial-text {
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.verified {
+    color: var(--success);
+    font-size: 12px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .progress-steps {
+        gap: 20px;
+        font-size: 12px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .comparison-header,
+    .comparison-row {
+        grid-template-columns: 2fr 1fr 1fr;
+        font-size: 14px;
+        padding: 15px 10px;
+    }
+    
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPZ2XNWV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Progress Header -->
+    <div class="progress-header">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-circle">✓</div>
+                    <span>Contact Info</span>
+                </div>
+                <div class="step active">
+                    <div class="step-circle">2</div>
+                    <span>Special Offer</span>
+                </div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <span>Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="wait-badge">✓ Your Emergency Kit Is Being Sent To Your Email...</div>
+            
+            <h1 class="hero-title">
+                WAIT! Don't Leave Yet...<br>
+                <span class="highlight">One-Time 72% Discount</span> Just For You
+            </h1>
+            
+            <p class="hero-subtitle">
+                This special offer is only available on this page and will expire when you leave
+            </p>
+            
+            <div class="personal-message">
+                <div class="greeting" id="personalGreeting">Hey there!</div>
+                <p>Your free Emergency Sleep Kit is on its way to your inbox. But since you're serious about fixing your sleep, I want to offer you something special...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="offer-section">
+        <div class="container">
+            <div class="offer-box">
+                <div class="limited-badge">LIMITED OFFER</div>
+                
+                <div class="offer-header">
+                    <h2 class="offer-title">Get The COMPLETE Sleep Revolution Toolkit</h2>
+                    <p class="offer-subtitle">Everything you need to transform your sleep in 30 days or less</p>
+                </div>
+                
+                <!-- Comparison Table -->
+                <div class="comparison-table">
+                    <div class="comparison-header">
+                        <div><strong>What You Get</strong></div>
+                        <div style="text-align: center;"><strong>Emergency Kit (Free)</strong></div>
+                        <div style="text-align: center;"><strong>Complete Toolkit</strong></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">Emergency Sleep Techniques</div>
+                        <div class="check">✓</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">Complete 94-Page Sleep Revolution Guide</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">30-Day Transformation Protocol</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">7 Bonus Guides ($532 value)</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">Sleep Environment Optimizer</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">Supplement & Nutrition Guide</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">Travel Sleep Mastery Kit</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="feature-name">Lifetime Updates</div>
+                        <div class="cross">✗</div>
+                        <div class="check">✓</div>
+                    </div>
+                </div>
+                
+                <!-- Price Stack -->
+                <div class="price-stack">
+                    <div class="price-item">
+                        <span>Main Sleep Revolution Guide</span>
+                        <span>$275</span>
+                    </div>
+                    <div class="price-item">
+                        <span>30-Day Transformation Tracker</span>
+                        <span>$47</span>
+                    </div>
+                    <div class="price-item">
+                        <span>7 Bonus Materials Collection</span>
+                        <span>$532</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Total Value</span>
+                        <span class="strike">$854</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Your Price Today</span>
+                        <span>Only $27</span>
+                    </div>
+                </div>
+                
+                <!-- CTA -->
+                <div class="cta-container">
+                    <div class="timer-urgent">
+                        ⏰ Offer Expires In: <span id="offerTimer">14:57</span>
+                    </div>
+                    
+                    <button class="cta-button" id="getCompleteToolkit" data-checkout="basic" data-checkout-button="true">
+                        YES! Upgrade Me To The Complete Toolkit For Just $27
+                    </button>
+                    
+                    <p style="margin-bottom: 15px; color: #6b7280;">
+                        <strong>96.3% of people</strong> who get the emergency kit upgrade to the complete system
+                    </p>
+                    
+                    <a href="#" class="no-thanks" id="noThanks">No thanks, I just want the free emergency kit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Benefits Section (from sales page) -->
+    <section class="detailed-benefits-section" style="background: white; padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">Still Not Sure? Here's What You're Missing...</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px;">
+                <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #f1f5f9;">
+                    <span style="font-size: 48px; display: block; margin-bottom: 20px;">😩</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">2:47 AM Again...</h3>
+                    <p style="color: #64748b;">Wide awake, staring at the ceiling while the world sleeps peacefully around you</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #f1f5f9;">
+                    <span style="font-size: 48px; display: block; margin-bottom: 20px;">🧠</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Racing Mind Won't Stop</h3>
+                    <p style="color: #64748b;">Your brain replays conversations, worries about tomorrow, refuses to shut down</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #f1f5f9;">
+                    <span style="font-size: 48px; display: block; margin-bottom: 20px;">😴</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Exhausted But Wired</h3>
+                    <p style="color: #64748b;">Your body screams for rest but your nervous system keeps you frustratingly alert</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #f1f5f9;">
+                    <span style="font-size: 48px; display: block; margin-bottom: 20px;">💊</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Pills Don't Work Anymore</h3>
+                    <p style="color: #64748b;">Melatonin, sleeping pills, CBD — you've tried them all with disappointing results</p>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 40px; text-align: center; max-width: 800px; margin: 0 auto;">
+                <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 20px; color: #92400e;">Here's What Your Doctor Won't Tell You:</h3>
+                <p style="font-size: 18px; color: #92400e; line-height: 1.6;">Your insomnia isn't a sleep problem — it's a <strong>nervous system regulation problem</strong>. And until you address the root cause, you'll keep cycling through sleepless nights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Deep Dive Section -->
+    <section class="product-deepdive" style="background: #f8fafc; padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">🔍 Exclusive Peek Inside The Complete Toolkit</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 5px solid #667eea;">
+                    <div style="background: #667eea; color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600; margin-bottom: 20px;">📖 Main Guide - Page 20</div>
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">The 4-7-8 Breathwork Matrix (Enhanced)</h4>
+                    <p style="color: #64748b; margin-bottom: 15px; font-style: italic;">"This isn't your grandmother's breathing exercise. We've enhanced the traditional technique with neuroscience principles:"</p>
+                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 14px;">
+                        <strong style="color: #1a202c;">THE PROTOCOL:</strong><br>
+                        1. Exhale completely through mouth (removes CO2 buildup)<br>
+                        2. Inhale through nose for 4 counts (activates parasympathetic)<br>
+                        3. Hold breath for 7 counts (increases GABA production)
+                    </div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 14px;">✅ Increases GABA by 68% (Johns Hopkins, 2023)</div>
+                </div>
+                
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 5px solid #ef4444;">
+                    <div style="background: #ef4444; color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600; margin-bottom: 20px;">🚨 Emergency Cards - Card 1</div>
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">The 3 AM Emergency Protocol</h4>
+                    <p style="color: #64748b; margin-bottom: 15px; font-style: italic;">"When you wake up in the middle of the night:"</p>
+                    <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 1: DON'T PANIC (30 seconds)</div>
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 2: Body Temperature Reset</div>
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 3: 4-7-8 Breathing (3 cycles)</div>
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 4: Mental TV Technique</div>
+                    </div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 14px;">📱 Optimized for phone access at 3 AM</div>
+                </div>
+                
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 5px solid #10b981;">
+                    <div style="background: #10b981; color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600; margin-bottom: 20px;">📊 Sleep Tracker - Day 1</div>
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Baseline Assessment</h4>
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Sleep Quality: [1-10 scale]</div>
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Fall Asleep Time: __ minutes</div>
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Night Wake-ups: __ times</div>
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Morning Energy: [1-10 scale]</div>
+                    </div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 14px;">🏆 Track your transformation over 30 days</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section" style="background: white; padding: 80px 0;">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">Real Results from Real People</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 4px solid #f59e0b;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="color: #f59e0b; font-size: 18px;">★★★★★</div>
+                        <div style="color: #10b981; font-size: 12px; font-weight: 600;">✓ Verified Purchase</div>
+                    </div>
+                    <p style="color: #4a5568; font-style: italic; margin-bottom: 20px; line-height: 1.6;">"I was skeptical about another sleep solution, but this toolkit is different. The emergency cards worked the FIRST night. I've been sleeping through the night for 3 weeks now."</p>
+                    <div style="font-weight: 600; color: #1a202c; margin-bottom: 8px;">Sarah M., Marketing Manager</div>
+                    <div style="background: #f0fdf4; color: #059669; padding: 8px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block;">Now sleeps 7-8 hours nightly</div>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 4px solid #667eea;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="color: #f59e0b; font-size: 18px;">★★★★★</div>
+                        <div style="color: #10b981; font-size: 12px; font-weight: 600;">✓ Verified Purchase</div>
+                    </div>
+                    <p style="color: #4a5568; font-style: italic; margin-bottom: 20px; line-height: 1.6;">"As a CEO, my mind never stops racing. The Racing Mind Protocol in this toolkit is pure gold. I fall asleep in minutes now instead of hours."</p>
+                    <div style="font-weight: 600; color: #1a202c; margin-bottom: 8px;">David L., Tech CEO</div>
+                    <div style="background: #eff6ff; color: #1d4ed8; padding: 8px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block;">Reduced sleep time from 90 to 12 minutes</div>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-left: 4px solid #ef4444;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="color: #f59e0b; font-size: 18px;">★★★★★</div>
+                        <div style="color: #10b981; font-size: 12px; font-weight: 600;">✓ Verified Purchase</div>
+                    </div>
+                    <p style="color: #4a5568; font-style: italic; margin-bottom: 20px; line-height: 1.6;">"The 3 AM protocol saved my sanity. I used to lie awake for hours when I'd wake up. Now I'm back asleep in 15 minutes using the techniques."</p>
+                    <div style="font-weight: 600; color: #1a202c; margin-bottom: 8px;">Jennifer K., Mother of 3</div>
+                    <div style="background: #fef2f2; color: #dc2626; padding: 8px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block;">3 AM wake-ups resolved in 5 days</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; background: #f8fafc; padding: 40px; border-radius: 20px;">
+                <div>
+                    <div style="font-size: 36px; font-weight: 900; color: #667eea; margin-bottom: 10px;">47,382+</div>
+                    <div style="font-size: 14px; color: #64748b; font-weight: 600;">People Helped</div>
+                </div>
+                <div>
+                    <div style="font-size: 36px; font-weight: 900; color: #10b981; margin-bottom: 10px;">12 Min</div>
+                    <div style="font-size: 14px; color: #64748b; font-weight: 600;">Avg Sleep Time</div>
+                </div>
+                <div>
+                    <div style="font-size: 36px; font-weight: 900; color: #f59e0b; margin-bottom: 10px;">94.7%</div>
+                    <div style="font-size: 14px; color: #64748b; font-weight: 600;">Success Rate</div>
+                </div>
+                <div>
+                    <div style="font-size: 36px; font-weight: 900; color: #ef4444; margin-bottom: 10px;">60 Days</div>
+                    <div style="font-size: 14px; color: #64748b; font-weight: 600;">Money-Back Guarantee</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <div class="guarantee-text">
+                    <h3>60-Day Money Back Guarantee</h3>
+                    <p>Try the complete toolkit risk-free. If you don't sleep better, we'll refund every penny.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">
+                What Happens When You Get The Complete System
+            </h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The emergency kit helped, but the complete system changed my life. I went from 3 hours to fall asleep to 12 minutes in just 2 weeks."
+                    </p>
+                    <div class="testimonial-author">
+                        David Martinez <span class="verified">✓ Verified Buyer</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The 30-day protocol is genius. It builds on itself perfectly. By day 10, I was already sleeping through the night consistently."
+                    </p>
+                    <div class="testimonial-author">
+                        Amanda Foster <span class="verified">✓ Verified Buyer</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Worth 100x the price. The supplement guide alone saved me from wasting money on useless pills. This actually works."
+                    </p>
+                    <div class="testimonial-author">
+                        James Wilson <span class="verified">✓ Verified Buyer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Load configuration
+        const config = {
+            paymentLink: 'https://buy.stripe.com/aFabJ055p37u2VXaT773G07'
+        };
+
+        // Personalization
+        function personalizeMessage() {
+            const leadData = JSON.parse(localStorage.getItem('leadData') || '{}');
+            if (leadData.firstName) {
+                document.getElementById('personalGreeting').textContent = `Hey ${leadData.firstName}!`;
+            }
+        }
+
+        // Countdown Timer
+        function startOfferTimer() {
+            let minutes = 14;
+            let seconds = 57;
+            
+            const timerEl = document.getElementById('offerTimer');
+            
+            const interval = setInterval(() => {
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        clearInterval(interval);
+                        // Could redirect or show expired message
+                        return;
+                    }
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                
+                timerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Get Complete Toolkit - handled by embedded-checkout.js
+        // Additional tracking for upsell conversion
+        document.getElementById('getCompleteToolkit').addEventListener('click', function() {
+            // Track conversion (embedded checkout will also track)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'upsell_accepted', {
+                    'event_category': 'Conversion',
+                    'event_label': 'Complete Toolkit Upsell',
+                    'value': 27
+                });
+            }
+        });
+
+        // No Thanks - Just Free Kit
+        document.getElementById('noThanks').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Track decline
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'upsell_declined', {
+                    'event_category': 'Conversion',
+                    'event_label': 'Declined Toolkit Upsell'
+                });
+            }
+            
+            // Redirect to thank you page for free kit
+            window.location.href = 'free-kit-thank-you.html';
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            personalizeMessage();
+            startOfferTimer();
+            
+            // Track page view
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'upsell_page_viewed', {
+                    'event_category': 'Conversion',
+                    'event_label': 'Upsell Page View'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

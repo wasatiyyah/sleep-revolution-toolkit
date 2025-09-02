@@ -9,6 +9,11 @@
     })(window,document,'script','dataLayer','GTM-TPZ2XNWV');</script>
     <!-- End Google Tag Manager -->
     
+    <script>
+    // Redirect homepage to lead magnet
+    window.location.href = '/free-emergency-kit.html';
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Sleep Revolution Toolkit - Finally Sleep Like You Were Born To</title>
@@ -25,6 +30,9 @@
     
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Embedded Checkout -->
+    <script src="/js/embedded-checkout.js"></script>
     
     <!-- Inline Styles (to bypass Vercel protection issues) -->
     <style>
@@ -1658,7 +1666,7 @@ body {
                 </div>
                 
                 <div class="cta-section">
-                    <button class="cta-button" id="buy-now-hero">
+                    <button class="cta-button" id="buy-now-hero" data-checkout="basic">
                         <span class="cta-text">Get Instant Access Now</span>
                         <span class="cta-price">Complete $853 Toolkit for Just $27</span>
                     </button>
@@ -1990,7 +1998,7 @@ body {
                     </ul>
                 </div>
                 
-                <button class="cta-button large" id="buy-now-main">
+                <button class="cta-button large" id="buy-now-main" data-checkout="basic">
                     <span class="cta-text">Yes! I Want Perfect Sleep Tonight</span>
                     <span class="cta-price">Complete $853 Toolkit for Just $27</span>
                 </button>
@@ -2080,7 +2088,7 @@ body {
                 <h3>For Less Than The Cost of One Mediocre Pillow...</h3>
                 <p>You can finally end your sleep struggles forever. But this special price won't last.</p>
                 
-                <button class="cta-button final" id="buy-now-final">
+                <button class="cta-button final" id="buy-now-final" data-checkout="basic">
                     <span class="cta-text">Get Your Sleep Back Now</span>
                     <span class="cta-price">Complete $853 Toolkit for Just $27</span>
                 </button>

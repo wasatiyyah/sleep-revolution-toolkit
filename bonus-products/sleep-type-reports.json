@@ -1,0 +1,197 @@
+{
+  "sleep_type_reports": {
+    "Natural Sleeper": {
+      "title": "The Natural Sleeper Report",
+      "subtitle": "Maintaining and Optimizing Your Sleep Advantage",
+      "summary": "You're among the lucky 15% of people with naturally healthy sleep patterns. This report shows you how to maintain this advantage and optimize it further.",
+      "sections": [
+        {
+          "title": "Your Sleep Superpower",
+          "content": "Natural sleepers have well-regulated circadian rhythms, balanced neurotransmitters, and healthy sleep architecture. Your body intuitively knows when to sleep and wake."
+        },
+        {
+          "title": "Protecting Your Sleep Quality",
+          "content": "Even natural sleepers can develop problems. Learn the top 7 threats to your sleep and how to defend against them before they become issues."
+        },
+        {
+          "title": "Advanced Optimization Techniques",
+          "content": "Take your already good sleep to extraordinary levels with advanced techniques for deeper sleep stages and enhanced recovery."
+        },
+        {
+          "title": "Energy Maximization Protocol",
+          "content": "Leverage your natural sleep patterns to maximize daytime energy and cognitive performance."
+        }
+      ],
+      "bonus_tips": [
+        "The 90-minute rule for perfect wake-up timing",
+        "How to maintain sleep quality during travel",
+        "Seasonal adjustments for year-round optimization",
+        "Signs to watch for that indicate declining sleep health"
+      ]
+    },
+    "Racing Mind Type": {
+      "title": "The Racing Mind Sleeper Report", 
+      "subtitle": "Mastering Mental Quieting for Deep Sleep",
+      "summary": "Your intelligent, active mind is both a gift and a sleep challenge. This report provides specialized techniques for high-performing minds.",
+      "sections": [
+        {
+          "title": "Understanding Your Racing Mind",
+          "content": "Why high-achievers and creative minds struggle with sleep, and the neuroscience behind racing thoughts at bedtime."
+        },
+        {
+          "title": "The Mind Shutdown Protocol",
+          "content": "A step-by-step system to redirect your mental energy from problem-solving to sleep preparation."
+        },
+        {
+          "title": "Advanced Thought-Stopping Techniques",
+          "content": "Beyond basic relaxation - powerful techniques specifically designed for analytical minds."
+        },
+        {
+          "title": "Worry Window Strategy",
+          "content": "How to compartmentalize concerns and process them productively without sacrificing sleep."
+        }
+      ],
+      "bonus_tips": [
+        "The CEO's 5-minute brain dump technique",
+        "How to use your analytical nature to improve sleep",
+        "Creative visualization for racing minds",
+        "Technology tools that help rather than hurt"
+      ]
+    },
+    "Light Sleeper": {
+      "title": "The Light Sleeper Report",
+      "subtitle": "Creating Fortress-Like Sleep in Any Environment", 
+      "summary": "Light sleepers are highly sensitive to environmental disruptions. This report shows you how to create unshakeable sleep regardless of circumstances.",
+      "sections": [
+        {
+          "title": "The Light Sleeper Advantage",
+          "content": "Why light sleepers often have superior pattern recognition and environmental awareness during wake hours."
+        },
+        {
+          "title": "Environmental Sleep Fortress",
+          "content": "Complete bedroom optimization guide specifically for environmental sensitivity."
+        },
+        {
+          "title": "Sleep Maintenance Techniques",
+          "content": "What to do when you wake up at 2 AM, 3 AM, or 4 AM to get back to sleep quickly."
+        },
+        {
+          "title": "Travel Sleep Mastery",
+          "content": "How to maintain sleep quality in hotels, planes, and unfamiliar environments."
+        }
+      ],
+      "bonus_tips": [
+        "The 3-2-1 rule for middle-of-night wake-ups",
+        "Sound masking vs. sound elimination strategies",
+        "Temperature micro-adjustments for deeper sleep",
+        "Light sensitivity solutions beyond blackout curtains"
+      ]
+    },
+    "Stressed Sleeper": {
+      "title": "The Stressed Sleeper Report",
+      "subtitle": "Breaking the Stress-Insomnia Cycle Once and For All",
+      "summary": "Stress and sleep create a vicious cycle. This report provides the specific interventions needed to break free and restore restorative sleep.",
+      "sections": [
+        {
+          "title": "The Stress-Sleep Connection",
+          "content": "Understanding how chronic stress rewires your sleep system and why willpower alone doesn't work."
+        },
+        {
+          "title": "Nervous System Reset Protocol", 
+          "content": "Evidence-based techniques to shift from sympathetic (stress) to parasympathetic (rest) nervous system activation."
+        },
+        {
+          "title": "Adaptive Sleep Strategies",
+          "content": "How to adjust your sleep approach based on daily stress levels - high stress days need different techniques."
+        },
+        {
+          "title": "Building Stress Resilience",
+          "content": "Long-term strategies to reduce overall stress load and improve stress recovery."
+        }
+      ],
+      "bonus_tips": [
+        "The 4-7-8 breathing technique for instant calm",
+        "How to create physical separation between day stress and night rest",
+        "Progressive muscle relaxation for stress sleepers",
+        "When stress insomnia requires professional help"
+      ]
+    },
+    "Night Owl Fighter": {
+      "title": "The Night Owl Fighter Report", 
+      "subtitle": "Aligning Your Natural Rhythm with Real-World Demands",
+      "summary": "You're fighting against your natural circadian preference. This report shows you how to gradually shift your rhythm or optimize within your constraints.",
+      "sections": [
+        {
+          "title": "Understanding Your Chronotype",
+          "content": "The science behind natural night owls and why forcing early schedules creates ongoing sleep debt."
+        },
+        {
+          "title": "The Gentle Shift Protocol",
+          "content": "How to gradually move your sleep schedule earlier without shocking your system."
+        },
+        {
+          "title": "Light Therapy Mastery",
+          "content": "Using light exposure to naturally reset your circadian clock over time."
+        },
+        {
+          "title": "Optimization Within Constraints", 
+          "content": "If you can't change your schedule, how to maximize sleep quality within your current limitations."
+        }
+      ],
+      "bonus_tips": [
+        "The 15-minute rule for schedule shifting",
+        "Best morning light therapy devices and protocols",
+        "How to negotiate flexible work schedules",
+        "Weekend recovery strategies that actually work"
+      ]
+    }
+  },
+  "upsell_products": {
+    "deluxe_sleep_toolkit": {
+      "title": "Deluxe Sleep Transformation System",
+      "price": "$97",
+      "original_price": "$297", 
+      "description": "Everything in the basic toolkit plus advanced modules for complex sleep challenges",
+      "additional_bonuses": [
+        "Sleep Disorder Quick Reference Guide",
+        "Advanced Sleep Tracking Spreadsheets", 
+        "Seasonal Sleep Adjustment Protocols",
+        "Travel Sleep Mastery Guide",
+        "Sleep and Fitness Integration Plan",
+        "Couples Sleep Optimization Guide",
+        "Sleep Nutrition Protocol",
+        "1-on-1 Sleep Strategy Session ($197 value)"
+      ]
+    },
+    "sleep_coaching_program": {
+      "title": "30-Day Sleep Transformation Coaching",
+      "price": "$197", 
+      "original_price": "$497",
+      "description": "Personal guidance through your sleep transformation with weekly check-ins",
+      "includes": [
+        "Initial sleep assessment and personalized plan",
+        "4 weekly coaching sessions via video call",
+        "Custom sleep schedule based on your lifestyle",
+        "Text support for urgent questions",
+        "All toolkit materials included",
+        "Progress tracking and adjustments",
+        "30-day money-back guarantee"
+      ]
+    },
+    "sleep_supplements_guide": {
+      "title": "Natural Sleep Supplements Masterclass",
+      "price": "$47",
+      "original_price": "$97",
+      "description": "Evidence-based guide to sleep supplements, timing, and combinations",
+      "modules": [
+        "Melatonin: Timing, Dosage, and Forms",
+        "Magnesium for Sleep: Types and Applications",
+        "L-Theanine and GABA Protocols",
+        "Herbal Sleep Aids: What Works and What Doesn't",
+        "Supplement Timing and Combinations",
+        "How to Wean Off Sleep Medications Safely",
+        "Building Your Personal Sleep Stack"
+      ]
+    }
+  }
+}

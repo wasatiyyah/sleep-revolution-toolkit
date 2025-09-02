@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPZ2XNWV');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Sleep Assessment - Discover Your Sleep Type in 5 Minutes</title>
+    <meta name="description" content="Take our free 5-minute sleep assessment and get your personalized Sleep Type Report. Discover exactly why you can't sleep and the specific solution for your sleep pattern.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #f59e0b;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --success: #10b981;
+    --danger: #ef4444;
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--light);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.progress-bar {
+    width: 200px;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--success);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero .subtitle {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.time-badge {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* Assessment Section */
+.assessment-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.assessment-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.question {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.question.active {
+    display: block;
+}
+
+.question h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: var(--dark);
+}
+
+.question-counter {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.options {
+    display: grid;
+    gap: 15px;
+}
+
+.option {
+    padding: 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.option:hover {
+    border-color: var(--primary);
+    background: #f0f9ff;
+}
+
+.option.selected {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.option h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.option p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.btn-secondary {
+    background: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Email Capture */
+.email-capture {
+    display: none;
+    text-align: center;
+}
+
+.email-capture.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.email-form {
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--success);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.privacy-note {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 15px;
+}
+
+/* Benefits Section */
+.benefits {
+    padding: 60px 0;
+    background: #f8fafc;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.benefit {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.benefit h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.benefit p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .assessment-container {
+        padding: 30px 20px;
+    }
+    
+    .navigation {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPZ2XNWV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Sleep Revolution</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="time-badge">⏱️ Takes Only 5 Minutes</div>
+            <h1>Discover Your Sleep Type</h1>
+            <p class="subtitle">Get your personalized Sleep Assessment Report and find out exactly why you can't sleep - and the specific solution for your unique sleep pattern.</p>
+        </div>
+    </section>
+
+    <!-- Assessment -->
+    <section class="assessment-section">
+        <div class="container">
+            <div class="assessment-container">
+                
+                <!-- Question 1 -->
+                <div class="question active" data-question="1">
+                    <div class="question-counter">Question 1 of 5</div>
+                    <h2>What time do you typically try to go to sleep?</h2>
+                    <div class="options">
+                        <div class="option" data-value="early">
+                            <h3>🌅 Early Bird (9-10 PM)</h3>
+                            <p>I prefer to sleep early and wake up early</p>
+                        </div>
+                        <div class="option" data-value="normal">
+                            <h3>🌙 Normal Schedule (10-11 PM)</h3>
+                            <p>I try to sleep at a regular bedtime</p>
+                        </div>
+                        <div class="option" data-value="late">
+                            <h3>🦉 Night Owl (11 PM - 1 AM)</h3>
+                            <p>I'm naturally a late sleeper</p>
+                        </div>
+                        <div class="option" data-value="irregular">
+                            <h3>⏰ Irregular Schedule</h3>
+                            <p>My sleep time varies greatly each night</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question" data-question="2">
+                    <div class="question-counter">Question 2 of 5</div>
+                    <h2>How long does it typically take you to fall asleep?</h2>
+                    <div class="options">
+                        <div class="option" data-value="fast">
+                            <h3>⚡ Fast (5-15 minutes)</h3>
+                            <p>I usually fall asleep quickly</p>
+                        </div>
+                        <div class="option" data-value="moderate">
+                            <h3>⏳ Moderate (15-45 minutes)</h3>
+                            <p>It takes me a while but I eventually sleep</p>
+                        </div>
+                        <div class="option" data-value="slow">
+                            <h3>🐌 Slow (45+ minutes)</h3>
+                            <p>I toss and turn for a long time</p>
+                        </div>
+                        <div class="option" data-value="hours">
+                            <h3>😰 Hours (1+ hours)</h3>
+                            <p>I lie awake for hours before sleeping</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question" data-question="3">
+                    <div class="question-counter">Question 3 of 5</div>
+                    <h2>What's your biggest challenge when trying to sleep?</h2>
+                    <div class="options">
+                        <div class="option" data-value="racing-mind">
+                            <h3>🧠 Racing Thoughts</h3>
+                            <p>My mind won't stop thinking about work, problems, or tomorrow</p>
+                        </div>
+                        <div class="option" data-value="physical">
+                            <h3>💪 Physical Discomfort</h3>
+                            <p>Restlessness, tension, or physical discomfort</p>
+                        </div>
+                        <div class="option" data-value="anxiety">
+                            <h3>😰 Anxiety/Worry</h3>
+                            <p>Anxiety, stress, or worry keeps me awake</p>
+                        </div>
+                        <div class="option" data-value="environment">
+                            <h3>🌍 Environmental Issues</h3>
+                            <p>Noise, light, temperature, or other external factors</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question" data-question="4">
+                    <div class="question-counter">Question 4 of 5</div>
+                    <h2>How would you describe your energy levels during the day?</h2>
+                    <div class="options">
+                        <div class="option" data-value="tired-wired">
+                            <h3>⚡😴 Tired But Wired</h3>
+                            <p>Exhausted but unable to relax or wind down</p>
+                        </div>
+                        <div class="option" data-value="consistently-tired">
+                            <h3>😴 Consistently Tired</h3>
+                            <p>Tired and low energy throughout most of the day</p>
+                        </div>
+                        <div class="option" data-value="energy-crashes">
+                            <h3>📈📉 Energy Crashes</h3>
+                            <p>Good energy in morning, crashes in afternoon/evening</p>
+                        </div>
+                        <div class="option" data-value="good-energy">
+                            <h3>💪 Generally Good Energy</h3>
+                            <p>Decent energy but just can't sleep well at night</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question" data-question="5">
+                    <div class="question-counter">Question 5 of 5</div>
+                    <h2>How long have you been struggling with sleep issues?</h2>
+                    <div class="options">
+                        <div class="option" data-value="recent">
+                            <h3>⏰ Recent (Few weeks to months)</h3>
+                            <p>This is a relatively new problem for me</p>
+                        </div>
+                        <div class="option" data-value="moderate">
+                            <h3>📅 Moderate (6 months to 2 years)</h3>
+                            <p>I've been dealing with this for a while</p>
+                        </div>
+                        <div class="option" data-value="chronic">
+                            <h3>⏳ Chronic (2+ years)</h3>
+                            <p>This has been an ongoing struggle for years</p>
+                        </div>
+                        <div class="option" data-value="lifelong">
+                            <h3>🔄 Lifelong</h3>
+                            <p>I've always had trouble sleeping</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Capture -->
+                <div class="email-capture">
+                    <h2>Get Your Personalized Sleep Type Report</h2>
+                    <p>Enter your email to receive your detailed assessment results and personalized sleep improvement recommendations.</p>
+                    
+                    <form class="email-form" id="emailForm">
+                        <div class="form-group">
+                            <input type="text" id="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            🎯 Get My Sleep Type Report (FREE)
+                        </button>
+                    </form>
+                    
+                    <p class="privacy-note">
+                        🔒 Your information is 100% secure and will never be shared. You can unsubscribe at any time.
+                    </p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 32px; margin-bottom: 20px;">What You'll Get In Your Free Report</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Your Sleep Type</h3>
+                    <p>Discover which of the 4 sleep types you are and why traditional advice hasn't worked for you</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Root Cause Analysis</h3>
+                    <p>Understand the specific neurological and physiological factors affecting your sleep</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">💡</div>
+                    <h3>Personalized Solutions</h3>
+                    <p>Get targeted recommendations based on your unique sleep profile and challenges</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Quick-Start Guide</h3>
+                    <p>3 immediate actions you can take tonight to start sleeping better</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentQuestion = 1;
+        let answers = {};
+        const totalQuestions = 5;
+
+        function updateProgress() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function selectOption(element) {
+            // Remove previous selections
+            const options = element.parentNode.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Select current option
+            element.classList.add('selected');
+            
+            // Store answer
+            answers[currentQuestion] = element.dataset.value;
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                
+                // Show next question
+                currentQuestion++;
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                // Update navigation
+                document.getElementById('prevBtn').disabled = false;
+                document.getElementById('nextBtn').disabled = true;
+                
+                // Check if option already selected
+                const selectedOption = document.querySelector(`[data-question="${currentQuestion}"] .option.selected`);
+                if (selectedOption) {
+                    document.getElementById('nextBtn').disabled = false;
+                }
+                
+                updateProgress();
+            } else {
+                // Show email capture
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                document.querySelector('.email-capture').classList.add('active');
+                document.querySelector('.navigation').style.display = 'none';
+                updateProgress();
+                
+                // GTM Event
+                gtag('event', 'assessment_completed', {
+                    'event_category': 'Lead Generation',
+                    'event_label': 'Sleep Assessment'
+                });
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                
+                // Show previous question
+                currentQuestion--;
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                // Update navigation
+                document.getElementById('nextBtn').disabled = false;
+                if (currentQuestion === 1) {
+                    document.getElementById('prevBtn').disabled = true;
+                }
+                
+                updateProgress();
+            }
+        }
+
+        // Add click listeners to options
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    selectOption(this);
+                });
+            });
+
+            // Email form submission
+            document.getElementById('emailForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value;
+                const email = document.getElementById('email').value;
+                
+                // GTM Event
+                gtag('event', 'lead_generated', {
+                    'event_category': 'Lead Generation',
+                    'event_label': 'Sleep Assessment Email Capture',
+                    'value': 1
+                });
+
+                // Store data and redirect
+                localStorage.setItem('sleepAssessment', JSON.stringify({
+                    answers: answers,
+                    firstName: firstName,
+                    email: email,
+                    timestamp: new Date().toISOString()
+                }));
+                
+                // Redirect to results page
+                window.location.href = 'sleep-results.html';
+            });
+
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

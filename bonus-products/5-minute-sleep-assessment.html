@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Minute Sleep Assessment - Discover Your Sleep Type</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .assessment-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .question-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .option label {
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .results {
+            display: none;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .sleep-type {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .type-description {
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .recommendations {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .recommendations h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .recommendations ul {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .recommendations li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .assessment-card {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="assessment-card">
+            <div class="header">
+                <h1 class="title">5-Minute Sleep Assessment</h1>
+                <p class="subtitle">Discover your unique sleep type and get personalized recommendations for better rest</p>
+            </div>
+
+            <form id="sleepAssessment">
+                <div class="question-section">
+                    <div class="question">1. What time do you naturally feel most alert and energetic?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1a" name="q1" value="morning">
+                            <label for="q1a">Early morning (6-9 AM) - I'm a natural early bird</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1b" name="q1" value="midday">
+                            <label for="q1b">Mid-day (10 AM-2 PM) - I hit my stride late morning</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1c" name="q1" value="evening">
+                            <label for="q1c">Evening (6-10 PM) - I come alive in the evening</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1d" name="q1" value="night">
+                            <label for="q1d">Late night (10 PM+) - I'm definitely a night owl</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <div class="question">2. How long does it typically take you to fall asleep?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2a" name="q2" value="fast">
+                            <label for="q2a">5-15 minutes - I fall asleep quickly</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2b" name="q2" value="moderate">
+                            <label for="q2b">15-30 minutes - Sometimes quick, sometimes longer</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2c" name="q2" value="slow">
+                            <label for="q2c">30-60 minutes - It takes me a while to wind down</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2d" name="q2" value="very-slow">
+                            <label for="q2d">60+ minutes - I struggle to fall asleep most nights</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <div class="question">3. How do you typically feel when you wake up?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q3a" name="q3" value="refreshed">
+                            <label for="q3a">Refreshed and ready to go</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3b" name="q3" value="groggy-short">
+                            <label for="q3b">Groggy for 15-30 minutes, then fine</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3c" name="q3" value="groggy-long">
+                            <label for="q3c">Groggy for 1+ hours</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3d" name="q3" value="tired">
+                            <label for="q3d">Tired most of the day, regardless of sleep</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <div class="question">4. What's your biggest sleep challenge?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q4a" name="q4" value="falling-asleep">
+                            <label for="q4a">Falling asleep - my mind races at bedtime</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4b" name="q4" value="staying-asleep">
+                            <label for="q4b">Staying asleep - I wake up multiple times</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4c" name="q4" value="early-waking">
+                            <label for="q4c">Waking too early and can't get back to sleep</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4d" name="q4" value="sleep-quality">
+                            <label for="q4d">Poor sleep quality - never feel rested</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <div class="question">5. How does stress typically affect your sleep?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q5a" name="q5" value="no-effect">
+                            <label for="q5a">Doesn't affect it much - I sleep through stress</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5b" name="q5" value="occasional">
+                            <label for="q5b">Occasionally disrupts sleep during big events</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5c" name="q5" value="frequent">
+                            <label for="q5c">Frequently keeps me awake with racing thoughts</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5d" name="q5" value="severe">
+                            <label for="q5d">Severely impacts sleep - stress = no sleep</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="calculate-btn" onclick="calculateSleepType()">
+                    🎯 Discover My Sleep Type
+                </button>
+            </form>
+
+            <div id="results" class="results">
+                <div class="sleep-type" id="sleepTypeName"></div>
+                <div class="type-description" id="typeDescription"></div>
+                <div class="recommendations">
+                    <h3>Personalized Recommendations:</h3>
+                    <ul id="recommendationsList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateSleepType() {
+            const form = document.getElementById('sleepAssessment');
+            const formData = new FormData(form);
+            
+            // Check if all questions are answered
+            const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
+            for (let q of questions) {
+                if (!formData.get(q)) {
+                    alert('Please answer all questions to get your sleep type!');
+                    return;
+                }
+            }
+
+            const answers = {
+                q1: formData.get('q1'),
+                q2: formData.get('q2'),
+                q3: formData.get('q3'),
+                q4: formData.get('q4'),
+                q5: formData.get('q5')
+            };
+
+            const sleepType = determineSleepType(answers);
+            displayResults(sleepType);
+        }
+
+        function determineSleepType(answers) {
+            // Simple scoring system to determine sleep type
+            let scores = {
+                'Natural Sleeper': 0,
+                'Racing Mind Type': 0,
+                'Light Sleeper': 0,
+                'Stressed Sleeper': 0,
+                'Night Owl Fighter': 0
+            };
+
+            // Score based on answers
+            if (answers.q1 === 'morning' && answers.q2 === 'fast' && answers.q3 === 'refreshed') {
+                scores['Natural Sleeper'] += 3;
+            }
+            
+            if (answers.q2 === 'very-slow' && answers.q4 === 'falling-asleep') {
+                scores['Racing Mind Type'] += 3;
+            }
+            
+            if (answers.q4 === 'staying-asleep' || answers.q4 === 'early-waking') {
+                scores['Light Sleeper'] += 2;
+            }
+            
+            if (answers.q5 === 'frequent' || answers.q5 === 'severe') {
+                scores['Stressed Sleeper'] += 3;
+            }
+            
+            if ((answers.q1 === 'evening' || answers.q1 === 'night') && answers.q3 === 'groggy-long') {
+                scores['Night Owl Fighter'] += 2;
+            }
+
+            // Additional scoring logic
+            if (answers.q3 === 'tired') scores['Stressed Sleeper'] += 1;
+            if (answers.q2 === 'slow') scores['Racing Mind Type'] += 1;
+
+            // Find highest score
+            let maxScore = 0;
+            let topType = 'Natural Sleeper';
+            
+            for (let type in scores) {
+                if (scores[type] > maxScore) {
+                    maxScore = scores[type];
+                    topType = type;
+                }
+            }
+
+            return topType;
+        }
+
+        function displayResults(sleepType) {
+            const sleepTypes = {
+                'Natural Sleeper': {
+                    description: 'Congratulations! You have healthy sleep patterns and your body\'s natural circadian rhythm is well-aligned. You fall asleep relatively easily and wake up refreshed.',
+                    recommendations: [
+                        'Maintain your current bedtime routine',
+                        'Focus on sleep hygiene to preserve your natural patterns',
+                        'Use your natural energy peaks for important tasks',
+                        'Be mindful of factors that could disrupt your good sleep'
+                    ]
+                },
+                'Racing Mind Type': {
+                    description: 'Your primary challenge is quieting mental activity at bedtime. Racing thoughts, worries, or mental stimulation make it difficult to fall asleep quickly.',
+                    recommendations: [
+                        'Practice the 3-2-1 Knockout Protocol 30 minutes before bed',
+                        'Try journaling or brain dumping before sleep',
+                        'Use guided sleep meditations to redirect mental activity',
+                        'Create a worry window earlier in the day',
+                        'Implement the Racing Mind Shutdown Sequence'
+                    ]
+                },
+                'Light Sleeper': {
+                    description: 'You fall asleep relatively easily but struggle with staying asleep through the night. Environmental factors or internal disruptions frequently wake you.',
+                    recommendations: [
+                        'Optimize your bedroom environment (temperature, noise, light)',
+                        'Use the Emergency Reset Button technique for 3 AM wake-ups',
+                        'Consider white noise or earplugs',
+                        'Avoid fluids 2-3 hours before bedtime',
+                        'Practice the Physical Tension Release techniques'
+                    ]
+                },
+                'Stressed Sleeper': {
+                    description: 'Stress and anxiety significantly impact your sleep quality. Your nervous system stays activated, making it difficult to achieve deep, restorative sleep.',
+                    recommendations: [
+                        'Use the Instant Anxiety Neutralizer technique',
+                        'Practice progressive muscle relaxation',
+                        'Develop a consistent stress-reduction routine',
+                        'Consider adapting your bedtime routine based on daily stress levels',
+                        'Focus on nervous system regulation techniques'
+                    ]
+                },
+                'Night Owl Fighter': {
+                    description: 'Your natural circadian rhythm favors later sleep and wake times, but life demands force you into an earlier schedule. This creates ongoing sleep debt and morning grogginess.',
+                    recommendations: [
+                        'Gradually shift your sleep schedule using light therapy',
+                        'Use the Circadian Rhythm Reset Protocol',
+                        'Optimize morning light exposure',
+                        'Avoid bright screens 2 hours before intended bedtime',
+                        'Consider negotiating flexible morning schedules when possible'
+                    ]
+                }
+            };
+
+            const typeInfo = sleepTypes[sleepType];
+            
+            document.getElementById('sleepTypeName').textContent = sleepType;
+            document.getElementById('typeDescription').textContent = typeInfo.description;
+            
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = '';
+            typeInfo.recommendations.forEach(rec => {
+                const li = document.createElement('li');
+                li.textContent = rec;
+                recommendationsList.appendChild(li);
+            });
+            
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

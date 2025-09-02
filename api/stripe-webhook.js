@@ -1,13 +1,14 @@
-// Vercel Serverless Function for Stripe Webhooks
-// This handles successful payments and order fulfillment
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { Resend } = require('resend');
 
-const EmailService = require('../lib/email-service');
-const SimpleEmailService = require('../lib/email-service-simple');
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// This is your Stripe CLI webhook secret for testing your endpoint locally.
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 export default async function handler(req, res) {
-  // Only allow POST requests
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ message: 'Method not allowed' });
   }
 
   console.log('🔗 Webhook received:', {
@@ -269,6 +270,28 @@ async function handleSuccessfulPayment(session) {
     await emailService.sendDownloadLinks(customerEmail, customerName, session.id);
     
     console.log(`✅ Download email sent to ${customerEmail}`);
+    
+    // Stop email automation sequence for purchaser
+    try {
+      const stopResponse = await fetch('/api/resend-automation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'stop_sequence',
+          firstName: customerName,
+          email: customerEmail,
+          customerId: session.customer
+        })
+      });
+      
+      if (stopResponse.ok) {
+        console.log('✅ Email automation sequence stopped for purchaser');
+      } else {
+        console.error('⚠️ Failed to stop automation sequence');
+      }
+    } catch (automationError) {
+      console.error('Stop automation error:', automationError);
+    }
     
     // Optional: Add to analytics, CRM, etc.
     await trackPurchase(session);
