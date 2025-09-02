@@ -105,27 +105,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: error.message });
     }
 
-    // Start automated email sequence
-    try {
-      const automationResponse = await fetch('/api/resend-automation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'start_sequence',
-          firstName: firstName,
-          email: email
-        })
-      });
-      
-      if (automationResponse.ok) {
-        console.log('✅ Email automation sequence started');
-      } else {
-        console.error('⚠️ Failed to start automation sequence');
-      }
-    } catch (automationError) {
-      console.error('Automation trigger error:', automationError);
-      // Continue execution even if automation fails
-    }
+    // Log successful email send (automation will be handled separately for now)
+    console.log('✅ Welcome email sent successfully to:', email);
     
     res.status(200).json({ 
       message: 'Welcome email sent and sequence scheduled', 

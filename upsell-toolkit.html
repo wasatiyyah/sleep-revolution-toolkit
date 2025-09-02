@@ -822,9 +822,21 @@ body {
             }, 1000);
         }
 
+        // Debug: Check if embedded checkout is loaded
+        window.addEventListener('load', function() {
+            console.log('Page loaded, checking embedded checkout...');
+            console.log('EmbeddedCheckout available:', typeof window.EmbeddedCheckout !== 'undefined');
+            
+            const checkoutButton = document.getElementById('getCompleteToolkit');
+            console.log('Checkout button found:', !!checkoutButton);
+            console.log('Button attributes:', checkoutButton ? checkoutButton.getAttribute('data-checkout') : 'No button');
+        });
+
         // Get Complete Toolkit - handled by embedded-checkout.js
         // Additional tracking for upsell conversion
-        document.getElementById('getCompleteToolkit').addEventListener('click', function() {
+        document.getElementById('getCompleteToolkit').addEventListener('click', function(e) {
+            console.log('Checkout button clicked!');
+            
             // Track conversion (embedded checkout will also track)
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'upsell_accepted', {
@@ -832,6 +844,13 @@ body {
                     'event_label': 'Complete Toolkit Upsell',
                     'value': 27
                 });
+            }
+            
+            // Fallback if embedded checkout doesn't work
+            if (typeof window.EmbeddedCheckout === 'undefined') {
+                console.error('EmbeddedCheckout not loaded, using fallback');
+                alert('Checkout system loading... Please try again in a moment.');
+                e.preventDefault();
             }
         });
 
