@@ -5,8 +5,12 @@ const { Resend } = require('resend');
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://bvlnzawphkjmrtvjkyyh.supabase.co';
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+console.log('🔍 Supabase URL:', supabaseUrl);
+console.log('🔍 Service key exists:', !!supabaseKey);
+
 if (!supabaseKey) {
   console.error('⚠️ SUPABASE_SERVICE_ROLE_KEY not found. Add it to Vercel environment variables.');
+  console.error('Visit: https://vercel.com/dashboard → Your Project → Settings → Environment Variables');
 }
 
 const supabase = supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
@@ -29,6 +33,9 @@ const emailTemplates = {
 async function addSubscriber(email, firstName) {
   if (!supabase) {
     console.error('❌ Supabase not initialized. Check your environment variables.');
+    console.error('Make sure SUPABASE_SERVICE_ROLE_KEY is set in Vercel.');
+    console.error('URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.error('Key exists:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
     return null;
   }
 
