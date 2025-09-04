@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^7.17.0",
+    "@supabase/supabase-js": "^2.57.0",
     "@vercel/blob": "^1.1.1",
     "aws-sdk": "^2.1692.0",
     "dotenv": "^17.2.1",

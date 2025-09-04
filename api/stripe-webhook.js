@@ -1,10 +1,12 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// Use test key if available, fallback to production key
+const stripeKey = (process.env.STRIPE_SECRET_KEY_TEST || process.env.STRIPE_SECRET_KEY || '').trim();
+const stripe = require('stripe')(stripeKey);
 const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// This is your Stripe CLI webhook secret for testing your endpoint locally.
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+// Use test webhook secret if available, fallback to production
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET_TEST || process.env.STRIPE_WEBHOOK_SECRET;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -31,9 +33,9 @@ export default async function handler(req, res) {
 
   try {
     // Auto-detect test vs live mode based on available keys
-    const stripeKey = process.env.STRIPE_SECRET_KEY_TEST || process.env.STRIPE_SECRET_KEY;
+    const stripeKey = (process.env.STRIPE_SECRET_KEY_TEST || process.env.STRIPE_SECRET_KEY || '').trim();
     // Use the main webhook secret since we're using live payment links even in test mode
-    let webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || process.env.STRIPE_WEBHOOK_SECRET_TEST;
+    let webhookSecret = (process.env.STRIPE_WEBHOOK_SECRET || process.env.STRIPE_WEBHOOK_SECRET_TEST || '').trim();
     
     // Validate required environment variables
     if (!stripeKey) {

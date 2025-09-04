@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Your Emergency Sleep Kit is On The Way!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .thank-you-container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .check-icon {
+            font-size: 72px;
+            margin-bottom: 20px;
+            animation: checkBounce 0.6s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #1a202c;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .email-notice {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .email-notice h3 {
+            color: #059669;
+            margin-bottom: 10px;
+        }
+
+        .next-steps {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+        }
+
+        .step-number {
+            background: #6366f1;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: #6366f1;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .support-text {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        @keyframes checkBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 640px) {
+            .thank-you-container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="check-icon">✅</div>
+        
+        <h1>Thank You!</h1>
+        <p class="subtitle">Your Emergency Sleep Kit is on its way to your inbox!</p>
+        
+        <div class="email-notice">
+            <h3>📧 Check Your Email</h3>
+            <p>We've sent your Emergency Sleep Kit download links to your email address.</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #6b7280;">
+                Can't find it? Check your spam/promotions folder or wait 2-3 minutes for delivery.
+            </p>
+        </div>
+        
+        <div class="next-steps">
+            <h3>🎯 Your Next Steps:</h3>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <strong>Check your email</strong> for the message with subject "Your Emergency Sleep Kit is Here!"
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <strong>Download the Emergency Cards PDF</strong> - These are your quick-access sleep techniques
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <strong>Save it to your phone</strong> for easy access during sleepless nights
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text">
+                    <strong>Try Protocol #1 tonight</strong> - The 4-7-8 breathing technique (it works immediately!)
+                </div>
+            </div>
+        </div>
+        
+        <button class="cta-button" onclick="window.location.href='https://www.sleeprevolutiontoolkit.com'">
+            Return to Homepage
+        </button>
+        
+        <p class="support-text">
+            Questions? Email us at orders@sleeprevolutiontoolkit.com<br>
+            We're here to help you sleep better!
+        </p>
+    </div>
+</body>
+</html>

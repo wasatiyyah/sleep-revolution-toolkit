@@ -5,7 +5,8 @@ class EmbeddedCheckout {
     this.isInitialized = false;
     this.products = {
       basic: {
-        priceId: 'price_1QgD9LF5kJSM3mxUYvwqnwJU', // Your $27 price ID
+        // Use the live price ID that matches the live publishable key
+        priceId: 'price_1S1pzWBW0J6epKS6wNsiBukQ', // Live $27 price ID
         name: 'Sleep Revolution Toolkit',
         amount: 2700, // $27 in cents
         description: 'Complete sleep optimization system with emergency cards, main guide, and 30-day tracker'
@@ -54,8 +55,14 @@ class EmbeddedCheckout {
   }
 
   getStripePublishableKey() {
-    // Using your live Stripe keys for sandbox testing
-    return 'pk_test_51QfxP7F5kJSM3mxU1m4YVMw4eQWiLLRl0l0ztDWoAhbBTw5qoKUWoEMBqUjDGZGOBgPvGWVWFXqxoOuTULjqLBgH00d8CZFrBz';
+    // Check if we have a global config with publishable key
+    if (window.STRIPE_PUBLISHABLE_KEY) {
+      return window.STRIPE_PUBLISHABLE_KEY;
+    }
+    
+    // Fallback to the live key from production config
+    // This is safe to expose in frontend code
+    return 'pk_live_zKkKhZMf8HuNCE8GDGIaNPwQ';
   }
 
   async createCheckout(productType = 'basic', options = {}) {

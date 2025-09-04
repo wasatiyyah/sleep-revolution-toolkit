@@ -248,3 +248,4 @@ test-webhook-env.js
 debug-webhook-manual.js
 test-complete-flow.spec.js
 test-local.html
+.env*.local

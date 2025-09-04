@@ -2,7 +2,7 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -105,7 +105,19 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: error.message });
     }
 
-    // Log successful email send (automation will be handled separately for now)
+    // Add subscriber to Supabase database for automation
+    try {
+      console.log('🚀 Adding subscriber to database for automation:', firstName, email);
+      
+      const { addSubscriber } = require('./supabase-email-automation.js');
+      await addSubscriber(email, firstName);
+      
+      console.log('✅ Subscriber added to 7-day email sequence:', email);
+    } catch (automationError) {
+      console.error('❌ Database automation error:', automationError);
+      // Continue without failing the main request
+    }
+    
     console.log('✅ Welcome email sent successfully to:', email);
     
     res.status(200).json({ 

@@ -2,6 +2,12 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Audience IDs - using the existing "General" audience for now
+const AUDIENCE_IDS = {
+  SLEEP_TOOLKIT_LEADS: process.env.RESEND_LEADS_AUDIENCE_ID || '7e02ec50-e9a5-42b2-bafb-4f0df2c58453',
+  SLEEP_TOOLKIT_CUSTOMERS: process.env.RESEND_CUSTOMERS_AUDIENCE_ID || '7e02ec50-e9a5-42b2-bafb-4f0df2c58453'
+};
+
 // Email sequence templates with download link
 const emailSequence = [
   {
@@ -599,7 +605,7 @@ const emailSequence = [
 ];
 
 // Create Resend automation
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -627,6 +633,11 @@ export default async function handler(req, res) {
       await sendSequenceEmail(day, firstName, email);
       res.status(200).json({ message: `Day ${day} email sent` });
       
+    } else if (action === 'create_audiences') {
+      // Create Resend audiences
+      await createAudiencesIfNeeded();
+      res.status(200).json({ message: 'Audiences created' });
+      
     } else {
       res.status(400).json({ message: 'Invalid action' });
     }
@@ -644,8 +655,10 @@ async function startEmailSequence(firstName, email) {
   console.log(`🚀 Starting email sequence for ${firstName} (${email})`);
   
   try {
-    // Send immediate welcome email with emergency kit download
-    const welcomeEmail = emailSequence[0];
+    // Step 1: Add contact to Resend audience (leads list)
+    await addContactToAudience(email, firstName, AUDIENCE_IDS.SLEEP_TOOLKIT_LEADS);
+    
+    // Step 2: Send immediate welcome email with emergency kit download
     await sendSequenceEmail(0, firstName, email);
     
     // In production, you would:
@@ -653,7 +666,7 @@ async function startEmailSequence(firstName, email) {
     // 2. Set up cron jobs or queue jobs for subsequent emails
     // 3. Use Resend's scheduling features if available
     
-    console.log(`✅ Email sequence started for ${email}`);
+    console.log(`✅ Email sequence started and contact added to leads audience for ${email}`);
     
     // For now, log the schedule
     console.log('📅 Email schedule created:', {
@@ -671,12 +684,20 @@ async function startEmailSequence(firstName, email) {
 async function stopEmailSequence(email) {
   console.log(`🛑 Stopping email sequence for ${email} (customer purchased)`);
   
-  // In production, you would:
-  // 1. Update database: { purchased: true, sequenceStopped: Date }
-  // 2. Cancel scheduled emails
-  // 3. Add to "customer" segment instead of "prospect" segment
-  
-  console.log(`✅ Email sequence stopped for ${email}`);
+  try {
+    // Move contact from leads to customers audience
+    await addContactToAudience(email, '', AUDIENCE_IDS.SLEEP_TOOLKIT_CUSTOMERS);
+    
+    // In production, you would also:
+    // 1. Update database: { purchased: true, sequenceStopped: Date }
+    // 2. Cancel scheduled emails
+    // 3. Remove from leads audience to avoid duplicate targeting
+    
+    console.log(`✅ Email sequence stopped and contact moved to customers audience for ${email}`);
+  } catch (error) {
+    console.error('Failed to stop sequence:', error);
+    throw error;
+  }
 }
 
 async function sendSequenceEmail(day, firstName, email) {
@@ -709,10 +730,83 @@ async function sendSequenceEmail(day, firstName, email) {
   return data;
 }
 
+async function addContactToAudience(email, firstName, audienceId) {
+  if (!audienceId || audienceId === 'create-audience-first') {
+    console.log('⚠️ Audience ID not configured. Skipping contact addition to Resend audience.');
+    return;
+  }
+
+  try {
+    console.log(`📝 Adding contact ${email} to audience ${audienceId}`);
+    
+    const { data, error } = await resend.contacts.create({
+      email: email,
+      firstName: firstName || undefined,
+      unsubscribed: false,
+      audienceId: audienceId
+    });
+
+    if (error) {
+      // If contact already exists, that's okay - we'll get a 409 error
+      if (error.message && error.message.includes('already exists')) {
+        console.log(`✅ Contact ${email} already exists in audience`);
+        return;
+      }
+      throw new Error(`Resend contact creation failed: ${error.message}`);
+    }
+
+    console.log(`✅ Contact added to Resend audience: ${data?.id || 'success'}`);
+    return data;
+    
+  } catch (error) {
+    console.error(`Failed to add contact to audience:`, error);
+    // Don't throw - we don't want to break the email flow if audience addition fails
+  }
+}
+
+async function createAudiencesIfNeeded() {
+  console.log('🏗️ Checking if Resend audiences exist...');
+  
+  try {
+    // Create leads audience
+    if (!process.env.RESEND_LEADS_AUDIENCE_ID) {
+      console.log('Creating Sleep Toolkit Leads audience...');
+      const { data: leadsAudience, error: leadsError } = await resend.audiences.create({
+        name: 'Sleep Toolkit - Leads (7-Day Sequence)'
+      });
+      
+      if (leadsError) {
+        console.error('Failed to create leads audience:', leadsError);
+      } else {
+        console.log(`✅ Leads audience created: ${leadsAudience.id}`);
+        console.log('⚠️ Add this to your environment variables: RESEND_LEADS_AUDIENCE_ID=' + leadsAudience.id);
+      }
+    }
+    
+    // Create customers audience  
+    if (!process.env.RESEND_CUSTOMERS_AUDIENCE_ID) {
+      console.log('Creating Sleep Toolkit Customers audience...');
+      const { data: customersAudience, error: customersError } = await resend.audiences.create({
+        name: 'Sleep Toolkit - Customers (Post-Purchase)'
+      });
+      
+      if (customersError) {
+        console.error('Failed to create customers audience:', customersError);
+      } else {
+        console.log(`✅ Customers audience created: ${customersAudience.id}`);
+        console.log('⚠️ Add this to your environment variables: RESEND_CUSTOMERS_AUDIENCE_ID=' + customersAudience.id);
+      }
+    }
+    
+  } catch (error) {
+    console.error('Failed to create audiences:', error);
+  }
+}
+
 // Export functions for use in other files
-module.exports = { 
-  startEmailSequence, 
-  stopEmailSequence, 
-  sendSequenceEmail,
-  emailSequence 
-};
+module.exports.startEmailSequence = startEmailSequence;
+module.exports.stopEmailSequence = stopEmailSequence; 
+module.exports.sendSequenceEmail = sendSequenceEmail;
+module.exports.addContactToAudience = addContactToAudience;
+module.exports.createAudiencesIfNeeded = createAudiencesIfNeeded;
+module.exports.emailSequence = emailSequence;

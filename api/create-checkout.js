@@ -1,4 +1,11 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// Determine which Stripe key to use based on what's available
+// Use TEST key for now since products exist in test mode
+const stripeKey = (process.env.STRIPE_SECRET_KEY_TEST || process.env.STRIPE_SECRET_KEY || '').trim();
+if (!stripeKey) {
+  console.error('❌ No Stripe secret key found. Need STRIPE_SECRET_KEY or STRIPE_SECRET_KEY_TEST');
+}
+console.log('🔑 Using Stripe mode:', stripeKey?.includes('sk_live') ? 'LIVE' : 'TEST');
+const stripe = require('stripe')(stripeKey);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -29,8 +36,8 @@ export default async function handler(req, res) {
         },
       ],
       mode: 'payment',
-      success_url: successUrl || `${req.headers.origin}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl || `${req.headers.origin}/upsell-toolkit.html`,
+      success_url: successUrl || `${req.headers.origin || 'https://www.sleeprevolutiontoolkit.com'}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: cancelUrl || `${req.headers.origin || 'https://www.sleeprevolutiontoolkit.com'}/upsell-toolkit.html`,
       customer_email: customerEmail,
       metadata: {
         customerName: customerName || '',
@@ -60,11 +67,11 @@ export default async function handler(req, res) {
           type: 'dropdown',
           dropdown: {
             options: [
-              { label: 'Falling asleep (racing mind)', value: 'falling_asleep' },
-              { label: 'Staying asleep (frequent wake-ups)', value: 'staying_asleep' },
-              { label: 'Early morning wake-ups', value: 'early_waking' },
-              { label: 'Poor sleep quality', value: 'sleep_quality' },
-              { label: 'Stress and anxiety', value: 'stress_anxiety' }
+              { label: 'Falling asleep (racing mind)', value: 'fallingasleep' },
+              { label: 'Staying asleep (frequent wake-ups)', value: 'stayingasleep' },
+              { label: 'Early morning wake-ups', value: 'earlywaking' },
+              { label: 'Poor sleep quality', value: 'sleepquality' },
+              { label: 'Stress and anxiety', value: 'stressanxiety' }
             ]
           },
           optional: true

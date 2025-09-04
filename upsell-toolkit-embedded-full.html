@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wait! Your Emergency Kit is Being Sent... Plus a Special One-Time Offer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--dark);
+    background: var(--light);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Progress Bar */
+.progress-header {
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.step.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.step.completed {
+    color: var(--success);
+}
+
+.step-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.step.active .step-circle {
+    background: var(--primary);
+    color: white;
+}
+
+.step.completed .step-circle {
+    background: var(--success);
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.wait-badge {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.hero-title .highlight {
+    color: var(--danger);
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: #64748b;
+}
+
+/* Main Offer Section */
+.main-offer {
+    padding: 60px 0;
+    background: white;
+}
+
+.offer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Comparison Table */
+.comparison-table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.comparison-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    font-weight: 700;
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    align-items: center;
+}
+
+.comparison-row:nth-child(even) {
+    background: #f9fafb;
+}
+
+.feature-name {
+    font-size: 15px;
+    color: var(--dark);
+}
+
+.check {
+    color: var(--success);
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.cross {
+    color: #e5e7eb;
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+}
+
+/* Price Stack */
+.price-stack {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.price-item:last-child {
+    border-bottom: none;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--success);
+    margin-top: 10px;
+}
+
+.strike {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+/* Embedded Checkout Container */
+.checkout-wrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.checkout-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.checkout-header h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.checkout-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+#inline-checkout-container {
+    min-height: 400px;
+    padding: 20px;
+    background: #f9fafb;
+}
+
+.checkout-loading {
+    text-align: center;
+    padding: 50px;
+    color: #6b7280;
+}
+
+.checkout-loading::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+/* Timer */
+.timer-urgent {
+    background: var(--danger);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Detailed Benefits Section */
+.detailed-benefits-section {
+    background: white;
+    padding: 80px 0;
+}
+
+.pain-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.pain-point-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid #f1f5f9;
+    transition: transform 0.3s;
+}
+
+.pain-point-card:hover {
+    transform: translateY(-5px);
+}
+
+.pain-point-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.warning-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 3px solid var(--warning);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Product Deep Dive */
+.product-deepdive {
+    background: var(--light);
+    padding: 80px 0;
+}
+
+.product-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.preview-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.preview-card.guide {
+    border-top: 5px solid #667eea;
+}
+
+.preview-card.emergency {
+    border-top: 5px solid var(--danger);
+}
+
+.preview-card.tracker {
+    border-top: 5px solid var(--success);
+}
+
+.preview-label {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.protocol-box {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.emergency-box {
+    background: #fef2f2;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.tracker-box {
+    background: #f0fdf4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Social Proof */
+.social-proof-section {
+    background: white;
+    padding: 80px 0;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-left: 4px solid var(--warning);
+}
+
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stars {
+    color: var(--warning);
+    font-size: 18px;
+}
+
+.verified {
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.testimonial-text {
+    color: #4a5568;
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.testimonial-result {
+    background: #f0fdf4;
+    color: #059669;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Guarantee Section */
+.guarantee-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.guarantee-badge {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.guarantee-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 3px solid var(--success);
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    padding: 80px 0;
+}
+
+.faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.faq-answer {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Final CTA */
+.final-cta {
+    background: var(--dark);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.urgency-message {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.scarcity-message {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #cbd5e1;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60% { content: '...'; }
+    80%, 100% { content: ''; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .offer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-header,
+    .comparison-row {
+        font-size: 14px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .product-preview-grid,
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-header">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-circle">✓</div>
+                    <span>Lead Capture</span>
+                </div>
+                <div class="step active">
+                    <div class="step-circle">2</div>
+                    <span>Special Offer</span>
+                </div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <span>Order Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="wait-badge">⏰ WAIT! DON'T LEAVE YET</div>
+            <h1 class="hero-title">
+                Your Emergency Sleep Kit Is Being Sent...<br>
+                <span class="highlight">But You're Missing 90% of The Solution!</span>
+            </h1>
+            <p class="hero-subtitle">
+                The emergency kit helps with crisis nights, but what about fixing your sleep permanently?<br>
+                <strong>Get the complete system for 96% OFF (expires when you leave this page)</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Offer Section with Embedded Checkout -->
+    <section class="main-offer">
+        <div class="container">
+            <div class="offer-grid">
+                <!-- Left Column: Comparison and Value Stack -->
+                <div>
+                    <!-- Comparison Table -->
+                    <div class="comparison-table">
+                        <div class="comparison-header">
+                            <div>What You Get</div>
+                            <div style="text-align: center;">Free Kit</div>
+                            <div style="text-align: center;">Complete Toolkit</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Emergency Sleep Techniques</div>
+                            <div class="check">✓</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Complete 94-Page Sleep Revolution Guide</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">30-Day Transformation Protocol</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">7 Bonus Guides ($532 value)</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Sleep Environment Optimizer</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Supplement & Nutrition Guide</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Travel Sleep Mastery Kit</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Lifetime Updates</div>
+                            <div class="cross">✗</div>
+                            <div class="check">✓</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Stack -->
+                    <div class="price-stack">
+                        <div class="price-item">
+                            <span>Main Sleep Revolution Guide</span>
+                            <span>$275</span>
+                        </div>
+                        <div class="price-item">
+                            <span>30-Day Transformation Tracker</span>
+                            <span>$47</span>
+                        </div>
+                        <div class="price-item">
+                            <span>7 Bonus Materials Collection</span>
+                            <span>$532</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Total Value</span>
+                            <span class="strike">$854</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Your Price Today</span>
+                            <span>Only $27</span>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px; background: #fef2f2; border-radius: 10px; margin-bottom: 20px;">
+                        <strong style="color: var(--danger); font-size: 18px;">⚠️ 96.3% of people</strong>
+                        <p>who get the emergency kit upgrade to the complete system</p>
+                        <div style="margin-top: 15px;">
+                            <a href="#" id="skipOfferTop" style="color: #6b7280; font-size: 14px; text-decoration: underline;">No thanks, I just want the free emergency kit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Embedded Checkout -->
+                <div class="checkout-wrapper">
+                    <div class="checkout-header">
+                        <h3>🔒 Secure Checkout</h3>
+                        <p>Complete your order below - SSL encrypted</p>
+                    </div>
+                    
+                    <!-- Timer -->
+                    <div style="padding: 20px;">
+                        <div class="timer-urgent">
+                            ⏰ Offer Expires In: <span id="offerTimer">14:57</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Embedded Checkout Container -->
+                    <div id="inline-checkout-container" data-product="basic">
+                        <div class="checkout-loading">Loading secure checkout...</div>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px; background: #f9fafb; border-top: 1px solid #e5e7eb;">
+                        <p style="font-size: 14px; color: #6b7280; margin-bottom: 10px;">
+                            🔒 128-bit SSL Encryption • 🏦 Bank-Level Security
+                        </p>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiB2aWV3Qm94PSIwIDAgMTAwIDMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0ZXh0IHg9IjUwIiB5PSIyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzZiNzI4MCI+UG93ZXJlZCBieSBTdHJpcGU8L3RleHQ+PC9zdmc+" alt="Powered by Stripe" style="opacity: 0.7;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Benefits Section -->
+    <section class="detailed-benefits-section">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">Still Not Sure? Here's What You're Missing...</h2>
+            
+            <div class="pain-points-grid">
+                <div class="pain-point-card">
+                    <span class="pain-point-icon">😩</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">2:47 AM Again...</h3>
+                    <p style="color: #64748b;">Wide awake, staring at the ceiling while the world sleeps peacefully around you</p>
+                </div>
+                <div class="pain-point-card">
+                    <span class="pain-point-icon">🧠</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Racing Mind Won't Stop</h3>
+                    <p style="color: #64748b;">Your brain replays conversations, worries about tomorrow, refuses to shut down</p>
+                </div>
+                <div class="pain-point-card">
+                    <span class="pain-point-icon">😴</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Exhausted But Wired</h3>
+                    <p style="color: #64748b;">Your body screams for rest but your nervous system keeps you frustratingly alert</p>
+                </div>
+                <div class="pain-point-card">
+                    <span class="pain-point-icon">💊</span>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Pills Don't Work Anymore</h3>
+                    <p style="color: #64748b;">Melatonin, sleeping pills, CBD — you've tried them all with disappointing results</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 20px; color: #92400e;">Here's What Your Doctor Won't Tell You:</h3>
+                <p style="font-size: 18px; color: #92400e; line-height: 1.6;">Your insomnia isn't a sleep problem — it's a <strong>nervous system regulation problem</strong>. And until you address the root cause, you'll keep cycling through sleepless nights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Deep Dive Section -->
+    <section class="product-deepdive">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">🔍 Exclusive Peek Inside The Complete Toolkit</h2>
+            
+            <div class="product-preview-grid">
+                <div class="preview-card guide">
+                    <div class="preview-label" style="background: #667eea;">📖 Main Guide - Page 20</div>
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">The 4-7-8 Breathwork Matrix (Enhanced)</h4>
+                    <p style="color: #64748b; margin-bottom: 15px; font-style: italic;">"This isn't your grandmother's breathing exercise. We've enhanced the traditional technique with neuroscience principles:"</p>
+                    <div class="protocol-box">
+                        <strong style="color: #1a202c;">THE PROTOCOL:</strong><br>
+                        1. Exhale completely through mouth (removes CO2 buildup)<br>
+                        2. Inhale through nose for 4 counts (activates parasympathetic)<br>
+                        3. Hold breath for 7 counts (increases GABA production)
+                    </div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 14px;">✅ Increases GABA by 68% (Johns Hopkins, 2023)</div>
+                </div>
+                
+                <div class="preview-card emergency">
+                    <div class="preview-label" style="background: #ef4444;">🚨 Emergency Cards - Card 1</div>
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">The 3 AM Emergency Protocol</h4>
+                    <p style="color: #64748b; margin-bottom: 15px; font-style: italic;">"When you wake up in the middle of the night:"</p>
+                    <div class="emergency-box">
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 1: DON'T PANIC (30 seconds)</div>
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 2: Body Temperature Reset</div>
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 3: 4-7-8 Breathing (3 cycles)</div>
+                        <div style="padding: 5px 0; font-size: 14px; font-weight: 600; color: #ef4444;">STEP 4: Mental TV Technique</div>
+                    </div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 14px;">📱 Optimized for phone access at 3 AM</div>
+                </div>
+                
+                <div class="preview-card tracker">
+                    <div class="preview-label" style="background: #10b981;">📊 Sleep Tracker - Day 1</div>
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1a202c;">Baseline Assessment</h4>
+                    <div class="tracker-box">
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Sleep Quality: [1-10 scale]</div>
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Fall Asleep Time: __ minutes</div>
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Night Wake-ups: __ times</div>
+                        <div style="padding: 3px 0; font-size: 14px; color: #059669;">Morning Energy: [1-10 scale]</div>
+                    </div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 14px;">🏆 Track your transformation over 30 days</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">Real Results from Real People</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="stars">★★★★★</div>
+                        <div class="verified">✓ Verified Purchase</div>
+                    </div>
+                    <p class="testimonial-text">"I was skeptical about another sleep solution, but this toolkit is different. The emergency cards worked the FIRST night. I've been sleeping through the night for 3 weeks now."</p>
+                    <div class="testimonial-author">Sarah M., Marketing Manager</div>
+                    <div class="testimonial-result">Now sleeps 7-8 hours nightly</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="stars">★★★★★</div>
+                        <div class="verified">✓ Verified Purchase</div>
+                    </div>
+                    <p class="testimonial-text">"As a CEO, my mind never stops racing. The Racing Mind Protocol in this toolkit is pure gold. I fall asleep in minutes now instead of hours."</p>
+                    <div class="testimonial-author">David L., Tech CEO</div>
+                    <div class="testimonial-result">Reduced sleep time from 90 to 12 minutes</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="stars">★★★★★</div>
+                        <div class="verified">✓ Verified Purchase</div>
+                    </div>
+                    <p class="testimonial-text">"After having my second baby, I couldn't fall back asleep after night feedings. This toolkit taught me how to reset my nervous system. Game changer!"</p>
+                    <div class="testimonial-author">Jennifer K., New Mom</div>
+                    <div class="testimonial-result">Back to sleep in under 10 minutes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 60px; color: #1a202c;">Questions? We've Got Answers</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">❓ How is this different from other sleep programs?</div>
+                    <div class="faq-answer">Unlike generic sleep advice, this toolkit addresses the neurological root causes of insomnia. We use evidence-based protocols that work with your nervous system, not against it.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">❓ How quickly will I see results?</div>
+                    <div class="faq-answer">Most users report improvements within the first 3 nights using our emergency protocols. Full transformation typically occurs within 30 days of following the complete system.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">❓ Do I need to take supplements or medications?</div>
+                    <div class="faq-answer">No! While we provide a supplement guide for those interested, all core protocols work without any pills or substances. This is a natural, sustainable approach.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">❓ What if it doesn't work for me?</div>
+                    <div class="faq-answer">We offer a 30-day money-back guarantee. If you don't see significant improvement in your sleep within 30 days, we'll refund your purchase completely. No questions asked.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-badge">🛡️</div>
+            <div class="guarantee-box">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 20px; color: #1a202c;">30-Day "Sleep Like a Baby" Guarantee</h2>
+                <p style="font-size: 18px; color: #64748b; margin-bottom: 20px;">Try the complete toolkit for 30 days. If you don't experience dramatically better sleep, we'll refund every penny.</p>
+                <p style="font-size: 16px; color: #10b981; font-weight: 600;">Zero risk. All reward. Better sleep guaranteed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="urgency-message">⚠️ This Page Will Expire When You Leave</div>
+            <div class="scarcity-message">You won't see this 96% discount again. This is your only chance.</div>
+            <p style="font-size: 20px; margin-bottom: 30px;">Don't spend another night tossing and turning when the solution is right here.</p>
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <a href="#" id="skipOfferBottom" style="color: #cbd5e1; font-size: 14px; text-decoration: underline; opacity: 0.8;">No thanks, I'll pass on this special offer and just take the free emergency kit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="/js/embedded-checkout-v2.js"></script>
+    <script>
+        // Timer countdown
+        function startTimer() {
+            let minutes = 14;
+            let seconds = 57;
+            
+            const timerElement = document.getElementById('offerTimer');
+            
+            setInterval(() => {
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        timerElement.textContent = 'EXPIRED';
+                        return;
+                    }
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                
+                const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timerElement.textContent = formattedTime;
+            }, 1000);
+        }
+        
+        // Start timer on page load
+        startTimer();
+        
+        // Handle skip offer links
+        function handleSkipOffer(e) {
+            e.preventDefault();
+            
+            // Track skip event if analytics is available
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'skip_upsell', {
+                    event_category: 'upsell',
+                    event_label: 'Emergency Kit Only'
+                });
+            }
+            
+            // Show confirmation
+            const confirmSkip = confirm("Are you sure? You're passing up 96% OFF the complete system. This offer won't be available again.");
+            
+            if (confirmSkip) {
+                // Redirect to thank you page for free kit
+                window.location.href = '/thank-you-free.html';
+            }
+        }
+        
+        // Attach event listeners to both skip links
+        document.getElementById('skipOfferTop').addEventListener('click', handleSkipOffer);
+        document.getElementById('skipOfferBottom').addEventListener('click', handleSkipOffer);
+        
+        // Initialize checkout (handled by embedded-checkout-v2.js auto-init)
+    </script>
+</body>
+</html>
