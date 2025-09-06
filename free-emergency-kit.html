@@ -782,9 +782,9 @@ body {
                 // Success message
                 submitBtn.innerHTML = '✅ Kit Sent! Redirecting...';
                 
-                // Redirect to upsell page after short delay
+                // Redirect to upsell page with embedded checkout after short delay
                 setTimeout(() => {
-                    window.location.href = 'upsell-toolkit.html';
+                    window.location.href = 'upsell-toolkit-embedded-full.html';
                 }, 2000);
                 
             } catch (error) {
@@ -803,7 +803,7 @@ body {
                 
                 // Still redirect after delay
                 setTimeout(() => {
-                    window.location.href = 'upsell-toolkit.html';
+                    window.location.href = 'upsell-toolkit-embedded-full.html';
                 }, 2000);
             }
         });
